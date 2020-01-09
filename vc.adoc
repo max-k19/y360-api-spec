@@ -1,0 +1,815 @@
+[[header]]
+== Virtual Classes API Guide
+
+[#author .author]#Titov Mykhaylo# +
+
+[[toc]]
+[[toctitle]]
+Table of Contents
+
+* link:#resources-programs[Errors]
+** link:#_method_not_allowed_error[Method not allowed error]
+*** link:#_response_fields[Response fields]
+*** link:#_example[Example]
+** link:#_bad_request_error[Bad request error]
+*** link:#_example_of_incorrect_param_value[Example of incorrect param value]
+** link:#_entity_not_found_error[Entity not found error]
+*** link:#_response_fields_2[Response fields]
+*** link:#_example_2[Example]
+** link:#_internal_server_error[Internal server error]
+*** link:#_response_fields_3[Response fields]
+*** link:#_example_3[Example]
+
+link:#_program_briefs[Program Briefs]
+
+* link:#resources-search-programs-controller-i-t-should-search-programs[Search Programs]
+** link:#_request_headers_3[Request headers]
+** link:#_path_parameters_3[Path parameters]
+** link:#_query_parameters_3[Query parameters]
+** link:#_request_fields_3[Request fields]
+** link:#_response_fields_6[Response fields]
+** link:#_example_request_3[Example request]
+** link:#_example_response_3[Example response]
+
+link:#_program_details[Program Details]
+
+* link:#resources-fetch-program-details-controller-i-t-should-fetch-program-details[Fetch Program Details]
+** link:#_request_headers_4[Request headers]
+** link:#_path_parameters_4[Path parameters]
+** link:#_query_parameters_4[Query parameters]
+** link:#_request_fields_4[Request fields]
+** link:#_response_fields_7[Response fields]
+** link:#_example_request_4[Example request]
+** link:#_example_response_4[Example response]
+
+link:#_video_briefs[Video Briefs]
+
+* link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Program Videos]
+** link:#_request_headers_5[Request headers]
+** link:#_path_parameters_5[Path parameters]
+** link:#_query_parameters_5[Query parameters]
+** link:#_request_fields_5[Request fields]
+** link:#_response_fields_8[Response fields]
+** link:#_example_request_5[Example request]
+** link:#_example_response_5[Example response]
+* link:#resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos[Fetch Featured Videos]
+** link:#_request_headers_6[Request headers]
+** link:#_path_parameters_6[Path parameters]
+** link:#_query_parameters_6[Query parameters]
+** link:#_request_fields_6[Request fields]
+** link:#_response_fields_9[Response fields]
+** link:#_example_request_6[Example request]
+** link:#_example_response_6[Example response]
+* link:#resources-search-videos-controller-i-t-should-search-videos[Search Videos]
+** link:#_request_headers_7[Request headers]
+** link:#_path_parameters_7[Path parameters]
+** link:#_query_parameters_7[Query parameters]
+** link:#_request_fields_7[Request fields]
+** link:#_response_fields_10[Response fields]
+** link:#_example_request_7[Example request]
+** link:#_example_response_7[Example response]
+
+link:#_video_details[Video Details]
+
+* link:#resources-fetch-video-controller-i-t-should-fetch-video[Fetch Video]
+** link:#_request_headers_8[Request headers]
+** link:#_path_parameters_8[Path parameters]
+** link:#_query_parameters_8[Query parameters]
+** link:#_request_fields_8[Request fields]
+** link:#_response_fields_11[Response fields]
+** link:#_example_request_8[Example request]
+** link:#_example_response_8[Example response]
+
+[[content]]
+[[resources-programs]]
+== link:#resources-programs[Errors]
+
+[[_method_not_allowed_error]]
+=== link:#_method_not_allowed_error[Method not allowed error]
+
+[[_response_fields]]
+==== link:#_response_fields[Response fields]
+
+No response body.
+
+[[_example]]
+==== link:#_example[Example]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 405 Method Not Allowed
+----
+
+[[_bad_request_error]]
+=== link:#_bad_request_error[Bad request error]
+
+[[_example_of_incorrect_param_value]]
+==== link:#_example_of_incorrect_param_value[Example of incorrect param value]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 400 Bad Request
+Content-Length: 208
+Content-Type: application/json;charset=UTF-8
+
+{
+  "errors" : {
+    "param" : "Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; nested exception is java.lang.NumberFormatException: For input string: \"Wrong\""
+  }
+}
+----
+
+[[_entity_not_found_error]]
+=== link:#_entity_not_found_error[Entity not found error]
+
+[[_response_fields_2]]
+==== link:#_response_fields_2[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|message |String |false |Message of error.
+|errors |Map |false |Map of pairs: "<parameterName>": "<reason>".
+|===
+
+[[_example_2]]
+==== link:#_example_2[Example]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 404 Not Found
+Content-Length: 90
+Content-Type: application/json;charset=UTF-8
+
+{
+  "message" : "Video [999] isn't found",
+  "errors" : {
+    "videoId" : "notFound"
+  }
+}
+----
+
+[[_internal_server_error]]
+=== link:#_internal_server_error[Internal server error]
+
+[[_response_fields_3]]
+==== link:#_response_fields_3[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|message |String |false |Message of error.
+|===
+
+[[_example_3]]
+==== link:#_example_3[Example]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 500 Internal Server Error
+Content-Length: 63
+Content-Type: application/json;charset=UTF-8
+
+{
+  "message" : "java.lang.NullPointerException : some error"
+}
+----
+
+[[_program_briefs]]
+== link:#_program_briefs[Program Briefs]
+
+[[resources-search-programs-controller-i-t-should-search-programs]]
+=== link:#resources-search-programs-controller-i-t-should-search-programs[Search Programs]
+
+`GET /virtual-classes/v1.0/content-providers/{provider}/programs`
+
+This operation search Programs. It returns only brief information about Programs.
+
+[[_request_headers_3]]
+==== link:#_request_headers_3[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_3]]
+==== link:#_path_parameters_3[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_3]]
+==== link:#_query_parameters_3[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|searchString |String |true |The query to search.
+|===
+
+[[_request_fields_3]]
+==== link:#_request_fields_3[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_6]]
+==== link:#_response_fields_6[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].name |String |false |Name of the Program (e.g. 'BODYSTEP', 'THE TRIP').
+|items[].id |String |false |Unique ID of the Program.
+|items[].videoCount |Integer |false |Number of videos.
+|items[].thumbnail |String |false |Thumbnail of the Program.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|===
+
+[[_example_request_3]]
+==== link:#_example_request_3[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=BODYSTEP&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_3]]
+==== link:#_example_response_3[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 271
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items" : [ {
+    "id" : "44440",
+    "name" : "BODYSTEP",
+    "videoCount" : 10,
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg"
+  } ],
+  "summary" : {
+    "total" : 1,
+    "page" : 0,
+    "limit" : 50
+  }
+}
+----
+
+[[_program_details]]
+== link:#_program_details[Program Details]
+
+[[resources-fetch-program-details-controller-i-t-should-fetch-program-details]]
+=== link:#resources-fetch-program-details-controller-i-t-should-fetch-program-details[Fetch Program Details]
+
+`GET /virtual-classes/v1.0/content-providers/{provider}/programs/{programId}`
+
+This operation returns all detailed information about Program.
+
+[[_request_headers_4]]
+==== link:#_request_headers_4[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_4]]
+==== link:#_path_parameters_4[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|programId |String |false |Unique ID of the Program.
+|===
+
+[[_query_parameters_4]]
+==== link:#_query_parameters_4[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_4]]
+==== link:#_request_fields_4[Request fields]
+
+No request body.
+
+[[_response_fields_7]]
+==== link:#_response_fields_7[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|brief |Object |false |Brief details of the program.
+|brief.name |String |false |Name of the Program (e.g. 'BODYSTEP', 'THE TRIP').
+|brief.id |String |false |Unique ID of the Program.
+|brief.videoCount |Integer |false |Number of videos.
+|brief.thumbnail |String |false |Thumbnail of the Program.
+|programDetails |Object |false |Comprehensive details of the program.
+|programDetails.description |String |true |Long description of the program.
+|programDetails.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|===
+
+[[_example_request_4]]
+==== link:#_example_request_4[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_4]]
+==== link:#_example_response_4[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 417
+Content-Type: application/json;charset=UTF-8
+
+{
+  "brief" : {
+    "id" : "44440",
+    "name" : "BODYSTEP",
+    "videoCount" : 10,
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg"
+  },
+  "programDetails" : {
+    "description" : "Basic stepping, just like walking up and down stairs, is at the heart of BODYSTEP",
+    "customInfo" : [ {
+      "key" : "customKey",
+      "value" : "customValue"
+    } ]
+  }
+}
+----
+
+[[_video_briefs]]
+== link:#_video_briefs[Video Briefs]
+
+[[resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos]]
+=== link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Program Videos]
+
+`GET /virtual-classes/v1.0/content-providers/{provider}/programs/{programId}/videos`
+
+This operation returns brief information about Program Videos.
+
+[[_request_headers_5]]
+==== link:#_request_headers_5[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_5]]
+==== link:#_path_parameters_5[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|programId |String |false |Unique ID of the Program.
+|===
+
+[[_query_parameters_5]]
+==== link:#_query_parameters_5[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_5]]
+==== link:#_request_fields_5[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_8]]
+==== link:#_response_fields_8[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].id |String |false |Unique ID of the Video.
+|items[].duration |Integer |true |Video duration in seconds.
+|items[].episode |Object |true |Video Episode.
+|items[].episode.number |Integer |true |Number of episode in season.
+|items[].episode.season |Integer |true |Number of season.
+|items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|===
+
+[[_example_request_5]]
+==== link:#_example_request_5[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_5]]
+==== link:#_example_response_5[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 341
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items" : [ {
+    "id" : "375633",
+    "name" : "RPM #79 Express",
+    "episode" : {
+      "season" : 4,
+      "number" : 1
+    },
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
+    "duration" : 90
+  } ],
+  "summary" : {
+    "total" : 1,
+    "page" : 0,
+    "limit" : 50
+  }
+}
+----
+
+[[resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos]]
+=== link:#resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos[Fetch Featured Videos]
+
+`GET /virtual-classes/v1.0/content-providers/{provider}/featured-videos`
+
+This operation fetch recently added Videos. It returns only brief information about Video.
+
+[[_request_headers_6]]
+==== link:#_request_headers_6[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_6]]
+==== link:#_path_parameters_6[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_6]]
+==== link:#_query_parameters_6[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_6]]
+==== link:#_request_fields_6[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_9]]
+==== link:#_response_fields_9[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].id |String |false |Unique ID of the Video.
+|items[].duration |Integer |true |Video duration in seconds.
+|items[].episode |Object |true |Video Episode.
+|items[].episode.number |Integer |true |Number of episode in season.
+|items[].episode.season |Integer |true |Number of season.
+|items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|===
+
+[[_example_request_6]]
+==== link:#_example_request_6[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/featured-videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_6]]
+==== link:#_example_response_6[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 341
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items" : [ {
+    "id" : "375633",
+    "name" : "RPM #79 Express",
+    "episode" : {
+      "season" : 4,
+      "number" : 1
+    },
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
+    "duration" : 90
+  } ],
+  "summary" : {
+    "total" : 1,
+    "page" : 0,
+    "limit" : 50
+  }
+}
+----
+
+[[resources-search-videos-controller-i-t-should-search-videos]]
+=== link:#resources-search-videos-controller-i-t-should-search-videos[Search Videos]
+
+`GET /virtual-classes/v1.0/content-providers/{provider}/videos`
+
+This operation search Videos. It returns only brief information about Videos.
+
+[[_request_headers_7]]
+==== link:#_request_headers_7[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_7]]
+==== link:#_path_parameters_7[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_7]]
+==== link:#_query_parameters_7[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_7]]
+==== link:#_request_fields_7[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|searchString |String |false |The searchString to search video.
+|duration |String |true a|
+Video duration filter option. SHORT (up to 30 min), LONG (30 min or longer).
+
+Must be one of [SHORT, LONG].
+
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_10]]
+==== link:#_response_fields_10[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].id |String |false |Unique ID of the Video.
+|items[].duration |Integer |true |Video duration in seconds.
+|items[].episode |Object |true |Video Episode.
+|items[].episode.number |Integer |true |Number of episode in season.
+|items[].episode.season |Integer |true |Number of season.
+|items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|===
+
+[[_example_request_7]]
+==== link:#_example_request_7[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=SHORT&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_7]]
+==== link:#_example_response_7[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 341
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items" : [ {
+    "id" : "375633",
+    "name" : "RPM #79 Express",
+    "episode" : {
+      "season" : 4,
+      "number" : 1
+    },
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
+    "duration" : 90
+  } ],
+  "summary" : {
+    "total" : 1,
+    "page" : 0,
+    "limit" : 50
+  }
+}
+----
+
+[[_video_details]]
+== link:#_video_details[Video Details]
+
+[[resources-fetch-video-controller-i-t-should-fetch-video]]
+=== link:#resources-fetch-video-controller-i-t-should-fetch-video[Fetch Video]
+
+`GET /virtual-classes/v1.0/content-providers/{provider}/videos/{videoId}`
+
+This operation returns all detailed information about Video.
+
+[[_request_headers_8]]
+==== link:#_request_headers_8[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_8]]
+==== link:#_path_parameters_8[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|videoId |String |false |Unique ID of the Video.
+|===
+
+[[_query_parameters_8]]
+==== link:#_query_parameters_8[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_8]]
+==== link:#_request_fields_8[Request fields]
+
+No request body.
+
+[[_response_fields_11]]
+==== link:#_response_fields_11[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|videoDetails |Object |false |Comprehensive details of the video.
+|videoDetails.description |String |true |Long description of the video.
+|videoDetails.equipment |String |true |Equipment needed for workout.
+|videoDetails.presenter |String |true |Presenter of the video.
+|videoDetails.videoFiles |Array[Object] |false |Files of the video.
+|videoDetails.videoFiles[].method |String |true |Format of the video (e.g. 'hls', 'dash', 'progressive').
+|videoDetails.videoFiles[].codec |String |true |Codec of the video (e.g. 'h264').
+|videoDetails.videoFiles[].mimeType |String |true |Mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
+|videoDetails.videoFiles[].format |String |true |Format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
+|videoDetails.videoFiles[].quality |String |true |Quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
+|videoDetails.videoFiles[].sizeInBytes |Integer |true |Size of the video.
+|videoDetails.videoFiles[].sourceUrl |String |false |Url of the video file.
+|videoDetails.subtitles |Array[Object] |false |Subtitles to video (WebVTT or SRT file).
+|videoDetails.subtitles[].locale |String |true |Locale (IETF BCP 47) of subtitles (e.g. 'uk', 'uk_UA', 'en_GB').
+|videoDetails.subtitles[].srtFileUrl |String |true |Url of SRT file.
+|videoDetails.subtitles[].vttFileUrl |String |true |Url of WebVTT file.
+|videoBrief |Object |false |Brief details of the video.
+|videoBrief.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|videoBrief.id |String |false |Unique ID of the Video.
+|videoBrief.duration |Integer |true |Video duration in seconds.
+|videoBrief.episode |Object |true |Video Episode.
+|videoBrief.episode.number |Integer |true |Number of episode in season.
+|videoBrief.episode.season |Integer |true |Number of season.
+|videoBrief.thumbnail |String |false |Thumbnail of the Video.
+|videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|===
+
+[[_example_request_8]]
+==== link:#_example_request_8[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos/375633?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_8]]
+==== link:#_example_response_8[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 2431
+Content-Type: application/json;charset=UTF-8
+
+{
+  "videoBrief" : {
+    "id" : "375633",
+    "name" : "RPM #79 Express",
+    "episode" : {
+      "season" : 4,
+      "number" : 1
+    },
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
+    "duration" : 90
+  },
+  "videoDetails" : {
+    "equipment" : "stationary bike",
+    "presenter" : "Glen Ostergaard, Brent Findlay, Dee Tjeong, Joshua Berrier, Amanda Breen",
+    "description" : "RPM 79 Express r\n\r\n1. PACK RIDE\r\nWhere We Go performed by Diamond Nexus made famous by P!nk\r\nMOVES: Seated Recovery, Ride Easy, Racing\r\n2. PACE\r\nWithout You performed by Teenage Love Story made famous by Avicii feat. Sandro Cavazza\r\nMOVES: Seated Recovery, Ride Easy, Standing Climb, Racing (Forward)\r\n3. HILLS\r\nHold On performed by Call Me Next Spring made famous by Slushii\r\nMOVES: Ride Easy, Standing Climb, Pullback Climb, Standing Attack, Standing Recovery to Seated Recovery, Power Climb\r\n4. MIXED TERRAIN\r\nOne Foot performed by Tiny Dreaming made famous by WALK THE MOON\r\nMOVES: Seated Recovery, Ride Easy, Standing Climb, Standing Attack, Transition, Racing (Forward)\r\n5. INTERVALS\r\nRun For Cover performed by Japan State Of Mind made famous by The Killers\r\nMOVES: Seated Recovery, Ride Easy, Standing Attack, Standing Recovery, Racing, Transition\r\n6. RIDE HOME / STRETCH\r\nHow Long performed by Multiverse Theory made famous by Charlie Puth\r\nMOVES: Seated Recovery, Ride Easy, Racing, Transition of Bike, Standing Quadricep Stretch, Standing Gluteal Stretch",
+    "videoFiles" : [ {
+      "mimeType" : "video/mp4",
+      "codec" : "h264",
+      "quality" : "240p",
+      "format" : "mp4",
+      "method" : "progressive",
+      "sizeInBytes" : 178128897,
+      "sourceUrl" : "https://vhx-progressive.akamaized.net/-ctx--user_id,3879560--platform_id,2990--video_id,349905--channel_id,47517--plan,public-/c-47517/v-349905/vf-1649353.mp4?token=exp=1548011756~acl=%2F-ctx--user_id%2C3879560--platform_id%2C2990--video_id%2C349905--channel_id%2C47517--plan%2Cpublic-%2Fc-47517%2Fv-349905%2F%2A~hmac=ceb3c92746e9ab75b4b070798fec8e7eb5a1db93646118d85cd5e4f8c5abd371&response-content-disposition=attachment%3Bfilename%3D%22BODYCOMBAT%20Extreme%20Cardio%20Remix%2002%20144p.mp4%22"
+    } ],
+    "subtitles" : [ {
+      "locale" : "en",
+      "srtFileUrl" : "https://cdn.vhx.tv/file.srt",
+      "vttFileUrl" : "https://cdn.vhx.tv/file.vtt"
+    } ]
+  }
+}
+----
+
+[[footer]]
+[[footer-text]]
+Last updated 2019-03-01 12:34:16 +0200
