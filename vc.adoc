@@ -878,19 +878,22 @@ No request body.
 
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
-|Path |Type |Optional |Description
-|settings |Map |false |Array of Key-Value to represent app settings.
-|settings[].key |String |false |Setting's name.
-|settings[].value |Object |false |Setting's value.
-|settings[].value.type |String |false |Setting's value type (e.g. 'text', 'image', 'video').
-|settings[].value.data |String/Array[Object] |false |Setting's value (text value, image URL, list of video data).
-|settings[].value.data.method |String |true |Format of the video (e.g. 'hls', 'dash', 'progressive').
-|settings[].value.data.codec |String |true |Codec of the video (e.g. 'h264').
-|settings[].value.data.mimeType |String |true |Mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
-|settings[].value.data.format |String |true |Format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
-|settings[].value.data.quality |String |true |Quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
-|settings[].value.data.sizeInBytes |Integer |true |Size of the video.
-|settings[].value.data.sourceUrl |String |false |Url of the video file.
+| Path | Type | Optional | Description
+| settings | Map | false | Array of Key-Value to represent app settings.
+| settings[].key | String | false | Setting's name.
+| settings[].value | Array[Object] | false | Setting's objects array.
+| settings[].value[].text | Object | true | Setting's text object.
+| settings[].value[].text.value | String | false | Setting's text object value.
+| settings[].value[].image | Object | true | Setting's image object.
+| settings[].value[].image.sourceUrl | String | false | Setting's image object url of the image file.
+| settings[].value[].video | Object | true | Setting's video object.
+| settings[].value[].video.method | String | true | Setting's video object method of the video (e.g. 'hls', 'dash', 'progressive').
+| settings[].value[].video.codec | String | true | Setting's video object codec of the video (e.g. 'h264').
+| settings[].value[].video.mimeType | String | true | Setting's video object mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
+| settings[].value[].video.format | String | true | Setting's video object format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
+| settings[].value[].video.quality | String | true | Setting's video object quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
+| settings[].value[].video.sizeInBytes | Integer | true | Setting's video object size of the video.
+| settings[].value[].video.sourceUrl | String | false | Setting's video object url of the video file.
 |===
 
 [[_example_request_app_settings]]
@@ -912,28 +915,39 @@ Content-Length: 417
 Content-Type: application/json;charset=UTF-8
 
 {
-  "settings" : [
+  "settings": [
     {
-      "key" : "customKey1",
-      "value" : {
-        "type" : "text",
-        "data" : "Custom text 1"
-      }
+      "key": "customKey1",
+      "value": [ {
+        "text": {
+          "value": "Custom text 1"
+        },
+        "image": {
+          "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+        }
+      } ]
     },
     {
-      "key" : "customKey2",
-      "value" : {
-        "type" : "video",
-        "data" : [ {
-            "mimeType" : "video/mp4",
-            "codec" : "h264",
-            "quality": "224p",
-            "format" : "mp4",
-            "method" : "progressive",
-            "sizeInBytes": 16708680,
-            "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
-          } ]
-      }
+      "key": "customKey2",
+      "value": [ {
+        "image": {
+          "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+        }
+      } ]
+    },
+    {
+      "key": "customKey3",
+      "value": [ {
+        "video": {
+          "mimeType": "video/mp4",
+          "codec": "h264",
+          "quality": "224p",
+          "format": "mp4",
+          "method": "progressive",
+          "sizeInBytes": 16708680,
+          "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+        }
+      } ]
     }
   ]
 }
@@ -944,7 +958,7 @@ Content-Type: application/json;charset=UTF-8
 
 `GET /settings/v1.0/content-providers/{provider}/app-settings/{key}`
 
-This operation returns setting by key.
+This operation returns setting values objects array by key.
 
 [[_request_headers_app_setting]]
 ==== link:#_request_headers_app_setting[Request headers]
@@ -984,17 +998,19 @@ No request body.
 
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
-|Path |Type |Optional |Description
-|value |Object |false |Setting's value.
-|value.type |String |false |Setting's value type (e.g. 'text', 'image', 'video').
-|value.data |String/Array[Object] |false |Setting's value (text value, image URL, list of video data).
-|value.data.method |String |true |Format of the video (e.g. 'hls', 'dash', 'progressive').
-|value.data.codec |String |true |Codec of the video (e.g. 'h264').
-|value.data.mimeType |String |true |Mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
-|value.data.format |String |true |Format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
-|value.data.quality |String |true |Quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
-|value.data.sizeInBytes |Integer |true |Size of the video.
-|value.data.sourceUrl |String |false |Url of the video file.
+| Path | Type | Optional | Description
+| text | Object | true | Setting's text object.
+| text.value | String | false | Setting's text object value.
+| image | Object | true | Setting's image object.
+| image.sourceUrl | String | false | Setting's image object url of the image file.
+| video | Object | true | Setting's video object.
+| video.method | String | true | Setting's video object method of the video (e.g. 'hls', 'dash', 'progressive').
+| video.codec | String | true | Setting's video object codec of the video (e.g. 'h264').
+| video.mimeType | String | true | Setting's video object mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
+| video.format | String | true | Setting's video object format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
+| video.quality | String | true | Setting's video object quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
+| video.sizeInBytes | Integer | true | Setting's video object size of the video.
+| video.sourceUrl | String | false | Setting's video object url of the video file.
 |===
 
 [[_example_request_app_setting]]
@@ -1015,12 +1031,14 @@ HTTP/1.1 200 OK
 Content-Length: 417
 Content-Type: application/json;charset=UTF-8
 
-{
-  "value" : {
-    "type" : "text",
-    "data" : "Custom text 1"
+[ {
+  "text": {
+    "value": "Custom text 1"
+  },
+  "image": {
+    "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
   }
-}
+} ]
 ----
 
 [[footer]]
