@@ -295,7 +295,7 @@ This operation search Programs. It returns only brief information about Programs
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=BODYSTEP&page=0&limit=50' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_3]]
@@ -388,7 +388,7 @@ No request body.
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_4]]
@@ -493,7 +493,7 @@ This operation returns brief information about Program Videos.
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_5]]
@@ -596,7 +596,7 @@ This operation fetch recently added Videos. It returns only brief information ab
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/featured-videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_6]]
@@ -705,7 +705,7 @@ Must be one of [SHORT, LONG].
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=SHORT&page=0&limit=50' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_7]]
@@ -819,7 +819,7 @@ No request body.
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos/375633?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_8]]
@@ -937,7 +937,7 @@ No request body.
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/settings/v1.0/content-providers/wichita/app-settings?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_app_settings]]
@@ -1054,7 +1054,7 @@ No request body.
 [source,highlightjs,highlight]
 ----
 $ curl 'http://localhost:8080/settings/v1.0/content-providers/wichita/app-settings/customKey1?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
-    -H 'Accept: application/json'
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
 [[_example_response_app_setting]]
@@ -1078,4 +1078,4 @@ Content-Type: application/json;charset=UTF-8
 
 [[footer]]
 [[footer-text]]
-Last updated 2020-09-01 18:27:16 +0200
+Last updated 2020-10-01 18:07:16 +0200
