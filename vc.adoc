@@ -219,7 +219,7 @@ Request Method: GET
 Status Code: 403 Forbidden
 Content-Type: application/json;charset=UTF-8
 
-{"errors":{"param":"Invalid apiKey - 0a47c3ffbf-4740-465d-a22e-0b25ef86ffddd0"}}
+{"errors":{"param":"apiKey param is required."}}
 ----
 
 
@@ -240,6 +240,7 @@ This operation search Programs. It returns only brief information about Programs
 |===
 |Name |Description
 |`Accept` |application/json
+|`apiKey` |Api key for authentication
 |===
 
 [[_path_parameters_3]]
@@ -259,7 +260,6 @@ This operation search Programs. It returns only brief information about Programs
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |false |Exerciser Unique ID.
 |searchString |String |true |The query to search.
-|apiKey |String |false |Api key for authentication.
 |===
 
 [[_request_fields_3]]
@@ -294,7 +294,7 @@ This operation search Programs. It returns only brief information about Programs
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs?apiKey=0a47c3ffbf-4740-465d-a22e-0b25ef86ffddd0&exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=BODYSTEP&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=BODYSTEP&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json'
 ----
 
@@ -339,6 +339,7 @@ This operation returns all detailed information about Program.
 |===
 |Name |Description
 |`Accept` |application/json
+|`apiKey` |Api key for authentication.
 |===
 
 [[_path_parameters_4]]
@@ -349,7 +350,6 @@ This operation returns all detailed information about Program.
 |Parameter |Type |Optional |Description
 |provider |String |false |Unique ID of the Content Provider.
 |programId |String |false |Unique ID of the Program.
-|apiKey |String |false |Api key for authentication.
 |===
 
 [[_query_parameters_4]]
@@ -387,7 +387,7 @@ No request body.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440?apiKey=0a47c3ffbf-4740-465d-a22e-0b25ef86ffddd0&exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
     -H 'Accept: application/json'
 ----
 
@@ -434,6 +434,7 @@ This operation returns brief information about Program Videos.
 |===
 |Name |Description
 |`Accept` |application/json
+|`apiKey` |Api key for authentication.
 |===
 
 [[_path_parameters_5]]
@@ -453,7 +454,6 @@ This operation returns brief information about Program Videos.
 |===
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |false |Exerciser Unique ID.
-|apiKey |String |false |Api key for authentication.
 |===
 
 [[_request_fields_5]]
@@ -492,7 +492,7 @@ This operation returns brief information about Program Videos.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440/videos?apiKey=0a47c3ffbf-4740-465d-a22e-0b25ef86ffddd0&exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json'
 ----
 
@@ -538,6 +538,7 @@ This operation fetch recently added Videos. It returns only brief information ab
 |===
 |Name |Description
 |`Accept` |application/json
+|`apiKey` |Api key for authentication.
 |===
 
 [[_path_parameters_6]]
@@ -556,7 +557,6 @@ This operation fetch recently added Videos. It returns only brief information ab
 |===
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |false |Exerciser Unique ID.
-|apiKey |String |false |Api key for authentication.
 |===
 
 [[_request_fields_6]]
@@ -595,7 +595,7 @@ This operation fetch recently added Videos. It returns only brief information ab
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/featured-videos?apiKey=0a47c3ffbf-4740-465d-a22e-0b25ef86ffddd0&exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/featured-videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json'
 ----
 
@@ -641,6 +641,7 @@ This operation search Videos. It returns only brief information about Videos.
 |===
 |Name |Description
 |`Accept` |application/json
+|`apiKey` |Api key for authentication.
 |===
 
 [[_path_parameters_7]]
@@ -659,7 +660,6 @@ This operation search Videos. It returns only brief information about Videos.
 |===
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |false |Exerciser Unique ID.
-|apiKey |String |false |Api key for authentication.
 |===
 
 [[_request_fields_7]]
@@ -704,7 +704,7 @@ Must be one of [SHORT, LONG].
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos?apiKey=0a47c3ffbf-4740-465d-a22e-0b25ef86ffddd0&exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=SHORT&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=SHORT&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json'
 ----
 
@@ -753,6 +753,7 @@ This operation returns all detailed information about Video.
 |===
 |Name |Description
 |`Accept` |application/json
+|`apiKey` |Api key for authentication.
 |===
 
 [[_path_parameters_8]]
@@ -772,7 +773,6 @@ This operation returns all detailed information about Video.
 |===
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |false |Exerciser Unique ID.
-|apiKey |String |false |Api key for authentication.
 |===
 
 [[_request_fields_8]]
@@ -818,7 +818,7 @@ No request body.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos/375633?apiKey=0a47c3ffbf-4740-465d-a22e-0b25ef86ffddd0&exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+$ curl 'http://localhost:8080/virtual-classes/v1.0/content-providers/lmod/videos/375633?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
     -H 'Accept: application/json'
 ----
 
