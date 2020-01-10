@@ -240,7 +240,7 @@ This operation search Programs. It returns only brief information about Programs
 |===
 |Name |Description
 |`Accept` |application/json
-|`apiKey` |Api key for authentication
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
 |===
 
 [[_path_parameters_3]]
@@ -339,7 +339,7 @@ This operation returns all detailed information about Program.
 |===
 |Name |Description
 |`Accept` |application/json
-|`apiKey` |Api key for authentication.
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
 |===
 
 [[_path_parameters_4]]
@@ -434,7 +434,7 @@ This operation returns brief information about Program Videos.
 |===
 |Name |Description
 |`Accept` |application/json
-|`apiKey` |Api key for authentication.
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
 |===
 
 [[_path_parameters_5]]
@@ -538,7 +538,7 @@ This operation fetch recently added Videos. It returns only brief information ab
 |===
 |Name |Description
 |`Accept` |application/json
-|`apiKey` |Api key for authentication.
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
 |===
 
 [[_path_parameters_6]]
@@ -641,7 +641,7 @@ This operation search Videos. It returns only brief information about Videos.
 |===
 |Name |Description
 |`Accept` |application/json
-|`apiKey` |Api key for authentication.
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
 |===
 
 [[_path_parameters_7]]
@@ -753,7 +753,7 @@ This operation returns all detailed information about Video.
 |===
 |Name |Description
 |`Accept` |application/json
-|`apiKey` |Api key for authentication.
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
 |===
 
 [[_path_parameters_8]]
