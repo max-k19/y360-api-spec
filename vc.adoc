@@ -83,6 +83,25 @@ link:#_video_details[Video Details]
 ** link:#_example_request_8[Example request]
 ** link:#_example_response_8[Example response]
 
+link:#widgets_api[Widgets API Guide]
+
+* link:#app_settings[Fetch App Settings]
+** link:#_request_headers_app_settings[Request headers]
+** link:#_path_parameters_app_settings[Path parameters]
+** link:#_query_parameters_app_settings[Query parameters]
+** link:#_request_fields_app_settings[Request fields]
+** link:#_response_fields_app_settings[Response fields]
+** link:#_example_request_app_settings[Example request]
+** link:#_example_response_app_settings[Example response]
+* link:#app_setting[Get App Setting]
+** link:#_request_headers_app_setting[Request headers]
+** link:#_path_parameters_app_setting[Path parameters]
+** link:#_query_parameters_app_setting[Query parameters]
+** link:#_request_fields_app_setting[Request fields]
+** link:#_response_fields_app_setting[Response fields]
+** link:#_example_request_app_setting[Example request]
+** link:#_example_response_app_setting[Example response]
+
 [[content]]
 [[resources-programs]]
 == link:#resources-programs[Errors]
@@ -843,6 +862,218 @@ Content-Type: application/json;charset=UTF-8
     } ]
   }
 }
+----
+
+[[widgets_api]]
+== link:#widgets_api[Widgets API Guide]
+
+[#author .author]#Solodovnyk Vladyslav# +
+
+[[app_settings]]
+=== link:#app_settings[Fetch App Settings]
+
+`GET /settings/v1.0/content-providers/{provider}/app-settings`
+
+This operation returns all set up settings.
+
+[[_request_headers_app_settings]]
+==== link:#_request_headers_app_settings[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_app_settings]]
+==== link:#_path_parameters_app_settings[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_app_settings]]
+==== link:#_query_parameters_app_settings[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_app_settings]]
+==== link:#_request_fields_app_settings[Request fields]
+
+No request body.
+
+[[_response_fields_app_settings]]
+==== link:#_response_fields_app_settings[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+| Path | Type | Optional | Description
+| settings | Map | false | Array of Key-Value to represent app settings.
+| settings[].key | String | false | Setting's name.
+| settings[].value | Array[Object] | false | Setting's objects array.
+| settings[].value[].text | Object | true | Setting's text object.
+| settings[].value[].text.value | String | false | Setting's text object value.
+| settings[].value[].image | Object | true | Setting's image object.
+| settings[].value[].image.sourceUrl | String | false | Setting's image object url of the image file.
+| settings[].value[].video | Object | true | Setting's video object.
+| settings[].value[].video.method | String | true | Setting's video object method of the video (e.g. 'hls', 'dash', 'progressive').
+| settings[].value[].video.codec | String | true | Setting's video object codec of the video (e.g. 'h264').
+| settings[].value[].video.mimeType | String | true | Setting's video object mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
+| settings[].value[].video.format | String | true | Setting's video object format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
+| settings[].value[].video.quality | String | true | Setting's video object quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
+| settings[].value[].video.sizeInBytes | Integer | true | Setting's video object size of the video.
+| settings[].value[].video.sourceUrl | String | false | Setting's video object url of the video file.
+|===
+
+[[_example_request_app_settings]]
+==== link:#_example_request_app_settings[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/settings/v1.0/content-providers/wichita/app-settings?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_app_settings]]
+==== link:#_example_response_app_settings[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 417
+Content-Type: application/json;charset=UTF-8
+
+{
+  "settings": [
+    {
+      "key": "customKey1",
+      "value": [ {
+        "text": {
+          "value": "Custom text 1"
+        },
+        "image": {
+          "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+        }
+      } ]
+    },
+    {
+      "key": "customKey2",
+      "value": [ {
+        "image": {
+          "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+        }
+      } ]
+    },
+    {
+      "key": "customKey3",
+      "value": [ {
+        "video": {
+          "mimeType": "video/mp4",
+          "codec": "h264",
+          "quality": "224p",
+          "format": "mp4",
+          "method": "progressive",
+          "sizeInBytes": 16708680,
+          "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+        }
+      } ]
+    }
+  ]
+}
+----
+
+[[app_setting]]
+=== link:#app_setting[Get App Setting]
+
+`GET /settings/v1.0/content-providers/{provider}/app-settings/{key}`
+
+This operation returns setting values objects array by key.
+
+[[_request_headers_app_setting]]
+==== link:#_request_headers_app_setting[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|===
+
+[[_path_parameters_app_setting]]
+==== link:#_path_parameters_app_setting[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|key |String |false |Unique key of the Setting.
+|===
+
+[[_query_parameters_app_setting]]
+==== link:#_query_parameters_app_setting[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_app_setting]]
+==== link:#_request_fields_app_setting[Request fields]
+
+No request body.
+
+[[_response_fields_app_setting]]
+==== link:#_response_fields_app_setting[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+| Path | Type | Optional | Description
+| text | Object | true | Setting's text object.
+| text.value | String | false | Setting's text object value.
+| image | Object | true | Setting's image object.
+| image.sourceUrl | String | false | Setting's image object url of the image file.
+| video | Object | true | Setting's video object.
+| video.method | String | true | Setting's video object method of the video (e.g. 'hls', 'dash', 'progressive').
+| video.codec | String | true | Setting's video object codec of the video (e.g. 'h264').
+| video.mimeType | String | true | Setting's video object mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
+| video.format | String | true | Setting's video object format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
+| video.quality | String | true | Setting's video object quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
+| video.sizeInBytes | Integer | true | Setting's video object size of the video.
+| video.sourceUrl | String | false | Setting's video object url of the video file.
+|===
+
+[[_example_request_app_setting]]
+==== link:#_example_request_app_setting[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/settings/v1.0/content-providers/wichita/app-settings/customKey1?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+    -H 'Accept: application/json'
+----
+
+[[_example_response_app_setting]]
+==== link:#_example_response_app_setting[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 417
+Content-Type: application/json;charset=UTF-8
+
+[ {
+  "text": {
+    "value": "Custom text 1"
+  },
+  "image": {
+    "sourceUrl": "http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+  }
+} ]
 ----
 
 [[footer]]
