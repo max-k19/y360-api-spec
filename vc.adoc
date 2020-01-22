@@ -102,6 +102,17 @@ link:#widgets_api[Widgets API Guide]
 ** link:#_example_request_app_setting[Example request]
 ** link:#_example_response_app_setting[Example response]
 
+link:#group_exp[GroupExp Pro API]
+
+* link:#group_exp_api[Fetch Categories based on GroupExp data]
+** link:#_request_headers_group_exp[Request headers]
+** link:#_path_parameters_group_exp[Path parameters]
+** link:#_query_parameters_group_exp[Query parameters]
+** link:#_request_fields_group_exp[Request fields]
+** link:#_response_fields_group_exp[Response fields]
+** link:#_example_request_group_exp[Example request]
+** link:#_example_response_group_exp[Example response]
+
 [[content]]
 [[resources-programs]]
 == link:#resources-programs[Errors]
@@ -1078,6 +1089,123 @@ Content-Type: application/json;charset=UTF-8
 } ]
 ----
 
+[[group_exp]]
+== link:#group_exp_api[GroupExp Pro API Guide]
+
+[#author .author]#Ihor Karpylenko# +
+
+[[group_exp_api]]
+=== link:#group_exp_api[Fetch Categories based on GroupExp data]
+
+`POST /api/groupexp/v1.0/content-providers/{provider}/get-category-asset`
+
+This operation returns all category assets based on GroupExp data.
+
+[[_request_headers_group_exp]]
+==== link:#_request_headers_group_exp[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Value
+|Accept |application/json
+|Content-Type |application/json
+|authorization |apiKey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+|===
+
+[[_path_parameters_group_exp]]
+==== link:#_path_parameters_group_exp[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_group_exp]]
+==== link:#_query_parameters_group_exp[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|===
+
+[[_request_fields_group_exp]]
+==== link:#_request_fields_group_exp[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|body |String |false |GroupExp objects in JSON format.
+|===
+
+[[_response_fields_group_exp]]
+==== link:#_response_fields_app_settings[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+| Path | Type | Optional | Description
+| items | Map | false | Array of Key-Value to represent assets.
+| items[].groupexp_id | String | false | GroupExp object id.
+| items[].item_id | String | false | Asset id in CMS.
+| items[].image | Array[Object] | false | Asset image object.
+| items[].image.sourceUrl | String | false | Asset image object url of the image file.
+| items[].video | Object | true | Asset video object.
+| items[].video.method | String | true | Asset video object method of the video (e.g. 'hls', 'dash', 'progressive').
+| items[].video.codec | String | true | Asset video object codec of the video (e.g. 'h264').
+| items[].video.mimeType | String | true | Asset video object mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
+| items[].video.format | String | true | Asset video object format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
+| items[].video.quality | String | true | Asset video object quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
+| items[].video.sizeInBytes | Integer | true | Asset video object size of the video.
+| items[].video.sourceUrl | String | false | Asset video object url of the video file.
+|===
+
+[[_example_request_group_exp]]
+==== link:#_example_request_group_exp[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/groupexp/v1.0/content-providers/wichita/get-category-asset?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X POST \
+-H 'Accept: application/json' -H 'Content-Type: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0' \
+-d '{ "9204039012020":{ "brief":{ "id":"9204039012020", "name":"Step Express", "type":null, "startDateTime":1579532400000, "endDateTime":1579534200000, "maxCapacity":null, "totalBooked":null, "waitlistCapacity":null, "waitlistBooked":null, "availableSpots":null, "instructor":{ "id":"Heidi R", "fullName":"Heidi R", "customInfo":null }, "activity":{ "id":"Step Express", "description":"Step Express" }, "free":true, "childCare":false, "reservable":false, "availableOptions":null, "cancelled":false, "booked":false, "waitlisted":null, "customInfo":null, "clubUuid":"764e2227-62d1-4a02-91a5-21bc52cc5503" }, "details":{ "id":null, "description":"Everything you love about step in a shorter time frame!", "webCapacity":null, "webBooked":null, "room":{ "id":"C", "description":"C", "roomPhotoUrl":null, "customInfo":null }, "level":null, "pricing":null, "legalNotes":null, "additionalInfo":null, "customInfo":null, "cancellationWindowEnd":null, "bookingWindowStart":null, "bookingWindowEnd":null, "imageUrl":null, "videoUrl":null }, "attendeeDetails":{ "exerciserUuid":"d7b35f68-fa63-4db3-8764-5465be8ae11b", "booked":false, "spotBooked":null, "waitlistBooked":false, "waitlistPosition":null, "productAvailability":"NOT_APPLICABLE", "availableActions":[ ] } }, "9204039012021":{ "brief":{ "id":"9204039012021", "name":"Step Express 2", "type":null, "startDateTime":1579532400000, "endDateTime":1579534200000, "maxCapacity":null, "totalBooked":null, "waitlistCapacity":null, "waitlistBooked":null, "availableSpots":null, "instructor":{ "id":"Heidi R", "fullName":"Heidi R", "customInfo":null }, "activity":{ "id":"Step Express", "description":"Step Express" }, "free":true, "childCare":false, "reservable":false, "availableOptions":null, "cancelled":false, "booked":false, "waitlisted":null, "customInfo":null, "clubUuid":"764e2227-62d1-4a02-91a5-21bc52cc5503" }, "details":{ "id":null, "description":"Everything you love about step in a shorter time frame!", "webCapacity":null, "webBooked":null, "room":{ "id":"C", "description":"C", "roomPhotoUrl":null, "customInfo":null }, "level":null, "pricing":null, "legalNotes":null, "additionalInfo":null, "customInfo":null, "cancellationWindowEnd":null, "bookingWindowStart":null, "bookingWindowEnd":null, "imageUrl":null, "videoUrl":null }, "attendeeDetails":{ "exerciserUuid":"d7b35f68-fa63-4db3-8764-5465be8ae11b", "booked":false, "spotBooked":null, "waitlistBooked":false, "waitlistPosition":null, "productAvailability":"NOT_APPLICABLE", "availableActions":[ ] } } }'
+----
+
+[[_example_response_group_exp]]
+==== link:#_example_response_group_exp[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 417
+Content-Type: application/json;charset=UTF-8
+
+{
+   "items":[
+      "9204039012020": {
+         "groupexp_id":"9204039012020",
+         "item_id":"546",
+         "image":{
+            "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+         }
+      },
+      "9204039012021": {
+         "groupexp_id":"9204039012021",
+         "item_id":"547",
+         "video":{
+            "mimeType":"video/mp4",
+            "codec":"h264",
+            "quality":"224p",
+            "format":"mp4",
+            "method":"progressive",
+            "sizeInBytes":16708680,
+            "sourceUrl":"http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+         }
+      }
+   ]
+}
+
+----
+
 [[footer]]
 [[footer-text]]
-Last updated 2020-10-01 18:07:16 +0200
+Last updated 2020-22-01 18:44:16 +0200
