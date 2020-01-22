@@ -734,6 +734,8 @@ No request body.
 |Path |Type |Optional |Description
 |videoDetails |Object |false |Comprehensive details of the video.
 |videoDetails.description |String |true |Long description of the video.
+|videoDetails.instructor |String |true |Instructor name.
+|videoDetails.level |String |true |Workout level.
 |videoDetails.equipment |String |true |Equipment needed for workout.
 |videoDetails.presenter |String |true |Presenter of the video.
 |videoDetails.videoFiles |Array[Object] |false |Files of the video.
