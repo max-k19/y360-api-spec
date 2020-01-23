@@ -1147,17 +1147,18 @@ This operation returns all category assets based on GroupExp data.
 | Path | Type | Optional | Description
 | items | Map | false | Array of Key-Value to represent assets.
 | items[].groupexp_id | String | false | GroupExp object id.
-| items[].item_id | String | false | Asset id in CMS.
-| items[].image | Array[Object] | false | Asset image object.
-| items[].image.sourceUrl | String | false | Asset image object url of the image file.
-| items[].video | Object | true | Asset video object.
-| items[].video.method | String | true | Asset video object method of the video (e.g. 'hls', 'dash', 'progressive').
-| items[].video.codec | String | true | Asset video object codec of the video (e.g. 'h264').
-| items[].video.mimeType | String | true | Asset video object mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
-| items[].video.format | String | true | Asset video object format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
-| items[].video.quality | String | true | Asset video object quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
-| items[].video.sizeInBytes | Integer | true | Asset video object size of the video.
-| items[].video.sourceUrl | String | false | Asset video object url of the video file.
+| items[].images | Array | false | Array of image objects.
+| items[].images[].format | String | false | Image style of the image file.
+| items[].images[].sourceUrl | String | false | Image object url of the image file.
+| items[]video |Object |false |Video brief info.
+| items[]video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| items[].id |String |false |Unique ID of the Video.
+| items[].duration |Integer |true |Video duration in seconds.
+| items[].episode |Object |true |Video Episode.
+| items[].episode.number |Integer |true |Number of episode in season.
+| items[].episode.season |Integer |true |Number of season.
+| items[].thumbnail |String |false |Thumbnail of the Video.
+| items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |===
 
 [[_example_request_group_exp]]
@@ -1181,24 +1182,52 @@ Content-Type: application/json;charset=UTF-8
 
 {
    "items":[
-      "9204039012020": {
+      {
          "groupexp_id":"9204039012020",
-         "item_id":"546",
-         "image":{
-            "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+         "images":[
+            {
+               "format":"large",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"medium",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/medium/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"small",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/small/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            }
+         ],
+         "video":{
+            "id":"7",
+            "name":"FREESTYLE SWIMMING - 5 MOST COMMON MISTAKES (2019)",
+            "thumbnail":"http://embed.wistia.com/deliveries/1a4efc93b070c0af918129bd86157661d70754dd.bin",
+            "duration":835,
+            "customInfo":[]
          }
       },
-      "9204039012021": {
+      {
          "groupexp_id":"9204039012021",
-         "item_id":"547",
+         "images":[
+            {
+               "format":"large",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"medium",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/medium/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"small",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/small/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            }
+         ],
          "video":{
-            "mimeType":"video/mp4",
-            "codec":"h264",
-            "quality":"224p",
-            "format":"mp4",
-            "method":"progressive",
-            "sizeInBytes":16708680,
-            "sourceUrl":"http://embed.wistia.com/deliveries/4be05733d85213239c43e6648767bbf0c316996c.bin"
+            "id":"9",
+            "name":"Bodystep cardio 2019",
+            "thumbnail":"http://embed.wistia.com/deliveries/baffdc38c4419ab63327c3667a21bc4de178e69b.bin",
+            "duration":274,
+            "customInfo":[]
          }
       }
    ]
