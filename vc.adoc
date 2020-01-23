@@ -1138,6 +1138,24 @@ This operation returns all category assets based on GroupExp data.
 |Parameter |Type |Optional |Description
 |body |String |false |GroupExp objects in JSON format.
 |===
+Example:
+----
+{
+   "provider":"GroupExp v1",
+   "data":[
+      {
+         "id":"9204039012020",
+         "name":"Step Express",
+         "activity":"Step Express"
+      },
+      {
+         "id":"9204039012035",
+         "name":"Test",
+         "activity":"Test"
+      }
+   ]
+}
+----
 
 [[_response_fields_group_exp]]
 ==== link:#_response_fields_app_settings[Response fields]
@@ -1168,7 +1186,7 @@ This operation returns all category assets based on GroupExp data.
 ----
 $ curl 'http://localhost:8080/api/groupexp/v1.0/content-providers/wichita/get-category-asset?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X POST \
 -H 'Accept: application/json' -H 'Content-Type: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0' \
--d '{ "9204039012020":{ "brief":{ "id":"9204039012020", "name":"Step Express", "type":null, "startDateTime":1579532400000, "endDateTime":1579534200000, "maxCapacity":null, "totalBooked":null, "waitlistCapacity":null, "waitlistBooked":null, "availableSpots":null, "instructor":{ "id":"Heidi R", "fullName":"Heidi R", "customInfo":null }, "activity":{ "id":"Step Express", "description":"Step Express" }, "free":true, "childCare":false, "reservable":false, "availableOptions":null, "cancelled":false, "booked":false, "waitlisted":null, "customInfo":null, "clubUuid":"764e2227-62d1-4a02-91a5-21bc52cc5503" }, "details":{ "id":null, "description":"Everything you love about step in a shorter time frame!", "webCapacity":null, "webBooked":null, "room":{ "id":"C", "description":"C", "roomPhotoUrl":null, "customInfo":null }, "level":null, "pricing":null, "legalNotes":null, "additionalInfo":null, "customInfo":null, "cancellationWindowEnd":null, "bookingWindowStart":null, "bookingWindowEnd":null, "imageUrl":null, "videoUrl":null }, "attendeeDetails":{ "exerciserUuid":"d7b35f68-fa63-4db3-8764-5465be8ae11b", "booked":false, "spotBooked":null, "waitlistBooked":false, "waitlistPosition":null, "productAvailability":"NOT_APPLICABLE", "availableActions":[ ] } }, "9204039012021":{ "brief":{ "id":"9204039012021", "name":"Step Express 2", "type":null, "startDateTime":1579532400000, "endDateTime":1579534200000, "maxCapacity":null, "totalBooked":null, "waitlistCapacity":null, "waitlistBooked":null, "availableSpots":null, "instructor":{ "id":"Heidi R", "fullName":"Heidi R", "customInfo":null }, "activity":{ "id":"Step Express", "description":"Step Express" }, "free":true, "childCare":false, "reservable":false, "availableOptions":null, "cancelled":false, "booked":false, "waitlisted":null, "customInfo":null, "clubUuid":"764e2227-62d1-4a02-91a5-21bc52cc5503" }, "details":{ "id":null, "description":"Everything you love about step in a shorter time frame!", "webCapacity":null, "webBooked":null, "room":{ "id":"C", "description":"C", "roomPhotoUrl":null, "customInfo":null }, "level":null, "pricing":null, "legalNotes":null, "additionalInfo":null, "customInfo":null, "cancellationWindowEnd":null, "bookingWindowStart":null, "bookingWindowEnd":null, "imageUrl":null, "videoUrl":null }, "attendeeDetails":{ "exerciserUuid":"d7b35f68-fa63-4db3-8764-5465be8ae11b", "booked":false, "spotBooked":null, "waitlistBooked":false, "waitlistPosition":null, "productAvailability":"NOT_APPLICABLE", "availableActions":[ ] } } }'
+-d '{ "provider":"GroupExp v1", "data":[ { "id":"9204039012020", "name":"Step Express", "activity":"Step Express" }, { "id":"9204039012035", "name":"Test", "activity":"Step Express 2" } ] }'
 ----
 
 [[_example_response_group_exp]]
@@ -1181,10 +1199,10 @@ Content-Length: 417
 Content-Type: application/json;charset=UTF-8
 
 {
-   "items":{
-      "9204039012020": {
+   "items": [
+      {
          "groupexp_id":"9204039012020",
-         "images":[
+         "images": [
             {
                "format":"large",
                "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
@@ -1198,7 +1216,7 @@ Content-Type: application/json;charset=UTF-8
                "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/small/public/downtown_exterior_0.jpg?itok=yaosJs2t"
             }
          ],
-         "video":{
+         "video": {
             "id":"7",
             "name":"FREESTYLE SWIMMING - 5 MOST COMMON MISTAKES (2019)",
             "thumbnail":"http://embed.wistia.com/deliveries/1a4efc93b070c0af918129bd86157661d70754dd.bin",
@@ -1206,9 +1224,9 @@ Content-Type: application/json;charset=UTF-8
             "customInfo":[]
          }
       },
-      "9204039012021": {
+      {
          "groupexp_id":"9204039012021",
-         "images":[
+         "images": [
             {
                "format":"large",
                "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
@@ -1223,7 +1241,7 @@ Content-Type: application/json;charset=UTF-8
             }
          ]
       }
-   }
+   ]
 }
 
 ----
