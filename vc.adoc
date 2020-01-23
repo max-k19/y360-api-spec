@@ -1168,15 +1168,15 @@ Example:
 | items[].images | Array | false | Array of image objects.
 | items[].images[].format | String | false | Image style of the image file.
 | items[].images[].sourceUrl | String | false | Image object url of the image file.
-| items[].video |Object |true |Video brief info.
-| items[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
-| items[].video.id |String |false |Unique ID of the Video.
-| items[].video.duration |Integer |false |Video duration in seconds.
-| items[].video.episode |Object |true |Video Episode.
-| items[].video.episode.number |Integer |true |Number of episode in season.
-| items[].video.episode.season |Integer |true |Number of season.
-| items[].video.thumbnail |String |false |Thumbnail of the Video.
-| items[].video.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+| items[].video |Array |true |Array with Videos brief info.
+| items[].video[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| items[].video[].id |String |false |Unique ID of the Video.
+| items[].video[].duration |Integer |false |Video duration in seconds.
+| items[].video[].episode |Object |true |Video Episode.
+| items[].video[].episode.number |Integer |true |Number of episode in season.
+| items[].video[].episode.season |Integer |true |Number of season.
+| items[].video[].thumbnail |String |false |Thumbnail of the Video.
+| items[].video[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |===
 
 [[_example_request_group_exp]]
@@ -1216,14 +1216,14 @@ Content-Type: application/json;charset=UTF-8
                "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/small/public/downtown_exterior_0.jpg?itok=yaosJs2t"
             }
          ],
-         "video": {
+         "video": [{
             "id":"7",
             "name":"FREESTYLE SWIMMING - 5 MOST COMMON MISTAKES (2019)",
             "thumbnail":"http://embed.wistia.com/deliveries/1a4efc93b070c0af918129bd86157661d70754dd.bin",
             "duration":835,
             "customInfo":[]
          }
-      },
+      }],
       {
          "groupexp_id":"9204039012021",
          "images": [
