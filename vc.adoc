@@ -102,6 +102,17 @@ link:#widgets_api[Widgets API Guide]
 ** link:#_example_request_app_setting[Example request]
 ** link:#_example_response_app_setting[Example response]
 
+link:#group_exp[GroupExp Pro API]
+
+* link:#group_exp_api[Fetch Categories based on GroupExp data]
+** link:#_request_headers_group_exp[Request headers]
+** link:#_path_parameters_group_exp[Path parameters]
+** link:#_query_parameters_group_exp[Query parameters]
+** link:#_request_fields_group_exp[Request fields]
+** link:#_response_fields_group_exp[Response fields]
+** link:#_example_request_group_exp[Example request]
+** link:#_example_response_group_exp[Example response]
+
 [[content]]
 [[resources-programs]]
 == link:#resources-programs[Errors]
@@ -475,7 +486,7 @@ This operation returns brief information about Program Videos.
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
 |items[].id |String |false |Unique ID of the Video.
-|items[].duration |Integer |true |Video duration in seconds.
+|items[].duration |Integer |false |Video duration in seconds.
 |items[].episode |Object |true |Video Episode.
 |items[].episode.number |Integer |true |Number of episode in season.
 |items[].episode.season |Integer |true |Number of season.
@@ -578,7 +589,7 @@ This operation fetch recently added Videos. It returns only brief information ab
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
 |items[].id |String |false |Unique ID of the Video.
-|items[].duration |Integer |true |Video duration in seconds.
+|items[].duration |Integer |false |Video duration in seconds.
 |items[].episode |Object |true |Video Episode.
 |items[].episode.number |Integer |true |Number of episode in season.
 |items[].episode.season |Integer |true |Number of season.
@@ -687,7 +698,7 @@ Must be one of [SHORT, LONG].
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
 |items[].id |String |false |Unique ID of the Video.
-|items[].duration |Integer |true |Video duration in seconds.
+|items[].duration |Integer |false |Video duration in seconds.
 |items[].episode |Object |true |Video Episode.
 |items[].episode.number |Integer |true |Number of episode in season.
 |items[].episode.season |Integer |true |Number of season.
@@ -807,7 +818,7 @@ No request body.
 |videoBrief |Object |false |Brief details of the video.
 |videoBrief.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
 |videoBrief.id |String |false |Unique ID of the Video.
-|videoBrief.duration |Integer |true |Video duration in seconds.
+|videoBrief.duration |Integer |false |Video duration in seconds.
 |videoBrief.episode |Object |true |Video Episode.
 |videoBrief.episode.number |Integer |true |Number of episode in season.
 |videoBrief.episode.season |Integer |true |Number of season.
@@ -1078,6 +1089,143 @@ Content-Type: application/json;charset=UTF-8
 } ]
 ----
 
+[[group_exp]]
+== link:#group_exp_api[GroupExp Pro API Guide]
+
+[#author .author]#Ihor Karpylenko# +
+
+[[group_exp_api]]
+=== link:#group_exp_api[Fetch Categories based on GroupExp data]
+
+`GET /api/virtual-classes/{source}/v1.0/content-providers/{provider}/get-category-asset`
+
+This operation returns all category assets based on GroupExp data.
+
+[[_request_headers_group_exp]]
+==== link:#_request_headers_group_exp[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Value
+|Accept |application/json
+|authorization |apiKey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+|===
+
+[[_path_parameters_group_exp]]
+==== link:#_path_parameters_group_exp[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|source |String |false |Unique ID of the Source data Provider (For example - groupxclasses).
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_group_exp]]
+==== link:#_query_parameters_group_exp[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |false |Exerciser Unique ID.
+|id |String |false |Class Unique ID.
+|name |String |false |Class name.
+|activity |String |false |Class activity.
+|===
+
+[[_request_fields_group_exp]]
+==== link:#_request_fields_group_exp[Request fields]
+
+No request body.
+
+[[_response_fields_group_exp]]
+==== link:#_response_fields_app_settings[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+| Path | Type | Optional | Description
+| items | Map | false | Array of Key-Value to represent assets.
+| items[].groupexp_id | String | false | GroupExp object id.
+| items[].images | Array | false | Array of image objects.
+| items[].images[].format | String | false | Image style of the image file.
+| items[].images[].sourceUrl | String | false | Image object url of the image file.
+| items[].video |Array |true |Array with Videos brief info.
+| items[].video[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| items[].video[].id |String |false |Unique ID of the Video.
+| items[].video[].duration |Integer |false |Video duration in seconds.
+| items[].video[].episode |Object |true |Video Episode.
+| items[].video[].episode.number |Integer |true |Number of episode in season.
+| items[].video[].episode.season |Integer |true |Number of season.
+| items[].video[].thumbnail |String |false |Thumbnail of the Video.
+| items[].video[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|===
+
+[[_example_request_group_exp]]
+==== link:#_example_request_group_exp[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/groupxclasses/v1.0/content-providers/wichita/get-category-asset?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&id=9204039012020&name=Step Express&activity=Step Express' -i -X GET \
+-H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_group_exp]]
+==== link:#_example_response_group_exp[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 417
+Content-Type: application/json;charset=UTF-8
+
+{
+   "items": [
+      {
+         "groupexp_id":"9204039012020",
+         "images": [
+            {
+               "format":"large",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"medium",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/medium/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"small",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/small/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            }
+         ],
+         "video": [{
+            "id":"7",
+            "name":"FREESTYLE SWIMMING - 5 MOST COMMON MISTAKES (2019)",
+            "thumbnail":"http://embed.wistia.com/deliveries/1a4efc93b070c0af918129bd86157661d70754dd.bin",
+            "duration":835,
+            "customInfo":[]
+         }
+      }],
+      {
+         "groupexp_id":"9204039012021",
+         "images": [
+            {
+               "format":"large",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/large/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"medium",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/medium/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            },
+            {
+               "format":"small",
+               "sourceUrl":"http://master.y360cms.demo.fivejars.com/sites/default/files/styles/small/public/downtown_exterior_0.jpg?itok=yaosJs2t"
+            }
+         ]
+      }
+   ]
+}
+
+----
+
 [[footer]]
 [[footer-text]]
-Last updated 2020-10-01 18:07:16 +0200
+Last updated 2020-22-01 18:44:16 +0200
