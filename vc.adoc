@@ -102,9 +102,9 @@ link:#widgets_api[Widgets API Guide]
 ** link:#_example_request_app_setting[Example request]
 ** link:#_example_response_app_setting[Example response]
 
-link:#group_exp[GroupExp Pro API]
+link:#group_exp[GroupXClass API Guide]
 
-* link:#group_exp_api[Fetch Categories based on GroupExp data]
+* link:#group_exp_api[Fetch Categories based on GroupXClass data]
 ** link:#_request_headers_group_exp[Request headers]
 ** link:#_path_parameters_group_exp[Path parameters]
 ** link:#_query_parameters_group_exp[Query parameters]
@@ -1090,16 +1090,16 @@ Content-Type: application/json;charset=UTF-8
 ----
 
 [[group_exp]]
-== link:#group_exp_api[GroupExp Pro API Guide]
+== link:#group_exp_api[GroupXClass API Guide]
 
 [#author .author]#Ihor Karpylenko# +
 
 [[group_exp_api]]
-=== link:#group_exp_api[Fetch Categories based on GroupExp data]
+=== link:#group_exp_api[Fetch Categories based on GroupXClass data]
 
 `GET /api/virtual-classes/{source}/v1.0/content-providers/{provider}/get-category-asset`
 
-This operation returns all category assets based on GroupExp data.
+This operation returns all category assets based on GroupXClass data.
 
 [[_request_headers_group_exp]]
 ==== link:#_request_headers_group_exp[Request headers]
@@ -1145,7 +1145,7 @@ No request body.
 |===
 | Path | Type | Optional | Description
 | items | Map | false | Array of Key-Value to represent assets.
-| items[].groupexp_id | String | false | GroupExp object id.
+| items[].groupxclass_id | String | false | Class Unique ID.
 | items[].images | Array | false | Array of image objects.
 | items[].images[].format | String | false | Image style of the image file.
 | items[].images[].sourceUrl | String | false | Image object url of the image file.
@@ -1181,7 +1181,7 @@ Content-Type: application/json;charset=UTF-8
 {
    "items": [
       {
-         "groupexp_id":"9204039012020",
+         "groupxclass_id":"9204039012020",
          "images": [
             {
                "format":"large",
@@ -1205,7 +1205,7 @@ Content-Type: application/json;charset=UTF-8
          }
       }],
       {
-         "groupexp_id":"9204039012021",
+         "groupxclass_id":"9204039012021",
          "images": [
             {
                "format":"large",
@@ -1228,4 +1228,4 @@ Content-Type: application/json;charset=UTF-8
 
 [[footer]]
 [[footer-text]]
-Last updated 2020-22-01 18:44:16 +0200
+Last updated 2020-02-03 13:55:00 +0200
