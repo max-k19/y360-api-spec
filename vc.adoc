@@ -803,6 +803,7 @@ No request body.
 |videoDetails.level |String |true |Workout level.
 |videoDetails.equipment |String |true |Equipment needed for workout.
 |videoDetails.presenter |String |true |Presenter of the video.
+|videoDetails.location |String |false |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |videoDetails.videoFiles |Array[Object] |false |Files of the video.
 |videoDetails.videoFiles[].method |String |true |Format of the video (e.g. 'hls', 'dash', 'progressive').
 |videoDetails.videoFiles[].codec |String |true |Codec of the video (e.g. 'h264').
@@ -858,6 +859,7 @@ Content-Type: application/json;charset=UTF-8
   "videoDetails" : {
     "equipment" : "stationary bike",
     "presenter" : "Glen Ostergaard, Brent Findlay, Dee Tjeong, Joshua Berrier, Amanda Breen",
+    "location" : "Wichita",
     "description" : "RPM 79 Express r\n\r\n1. PACK RIDE\r\nWhere We Go performed by Diamond Nexus made famous by P!nk\r\nMOVES: Seated Recovery, Ride Easy, Racing\r\n2. PACE\r\nWithout You performed by Teenage Love Story made famous by Avicii feat. Sandro Cavazza\r\nMOVES: Seated Recovery, Ride Easy, Standing Climb, Racing (Forward)\r\n3. HILLS\r\nHold On performed by Call Me Next Spring made famous by Slushii\r\nMOVES: Ride Easy, Standing Climb, Pullback Climb, Standing Attack, Standing Recovery to Seated Recovery, Power Climb\r\n4. MIXED TERRAIN\r\nOne Foot performed by Tiny Dreaming made famous by WALK THE MOON\r\nMOVES: Seated Recovery, Ride Easy, Standing Climb, Standing Attack, Transition, Racing (Forward)\r\n5. INTERVALS\r\nRun For Cover performed by Japan State Of Mind made famous by The Killers\r\nMOVES: Seated Recovery, Ride Easy, Standing Attack, Standing Recovery, Racing, Transition\r\n6. RIDE HOME / STRETCH\r\nHow Long performed by Multiverse Theory made famous by Charlie Puth\r\nMOVES: Seated Recovery, Ride Easy, Racing, Transition of Bike, Standing Quadricep Stretch, Standing Gluteal Stretch",
     "videoFiles" : [ {
       "mimeType" : "video/mp4",
