@@ -240,7 +240,7 @@ Content-Type: application/json;charset=UTF-8
 [[resources-search-programs-controller-i-t-should-search-programs]]
 === link:#resources-search-programs-controller-i-t-should-search-programs[Search Programs]
 
-`GET /api/virtual-classes/v1.0/content-providers/{provider}/programs`
+`GET /api/virtual-classes/v2.0/content-providers/{provider}/programs`
 
 This operation search Programs. It returns only brief information about Programs.
 
@@ -305,7 +305,7 @@ This operation search Programs. It returns only brief information about Programs
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v1.0/content-providers/lmod/programs?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=BODYSTEP&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/programs?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=BODYSTEP&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -339,7 +339,7 @@ Content-Type: application/json;charset=UTF-8
 [[resources-fetch-program-details-controller-i-t-should-fetch-program-details]]
 === link:#resources-fetch-program-details-controller-i-t-should-fetch-program-details[Fetch Program Details]
 
-`GET /api/virtual-classes/v1.0/content-providers/{provider}/programs/{programId}`
+`GET /api/virtual-classes/v2.0/content-providers/{provider}/programs/{programId}`
 
 This operation returns all detailed information about Program.
 
@@ -398,7 +398,7 @@ No request body.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v1.0/content-providers/lmod/programs/44440?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/programs/44440?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -434,7 +434,7 @@ Content-Type: application/json;charset=UTF-8
 [[resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos]]
 === link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Program Videos]
 
-`GET /api/virtual-classes/v1.0/content-providers/{provider}/programs/{programId}/videos`
+`GET /api/virtual-classes/v2.0/content-providers/{provider}/programs/{programId}/videos`
 
 This operation returns brief information about Program Videos.
 
@@ -464,7 +464,13 @@ This operation returns brief information about Program Videos.
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Parameter |Type |Optional |Description
-|exerciserUuid |String |false |Exerciser Unique ID.
+|exerciserUuid |String |true |Exerciser Unique ID.
+|sort |String |true a|
+Sort order
+
+Must be one of [createdAsc, createdDesc, titleAsc, titleDesc, instructor, location].
+
+createdDesc if not specified.
 |===
 
 [[_request_fields_5]]
@@ -492,6 +498,10 @@ This operation returns brief information about Program Videos.
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].instructor |String |true |Instructor name.
+|items[].level |String |true |Workout level.
+|items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|items[].category |Integer |false |Category ID.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -503,7 +513,7 @@ This operation returns brief information about Program Videos.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v1.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -538,7 +548,7 @@ Content-Type: application/json;charset=UTF-8
 [[resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos]]
 === link:#resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos[Fetch Featured Videos]
 
-`GET /api/virtual-classes/v1.0/content-providers/{provider}/featured-videos`
+`GET /api/virtual-classes/v2.0/content-providers/{provider}/featured-videos`
 
 This operation fetch recently added Videos. It returns only brief information about Video.
 
@@ -606,7 +616,7 @@ This operation fetch recently added Videos. It returns only brief information ab
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v1.0/content-providers/lmod/featured-videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/featured-videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -641,7 +651,7 @@ Content-Type: application/json;charset=UTF-8
 [[resources-search-videos-controller-i-t-should-search-videos]]
 === link:#resources-search-videos-controller-i-t-should-search-videos[Search Videos]
 
-`GET /api/virtual-classes/v1.0/content-providers/{provider}/videos`
+`GET /api/virtual-classes/v2.0/content-providers/{provider}/videos`
 
 This operation search Videos. It returns only brief information about Videos.
 
@@ -670,7 +680,7 @@ This operation search Videos. It returns only brief information about Videos.
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Parameter |Type |Optional |Description
-|exerciserUuid |String |false |Exerciser Unique ID.
+|exerciserUuid |String |true |Exerciser Unique ID.
 |===
 
 [[_request_fields_7]]
@@ -687,6 +697,18 @@ Must be one of [SHORT, LONG].
 
 |page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
 |limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|sort |String |true a|
+Sort order
+
+Must be one of [createdAsc, createdDesc, titleAsc, titleDesc, instructor, location].
+
+createdDesc if not specified.
+|vids |String |true |Video IDs joined by comma
+|program |String |true |Category filter. Category names joined by comma
+|location |String |true |Location filter. Location names joined by comma
+|level |String |true |Workout level filter. Level names joined by comma
+|instructor |String |true |Instructor filter. Instructor names joined by comma
+|equipment |String |true |Equipment filter. Equipment names joined by comma
 |===
 
 [[_response_fields_10]]
@@ -704,10 +726,22 @@ Must be one of [SHORT, LONG].
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].instructor |String |true |Instructor name.
+|items[].level |String |true |Workout level.
+|items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|items[].category |Integer |false |Category ID.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
 |summary.total |Integer |false |Total count of items.
+|summary.facets |Object |false |Filter values for faceted search.
+|summary.facets.level |Array[Object] |false |Filter values the "level" filter.
+|summary.facets.level[].id |String |false |Filter value the "level" filter.
+|summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
+|summary.facets.location |Array[Object] |false |Filter values the "location" filter.
+|summary.facets.program |Array[Object] |false |Filter values the "category" filter.
+|summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
+|summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
 |===
 
 [[_example_request_7]]
@@ -715,7 +749,7 @@ Must be one of [SHORT, LONG].
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v1.0/content-providers/lmod/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=SHORT&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=SHORT&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -729,20 +763,52 @@ Content-Length: 341
 Content-Type: application/json;charset=UTF-8
 
 {
-  "items" : [ {
-    "id" : "375633",
-    "name" : "RPM #79 Express",
-    "episode" : {
-      "season" : 4,
-      "number" : 1
+  "items": [ {
+    "id": "375633",
+    "name": "RPM #79 Express",
+    "episode": {
+      "season": 4,
+      "number": 1
     },
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
-    "duration" : 90
+    "thumbnail": "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
+    "duration": 90,
+    "instructor": "John Doe",
+    "level": "ADVANCED",
+    "location": "Wichita",
+    "category": 16
   } ],
-  "summary" : {
-    "total" : 1,
-    "page" : 0,
-    "limit" : 50
+  "summary": {
+    "total": 1,
+    "page": 0,
+    "limit": 50,
+    "facets": {
+      "level": [
+        {
+          "id": "ADVANCED",
+          "count": 1
+        },
+        {
+          "id": "ALL LEVELS",
+          "count": 0
+        },
+        {
+          "id": "BEGINNER",
+          "count": 0
+        },
+        {
+          "id": "INTERMEDIATE",
+          "count": 0
+        },
+        {
+          "id": "N/A",
+          "count": 0
+        }
+      ],
+      "location": [ ... ],
+      "program": [ ... ],
+      "instructor": [ ... ],
+      "equipment": [ ... ],
+    }
   }
 }
 ----
@@ -753,7 +819,7 @@ Content-Type: application/json;charset=UTF-8
 [[resources-fetch-video-controller-i-t-should-fetch-video]]
 === link:#resources-fetch-video-controller-i-t-should-fetch-video[Fetch Video]
 
-`GET /api/virtual-classes/v1.0/content-providers/{provider}/videos/{videoId}`
+`GET /api/virtual-classes/v2.0/content-providers/{provider}/videos/{videoId}`
 
 This operation returns all detailed information about Video.
 
@@ -783,7 +849,7 @@ This operation returns all detailed information about Video.
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Parameter |Type |Optional |Description
-|exerciserUuid |String |false |Exerciser Unique ID.
+|exerciserUuid |String |true |Exerciser Unique ID.
 |===
 
 [[_request_fields_8]]
@@ -798,18 +864,16 @@ No request body.
 |===
 |Path |Type |Optional |Description
 |videoDetails |Object |false |Comprehensive details of the video.
-|videoDetails.description |String |true |Long description of the video.
-|videoDetails.instructor |String |true |Instructor name.
-|videoDetails.level |String |true |Workout level.
+|videoDetails.description |String |true |Long description of the video (plain text).
+|videoDetails.descriptionHtml |String |false |HTML markup for the video description.
 |videoDetails.equipment |String |true |Equipment needed for workout.
 |videoDetails.presenter |String |true |Presenter of the video.
-|videoDetails.location |String |false |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |videoDetails.videoFiles |Array[Object] |false |Files of the video.
 |videoDetails.videoFiles[].method |String |true |Format of the video (e.g. 'hls', 'dash', 'progressive').
 |videoDetails.videoFiles[].codec |String |true |Codec of the video (e.g. 'h264').
 |videoDetails.videoFiles[].mimeType |String |true |Mime-type of the video (e.g. 'application/x-mpegURL', 'application/dash+xml', 'video/mp4').
 |videoDetails.videoFiles[].format |String |true |Format of the video (e.g. 'm3u8', 'mpd', 'mp4', 'webm', 'ogg').
-|videoDetails.videoFiles[].quality |String |true |Quality of the video (e.g. '080p', '720p', '540p', '480p', '360p', 'adaptive').
+|videoDetails.videoFiles[].quality |String |true |Quality of the video (e.g. '1080p', '720p', '540p', '480p', '360p', 'adaptive').
 |videoDetails.videoFiles[].sizeInBytes |Integer |true |Size of the video.
 |videoDetails.videoFiles[].sourceUrl |String |false |Url of the video file.
 |videoDetails.subtitles |Array[Object] |false |Subtitles to video (WebVTT or SRT file).
@@ -824,6 +888,10 @@ No request body.
 |videoBrief.episode.number |Integer |true |Number of episode in season.
 |videoBrief.episode.season |Integer |true |Number of season.
 |videoBrief.thumbnail |String |false |Thumbnail of the Video.
+|videoBrief.instructor |String |true |Instructor name.
+|videoBrief.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|videoBrief.level |String |true |Workout level.
+|videoBrief.category |Integer |false |Category ID.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |===
 
@@ -832,7 +900,7 @@ No request body.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v1.0/content-providers/lmod/videos/375633?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/videos/375633?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -849,6 +917,8 @@ Content-Type: application/json;charset=UTF-8
   "videoBrief" : {
     "id" : "375633",
     "name" : "RPM #79 Express",
+    "location" : "Wichita",
+    "instructor" : "John Doe",
     "episode" : {
       "season" : 4,
       "number" : 1
@@ -857,10 +927,9 @@ Content-Type: application/json;charset=UTF-8
     "duration" : 90
   },
   "videoDetails" : {
-    "equipment" : "stationary bike",
     "presenter" : "Glen Ostergaard, Brent Findlay, Dee Tjeong, Joshua Berrier, Amanda Breen",
-    "location" : "Wichita",
     "description" : "RPM 79 Express r\n\r\n1. PACK RIDE\r\nWhere We Go performed by Diamond Nexus made famous by P!nk\r\nMOVES: Seated Recovery, Ride Easy, Racing\r\n2. PACE\r\nWithout You performed by Teenage Love Story made famous by Avicii feat. Sandro Cavazza\r\nMOVES: Seated Recovery, Ride Easy, Standing Climb, Racing (Forward)\r\n3. HILLS\r\nHold On performed by Call Me Next Spring made famous by Slushii\r\nMOVES: Ride Easy, Standing Climb, Pullback Climb, Standing Attack, Standing Recovery to Seated Recovery, Power Climb\r\n4. MIXED TERRAIN\r\nOne Foot performed by Tiny Dreaming made famous by WALK THE MOON\r\nMOVES: Seated Recovery, Ride Easy, Standing Climb, Standing Attack, Transition, Racing (Forward)\r\n5. INTERVALS\r\nRun For Cover performed by Japan State Of Mind made famous by The Killers\r\nMOVES: Seated Recovery, Ride Easy, Standing Attack, Standing Recovery, Racing, Transition\r\n6. RIDE HOME / STRETCH\r\nHow Long performed by Multiverse Theory made famous by Charlie Puth\r\nMOVES: Seated Recovery, Ride Easy, Racing, Transition of Bike, Standing Quadricep Stretch, Standing Gluteal Stretch",
+    "equipment" : "stationary bike",
     "videoFiles" : [ {
       "mimeType" : "video/mp4",
       "codec" : "h264",
@@ -887,7 +956,7 @@ Content-Type: application/json;charset=UTF-8
 [[app_settings]]
 === link:#app_settings[Fetch App Settings]
 
-`GET /settings/v1.0/content-providers/{provider}/app-settings`
+`GET /settings/v2.0/content-providers/{provider}/app-settings`
 
 This operation returns all set up settings.
 
@@ -951,7 +1020,7 @@ No request body.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/settings/v1.0/content-providers/wichita/app-settings?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+$ curl 'http://localhost:8080/settings/v2.0/content-providers/wichita/app-settings?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -1006,7 +1075,7 @@ Content-Type: application/json;charset=UTF-8
 [[app_setting]]
 === link:#app_setting[Get App Setting]
 
-`GET /settings/v1.0/content-providers/{provider}/app-settings/{key}`
+`GET /settings/v2.0/content-providers/{provider}/app-settings/{key}`
 
 This operation returns setting values objects array by key.
 
@@ -1068,7 +1137,7 @@ No request body.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/settings/v1.0/content-providers/wichita/app-settings/customKey1?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
+$ curl 'http://localhost:8080/settings/v2.0/content-providers/wichita/app-settings/customKey1?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -1099,7 +1168,7 @@ Content-Type: application/json;charset=UTF-8
 [[group_exp_api]]
 === link:#group_exp_api[Fetch Categories based on GroupXClass data]
 
-`GET /api/virtual-classes/{source}/v1.0/content-providers/{provider}/get-category-asset`
+`GET /api/virtual-classes/{source}/v2.0/content-providers/{provider}/get-category-asset`
 
 This operation returns all category assets based on GroupXClass data.
 
@@ -1167,7 +1236,7 @@ No request body.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/groupxclasses/v1.0/content-providers/wichita/get-category-asset?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&id=9204039012020&name=Step Express&activity=Step Express' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/groupxclasses/v2.0/content-providers/wichita/get-category-asset?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&id=9204039012020&name=Step Express&activity=Step Express' -i -X GET \
 -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
