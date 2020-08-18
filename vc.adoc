@@ -468,9 +468,9 @@ This operation returns brief information about Program Videos.
 |sort |String |true a|
 Sort order
 
-Must be one of [createdAsc, createdDesc, titleAsc, titleDesc, instructor, location].
+Can be one of [`createdAsc`, `createdDesc`, `titleAsc`, `titleDesc`, `instructorAsc` (`instructor`), `instructorDesc`, `locationAsc` (`location`), `locationDesc`].
 
-createdDesc if not specified.
+Category-specific user-set order if not specified or not matching the listed options.
 |===
 
 [[_request_fields_5]]
@@ -514,7 +514,7 @@ createdDesc if not specified.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&sort=locationDesc&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -707,9 +707,9 @@ Supports multiple values joined by comma. In case of multiple values, works as
 |sort |String |true a|
 Sort order
 
-Must be one of [createdAsc, createdDesc, titleAsc, titleDesc, instructor, location].
+Can be one of [`createdAsc`, `createdDesc`, `titleAsc`, `titleDesc`, `instructorAsc` (`instructor`), `instructorDesc`, `locationAsc` (`location`), `locationDesc`].
 
-createdDesc if not specified.
+`createdDesc` if not specified or not matching the listed options.
 |vids |String |true |Video IDs joined by comma
 |program |String |true |Category filter. Category names joined by comma
 |location |String |true |Location filter. Location names joined by comma
