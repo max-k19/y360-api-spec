@@ -471,6 +471,17 @@ Sort order
 Can be one of [`createdAsc`, `createdDesc`, `titleAsc`, `titleDesc`, `instructorAsc` (`instructor`), `instructorDesc`, `locationAsc` (`location`), `locationDesc`].
 
 Category-specific user-set order if not specified or not matching the listed options.
+|location |String |true |Location filter. Location names joined by comma
+|level |String |true |Workout level filter. Level names joined by comma
+|instructor |String |true |Instructor filter. Instructor names joined by comma
+|equipment |String |true |Equipment filter. Equipment names joined by comma
+|equipmentReq |String |true a|
+Equipment required filter.
+
+Can be one of [`yes`, `no`].
+
+`yes` matches videos with equipment set but not equal 'N/A'.
+`no` matches videos without equipment set or set to 'N/A'.
 |===
 
 [[_request_fields_5]]
@@ -507,6 +518,13 @@ Category-specific user-set order if not specified or not matching the listed opt
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
 |summary.total |Integer |false |Total count of items.
+|summary.facets |Object |false |Filter values for faceted search.
+|summary.facets.level |Array[Object] |false |Filter values the "level" filter.
+|summary.facets.level[].id |String |false |Filter value the "level" filter.
+|summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
+|summary.facets.location |Array[Object] |false |Filter values the "location" filter.
+|summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
+|summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
 |===
 
 [[_example_request_5]]
@@ -514,7 +532,7 @@ Category-specific user-set order if not specified or not matching the listed opt
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&sort=locationDesc&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/programs/44440/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&sort=locationDesc&equipmentReq=no&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -524,25 +542,96 @@ $ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/pr
 [source,highlightjs,highlight,nowrap]
 ----
 HTTP/1.1 200 OK
-Content-Length: 341
 Content-Type: application/json;charset=UTF-8
 
 {
-  "items" : [ {
-    "id" : "375633",
-    "name" : "RPM #79 Express",
-    "episode" : {
-      "season" : 4,
-      "number" : 1
-    },
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
-    "duration" : 90
-  } ],
-  "summary" : {
-    "total" : 1,
-    "page" : 0,
-    "limit" : 50
-  }
+    "items": [
+        {
+            "id": "87",
+            "name": "KIDS YOGA WITH CORRI",
+            "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
+            "duration": 1366,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 22,
+            "categoryName": "Yoga",
+            "location": "Wichita"
+        },
+        {
+            "id": "94",
+            "name": "KIDS YOGA WITH CORRI - BREATHING EXERCISES PART 1",
+            "thumbnail": "http://embed.wistia.com/deliveries/51317da5e144c5bc9d22de93f428ecf7.bin",
+            "duration": 247,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 22,
+            "categoryName": "Yoga",
+            "location": "Wichita"
+        },
+        {
+            "id": "116",
+            "name": "KIDS YOGA WITH CORRI - BREATHING EXERCISES PART 2",
+            "thumbnail": "http://embed.wistia.com/deliveries/3ef03bf4cafba35268ce4adbd95f2ad0.bin",
+            "duration": 149,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 22,
+            "categoryName": "Yoga",
+            "location": "Wichita"
+        },
+        {
+            "id": "128",
+            "name": "KID'S YOGA WITH CORRI - UNDERWATER ADVENTURE",
+            "thumbnail": "http://embed.wistia.com/deliveries/f19964cf5b49a85522e8085fbd0a9231.bin",
+            "duration": 1335,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 22,
+            "categoryName": "Yoga",
+            "location": "Wichita"
+        }
+    ],
+    "summary": {
+        "total": 4,
+        "page": 0,
+        "limit": 20,
+        "facets": {
+            "level": [
+                {
+                    "id": "ADVANCED",
+                    "count": 1
+                },
+                {
+                    "id": "BEGINNER",
+                    "count": 12
+                },
+                {
+                    "id": "INTERMEDIATE",
+                    "count": 4
+                }
+            ],
+            "location": [
+                {
+                    "id": "Charlotte",
+                    "count": 1
+                },
+                {
+                    "id": "Houston",
+                    "count": 2
+                },
+                {
+                    "id": "Wichita",
+                    "count": 14
+                }
+            ],
+            "instructor": [{ ... }],
+            "equipment": [{ ... }]
+        }
+    }
 }
 ----
 
