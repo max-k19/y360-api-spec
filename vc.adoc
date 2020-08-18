@@ -502,6 +502,7 @@ createdDesc if not specified.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |items[].category |Integer |false |Category ID.
+|items[].categoryName |String |false |Video Category name.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -604,6 +605,8 @@ This operation fetch recently added Videos. It returns only brief information ab
 |items[].episode.number |Integer |true |Number of episode in season.
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].category |Integer |false |Category ID.
+|items[].categoryName |String |false |Video Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
@@ -734,6 +737,7 @@ createdDesc if not specified.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |items[].category |Integer |false |Category ID.
+|items[].categoryName |Integer |false |Video Category name.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -896,6 +900,7 @@ No request body.
 |videoBrief.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |videoBrief.level |String |true |Workout level.
 |videoBrief.category |Integer |false |Category ID.
+|videoBrief.categoryName |Integer |false |Video Category name.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |===
 
