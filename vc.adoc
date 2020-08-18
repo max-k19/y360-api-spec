@@ -716,6 +716,13 @@ Can be one of [`createdAsc`, `createdDesc`, `titleAsc`, `titleDesc`, `instructor
 |level |String |true |Workout level filter. Level names joined by comma
 |instructor |String |true |Instructor filter. Instructor names joined by comma
 |equipment |String |true |Equipment filter. Equipment names joined by comma
+|equipmentReq |String |true a|
+Equipment required filter.
+
+Can be one of [`yes`, `no`].
+
+`yes` matches videos with equipment set but not equal 'N/A'.
+`no` matches videos without equipment set or set to 'N/A'.
 |===
 
 [[_response_fields_10]]
