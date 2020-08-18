@@ -691,9 +691,13 @@ This operation search Videos. It returns only brief information about Videos.
 |Path |Type |Optional |Description
 |searchString |String |false |The searchString to search video.
 |duration |String |true a|
-Video duration filter option. SHORT (up to 30 min), LONG (30 min or longer).
+Video duration filter option.
 
-Must be one of [SHORT, LONG].
+Must be one of [`short`, `long`, `15m`, `30m`, `45m`, `1h`, `1hplus`], where:
+short (up to 30 min), long (30 min or longer), 15m (up to 15 min), 30m (up to 30 min), 45m (up to 45 min), 1h (up to 1 hour), 1hplus (1 hour or longer).
+
+Supports multiple values joined by comma. In case of multiple values, works as
+`OR` operator.
 
 |page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
 |limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
@@ -749,7 +753,7 @@ createdDesc if not specified.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=SHORT&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v2.0/content-providers/lmod/videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&searchString=RPM%20%2379%20Express&duration=15m,1hplus&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
