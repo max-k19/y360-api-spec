@@ -833,7 +833,7 @@ Can be one of [`yes`, `no`].
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |items[].category |Integer |false |Category ID.
-|items[].categoryName |Integer |false |Video Category name.
+|items[].categoryName |String |false |Video Category name.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -996,7 +996,7 @@ No request body.
 |videoBrief.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |videoBrief.level |String |true |Workout level.
 |videoBrief.category |Integer |false |Category ID.
-|videoBrief.categoryName |Integer |false |Video Category name.
+|videoBrief.categoryName |String |false |Video Category name.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |===
 
