@@ -23,9 +23,9 @@ Table of Contents
 *** link:#_response_fields_4[Response fields]
 *** link:#_example_4[Example]
 
-link:#_program_briefs[Program Briefs]
+link:#_program_briefs[Category Briefs]
 
-* link:#resources-search-programs-controller-i-t-should-search-programs[Search Programs]
+* link:#resources-search-programs-controller-i-t-should-search-programs[Search Categories]
 ** link:#_request_headers_3[Request headers]
 ** link:#_path_parameters_3[Path parameters]
 ** link:#_query_parameters_3[Query parameters]
@@ -34,9 +34,9 @@ link:#_program_briefs[Program Briefs]
 ** link:#_example_request_3[Example request]
 ** link:#_example_response_3[Example response]
 
-link:#_program_details[Program Details]
+link:#_program_details[Category Details]
 
-* link:#resources-fetch-program-details-controller-i-t-should-fetch-program-details[Fetch Program Details]
+* link:#resources-fetch-program-details-controller-i-t-should-fetch-program-details[Fetch Category Details]
 ** link:#_request_headers_4[Request headers]
 ** link:#_path_parameters_4[Path parameters]
 ** link:#_query_parameters_4[Query parameters]
@@ -47,7 +47,7 @@ link:#_program_details[Program Details]
 
 link:#_video_briefs[Video Briefs]
 
-* link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Program Videos]
+* link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Category Videos]
 ** link:#_request_headers_5[Request headers]
 ** link:#_path_parameters_5[Path parameters]
 ** link:#_query_parameters_5[Query parameters]
@@ -235,14 +235,14 @@ Content-Type: application/json;charset=UTF-8
 
 
 [[_program_briefs]]
-== link:#_program_briefs[Program Briefs]
+== link:#_program_briefs[Category Briefs]
 
 [[resources-search-programs-controller-i-t-should-search-programs]]
-=== link:#resources-search-programs-controller-i-t-should-search-programs[Search Programs]
+=== link:#resources-search-programs-controller-i-t-should-search-programs[Search Categories]
 
 `GET /api/virtual-classes/v2.0/content-providers/{provider}/programs`
 
-This operation search Programs. It returns only brief information about Programs.
+This operation search Categories. It returns only brief information about Categories.
 
 [[_request_headers_3]]
 ==== link:#_request_headers_3[Request headers]
@@ -290,10 +290,10 @@ This operation search Programs. It returns only brief information about Programs
 |===
 |Path |Type |Optional |Description
 |items |Array[Object] |false |Actual items.
-|items[].name |String |false |Name of the Program (e.g. 'BODYSTEP', 'THE TRIP').
-|items[].id |String |false |Unique ID of the Program.
+|items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
+|items[].id |String |false |Unique ID of the Category.
 |items[].videoCount |Integer |false |Number of videos.
-|items[].thumbnail |String |false |Thumbnail of the Program.
+|items[].thumbnail |String |false |Thumbnail of the Category.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -334,14 +334,14 @@ Content-Type: application/json;charset=UTF-8
 ----
 
 [[_program_details]]
-== link:#_program_details[Program Details]
+== link:#_program_details[Category Details]
 
 [[resources-fetch-program-details-controller-i-t-should-fetch-program-details]]
-=== link:#resources-fetch-program-details-controller-i-t-should-fetch-program-details[Fetch Program Details]
+=== link:#resources-fetch-program-details-controller-i-t-should-fetch-program-details[Fetch Category Details]
 
 `GET /api/virtual-classes/v2.0/content-providers/{provider}/programs/{programId}`
 
-This operation returns all detailed information about Program.
+This operation returns all detailed information about Category.
 
 [[_request_headers_4]]
 ==== link:#_request_headers_4[Request headers]
@@ -360,7 +360,7 @@ This operation returns all detailed information about Program.
 |===
 |Parameter |Type |Optional |Description
 |provider |String |false |Unique ID of the Content Provider.
-|programId |String |false |Unique ID of the Program.
+|programId |String |false |Unique ID of the Category.
 |===
 
 [[_query_parameters_4]]
@@ -384,10 +384,10 @@ No request body.
 |===
 |Path |Type |Optional |Description
 |brief |Object |false |Brief details of the program.
-|brief.name |String |false |Name of the Program (e.g. 'BODYSTEP', 'THE TRIP').
-|brief.id |String |false |Unique ID of the Program.
+|brief.name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
+|brief.id |String |false |Unique ID of the Category.
 |brief.videoCount |Integer |false |Number of videos.
-|brief.thumbnail |String |false |Thumbnail of the Program.
+|brief.thumbnail |String |false |Thumbnail of the Category.
 |programDetails |Object |false |Comprehensive details of the program.
 |programDetails.description |String |true |Long description of the program.
 |programDetails.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
@@ -432,11 +432,11 @@ Content-Type: application/json;charset=UTF-8
 == link:#_video_briefs[Video Briefs]
 
 [[resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos]]
-=== link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Program Videos]
+=== link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Category Videos]
 
 `GET /api/virtual-classes/v2.0/content-providers/{provider}/programs/{programId}/videos`
 
-This operation returns brief information about Program Videos.
+This operation returns brief information about Category Videos.
 
 [[_request_headers_5]]
 ==== link:#_request_headers_5[Request headers]
@@ -455,7 +455,7 @@ This operation returns brief information about Program Videos.
 |===
 |Parameter |Type |Optional |Description
 |provider |String |false |Unique ID of the Content Provider.
-|programId |String |false |Unique ID of the Program.
+|programId |String |false |Unique ID of the Category.
 |===
 
 [[_query_parameters_5]]
@@ -512,8 +512,9 @@ Can be one of [`yes`, `no`].
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
-|items[].category |Integer |false |Category ID.
-|items[].categoryName |String |false |Video Category name.
+|items[].category |Integer |false |Video Category ID (deprecated).
+|items[].program |Integer |false |Video Category ID.
+|items[].programName |String |false |Video Category name.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -555,7 +556,8 @@ Content-Type: application/json;charset=UTF-8
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
-            "categoryName": "Yoga",
+            "program": 22,
+            "programName": "Yoga",
             "location": "Wichita"
         },
         {
@@ -567,7 +569,8 @@ Content-Type: application/json;charset=UTF-8
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
-            "categoryName": "Yoga",
+            "program": 22,
+            "programName": "Yoga",
             "location": "Wichita"
         },
         {
@@ -579,7 +582,8 @@ Content-Type: application/json;charset=UTF-8
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
-            "categoryName": "Yoga",
+            "program": 22,
+            "programName": "Yoga",
             "location": "Wichita"
         },
         {
@@ -591,7 +595,8 @@ Content-Type: application/json;charset=UTF-8
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
-            "categoryName": "Yoga",
+            "program": 22,
+            "programName": "Yoga",
             "location": "Wichita"
         }
     ],
@@ -694,8 +699,9 @@ This operation fetch recently added Videos. It returns only brief information ab
 |items[].episode.number |Integer |true |Number of episode in season.
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
-|items[].category |Integer |false |Category ID.
-|items[].categoryName |String |false |Video Category name.
+|items[].category |Integer |false |Video Category ID (deprecated).
+|items[].program |Integer |false |Video Category ID.
+|items[].programName |String |false |Video Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
@@ -832,8 +838,9 @@ Can be one of [`yes`, `no`].
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
-|items[].category |Integer |false |Category ID.
-|items[].categoryName |String |false |Video Category name.
+|items[].category |Integer |false |Video Category ID (deprecated).
+|items[].program |Integer |false |Video Category ID.
+|items[].programName |String |false |Video Category name.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -995,8 +1002,9 @@ No request body.
 |videoBrief.instructor |String |true |Instructor name.
 |videoBrief.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |videoBrief.level |String |true |Workout level.
-|videoBrief.category |Integer |false |Category ID.
-|videoBrief.categoryName |String |false |Video Category name.
+|videoBrief.category |Integer |false |Video Category ID (deprecated).
+|videoBrief.program |Integer |false |Video Category ID.
+|videoBrief.programName |String |false |Video Category name.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |===
 
