@@ -479,13 +479,23 @@ Category-specific user-set order if not specified or not matching the listed opt
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
-|equipmentReq |String |true a|
+|equipmentReq (deprecated) |String |true a|
 Equipment required filter.
 
 Can be one of [`yes`, `no`].
 
 `yes` matches videos with equipment set but not equal 'N/A'.
 `no` matches videos without equipment set or set to 'N/A'.
+(deprecated)
+|equipmentReq[] |Array[String] |true a|
+Equipment required filter.
+
+Can be one of [`yes`, `no`].
+
+`yes` matches videos with equipment set but not equal 'N/A'.
+`no` matches videos without equipment set or set to 'N/A'.
+
+*Only the first value is used.*
 |===
 
 .Deprecation note
@@ -842,13 +852,23 @@ Can be one of [`createdAsc`, `createdDesc`, `titleAsc`, `titleDesc`, `instructor
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
-|equipmentReq |String |true a|
+|equipmentReq (deprecated) |String |true a|
 Equipment required filter.
 
 Can be one of [`yes`, `no`].
 
 `yes` matches videos with equipment set but not equal 'N/A'.
 `no` matches videos without equipment set or set to 'N/A'.
+(deprecated)
+|equipmentReq[] |Array[String] |true a|
+Equipment required filter.
+
+Can be one of [`yes`, `no`].
+
+`yes` matches videos with equipment set but not equal 'N/A'.
+`no` matches videos without equipment set or set to 'N/A'.
+
+*Only the first value is used.*
 |===
 
 .Deprecation note
