@@ -1454,9 +1454,15 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |summary.facets.level[].id |String |false |Filter value the "level" filter.
 |summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
 |summary.facets.location |Array[Object] |false |Filter values the "location" filter.
-|summary.facets.program |Array[Object] |false |Filter values the "category" filter.
 |summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
 |summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
+|summary.facets.program |Array[Object] |false |Filter values the "category" filter.
+|summary.facets.program[].id |Array[Object] |false |Filter value for the "category" filter.
+|summary.facets.program[].count |Array[Object] |false |Number of search results relevant to the filter value.
+|summary.facets.program[].sub |Array[Object] |true |The list of sub-categories.
+|summary.facets.program[].sub[].id |Array[Object] |true |Filter value for the "category" filter.
+|summary.facets.program[].sub[].count |Array[Object] |true |Number of search results relevant to the filter value.
+|summary.facets.program[].sub[].sub |Array[Object] |true |The list of sub-sub-categories.
 |===
 
 [[_example_request_7]]
