@@ -73,6 +73,16 @@ link:#_video_briefs[Video Briefs]
 ** link:#_response_fields_8[Response fields]
 ** link:#_example_request_5[Example request]
 ** link:#_example_response_5[Example response]
+
+* link:#resources-fetch-around-the-y-videos[Fetch Around the Y Videos]
+** link:#_request_headers_11[Request headers]
+** link:#_path_parameters_11[Path parameters]
+** link:#_query_parameters_11[Query parameters]
+** link:#_request_fields_11[Request fields]
+** link:#_response_fields_11[Response fields]
+** link:#_example_request_11[Example request]
+** link:#_example_response_11[Example response]
+
 * link:#resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos[Fetch Featured Videos]
 ** link:#_request_headers_6[Request headers]
 ** link:#_path_parameters_6[Path parameters]
@@ -81,6 +91,16 @@ link:#_video_briefs[Video Briefs]
 ** link:#_response_fields_9[Response fields]
 ** link:#_example_request_6[Example request]
 ** link:#_example_response_6[Example response]
+
+* link:#resources-fetch-new-videos[Fetch New Videos]
+** link:#_request_headers_12[Request headers]
+** link:#_path_parameters_12[Path parameters]
+** link:#_query_parameters_12[Query parameters]
+** link:#_request_fields_12[Request fields]
+** link:#_response_fields_12[Response fields]
+** link:#_example_request_12[Example request]
+** link:#_example_response_12[Example response]
+
 * link:#resources-search-videos-controller-i-t-should-search-videos[Search Videos]
 ** link:#_request_headers_7[Request headers]
 ** link:#_path_parameters_7[Path parameters]
@@ -261,6 +281,11 @@ Content-Type: application/json;charset=UTF-8
 `GET /api/virtual-classes/v3.0/content-providers/{provider}/categories`
 
 This operation extracts top-level catgories. It returns only brief information about categories.
+
+[NOTE]
+====
+The "New Releases" and "Around the Y" categories are excluded.
+====
 
 [[_request_headers_13]]
 ==== link:#_request_headers_13[Request headers]
@@ -464,7 +489,12 @@ Content-Type: application/json;charset=UTF-8
 
 `GET /api/virtual-classes/v3.0/content-providers/{provider}/programs`
 
-This operation search Categories. It returns only brief information about Categories.
+This operation searches for Categories. It returns only brief information about Categories.
+
+[NOTE]
+====
+The "New Releases" and "Around the Y" categories are excluded.
+====
 
 [[_request_headers_3]]
 ==== link:#_request_headers_3[Request headers]
@@ -874,12 +904,227 @@ Content-Type: application/json;charset=UTF-8
 }
 ----
 
+[[resources-fetch-around-the-y-videos]]
+=== link:#resources-fetch-around-the-y-videos[Fetch Around the Y videos]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/around-the-y`
+
+This operation returns brief information about Category Videos.
+
+[[_request_headers_11]]
+==== link:#_request_headers_11[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
+|===
+
+[[_path_parameters_11]]
+==== link:#_path_parameters_11[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_11]]
+==== link:#_query_parameters_11[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |true |Exerciser Unique ID.
+|sort |String |true a|
+Sort order
+
+Can be one of [`createdAsc`, `createdDesc`, `titleAsc`, `titleDesc`, `instructorAsc` (`instructor`), `instructorDesc`, `locationAsc` (`location`), `locationDesc`].
+
+Category-specific user-set order if not specified or not matching the listed options.
+|location[] |Array[String] |true |Location filter. Location names.
+|level[] |Array[String] |true |Workout level filter. Level names.
+|instructor[] |Array[String] |true |Instructor filter. Instructor names.
+|equipment[] |Array[String] |true |Equipment filter. Equipment names.
+|equipmentReq[] |Array[String] |true a|
+Equipment required filter.
+
+Can be one of [`yes`, `no`].
+
+`yes` matches videos with equipment set but not equal 'N/A'.
+`no` matches videos without equipment set or set to 'N/A'.
+
+*Only the first value is used.*
+|===
+
+[[_request_fields_11]]
+==== link:#_request_fields_11[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_11]]
+==== link:#_response_fields_11[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].id |String |false |Unique ID of the Video.
+|items[].duration |Integer |false |Video duration in seconds.
+|items[].episode |Object |true |Video Episode.
+|items[].episode.number |Integer |true |Number of episode in season.
+|items[].episode.season |Integer |true |Number of season.
+|items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].instructor |String |true |Instructor name.
+|items[].level |String |true |Workout level.
+|items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|items[].category |Integer |false |Video Category ID (deprecated).
+|items[].program |Integer |false |Video Category ID.
+|items[].programName |String |false |Video Category name.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|summary.facets |Object |false |Filter values for faceted search.
+|summary.facets.level |Array[Object] |false |Filter values the "level" filter.
+|summary.facets.level[].id |String |false |Filter value the "level" filter.
+|summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
+|summary.facets.location |Array[Object] |false |Filter values the "location" filter.
+|summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
+|summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
+|===
+
+[[_example_request_11]]
+==== link:#_example_request_11[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/around-the-y?location[]=Charlotte&location[]=Houston&location[]=Wichita&sort=locationDesc&equipmentReq=no&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_11]]
+==== link:#_example_response_11[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+
+{
+    "items": [
+        {
+            "id": "87",
+            "name": "KIDS YOGA WITH CORRI",
+            "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
+            "duration": 1366,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 122,
+            "program": 122,
+            "programName": "Around the Y",
+            "location": "Wichita"
+        },
+        {
+            "id": "94",
+            "name": "KIDS YOGA WITH CORRI - BREATHING EXERCISES PART 1",
+            "thumbnail": "http://embed.wistia.com/deliveries/51317da5e144c5bc9d22de93f428ecf7.bin",
+            "duration": 247,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 122,
+            "program": 122,
+            "programName": "Around the Y",
+            "location": "Wichita"
+        },
+        {
+            "id": "116",
+            "name": "KIDS YOGA WITH CORRI - BREATHING EXERCISES PART 2",
+            "thumbnail": "http://embed.wistia.com/deliveries/3ef03bf4cafba35268ce4adbd95f2ad0.bin",
+            "duration": 149,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 122,
+            "program": 122,
+            "programName": "Around the Y",
+            "location": "Wichita"
+        },
+        {
+            "id": "128",
+            "name": "KID'S YOGA WITH CORRI - UNDERWATER ADVENTURE",
+            "thumbnail": "http://embed.wistia.com/deliveries/f19964cf5b49a85522e8085fbd0a9231.bin",
+            "duration": 1335,
+            "customInfo": [],
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "category": 122,
+            "program": 122,
+            "programName": "Around the Y",
+            "location": "Wichita"
+        }
+    ],
+    "summary": {
+        "total": 4,
+        "page": 0,
+        "limit": 20,
+        "facets": {
+            "level": [
+                {
+                    "id": "ADVANCED",
+                    "count": 1
+                },
+                {
+                    "id": "BEGINNER",
+                    "count": 12
+                },
+                {
+                    "id": "INTERMEDIATE",
+                    "count": 4
+                }
+            ],
+            "location": [
+                {
+                    "id": "Charlotte",
+                    "count": 1
+                },
+                {
+                    "id": "Houston",
+                    "count": 2
+                },
+                {
+                    "id": "Wichita",
+                    "count": 14
+                }
+            ],
+            "instructor": [{ ... }],
+            "equipment": [{ ... }]
+        }
+    }
+}
+----
+
 [[resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos]]
 === link:#resources-fetch-featured-videos-controller-i-t-should-fetch-featured-videos[Fetch Featured Videos]
 
 `GET /api/virtual-classes/v3.0/content-providers/{provider}/featured-videos`
 
-This operation fetch recently added Videos. It returns only brief information about Video.
+This operation fetches Featured Videos. It returns only brief information about Video.
+
+The featured videos are a combination of an association level videos and the
+national level videos. The national level videos are appeneded to the list of
+the association level videos if there are not enought videos on the association
+level.
 
 [[_request_headers_6]]
 ==== link:#_request_headers_6[Request headers]
@@ -980,12 +1225,126 @@ Content-Type: application/json;charset=UTF-8
 }
 ----
 
+
+[[resources-fetch-new-videos]]
+=== link:#resources-fetch-new-videos[Fetch New Videos]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/new-videos`
+
+This operation fetches recently added Videos. It returns only brief information about Video.
+
+[[_request_headers_12]]
+==== link:#_request_headers_12[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
+|===
+
+[[_path_parameters_12]]
+==== link:#_path_parameters_12[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_12]]
+==== link:#_query_parameters_12[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |true |Exerciser Unique ID.
+|===
+
+[[_request_fields_12]]
+==== link:#_request_fields_12[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_12]]
+==== link:#_response_fields_12[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].id |String |false |Unique ID of the Video.
+|items[].duration |Integer |false |Video duration in seconds.
+|items[].episode |Object |true |Video Episode.
+|items[].episode.number |Integer |true |Number of episode in season.
+|items[].episode.season |Integer |true |Number of season.
+|items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].category |Integer |false |Video Category ID (deprecated).
+|items[].program |Integer |false |Video Category ID.
+|items[].programName |String |false |Video Category name.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|===
+
+[[_example_request_12]]
+==== link:#_example_request_12[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/new-videos?exerciserUuid=8965a460-a79e-4bf7-b66c-7e34d8c34760&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_12]]
+==== link:#_example_response_12[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 341
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items" : [ {
+    "id" : "375633",
+    "name" : "RPM #79 Express",
+    "episode" : {
+      "season" : 4,
+      "number" : 1
+    },
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
+    "duration" : 90
+  } ],
+  "summary" : {
+    "total" : 1,
+    "page" : 0,
+    "limit" : 50
+  }
+}
+----
+
+
+
 [[resources-search-videos-controller-i-t-should-search-videos]]
 === link:#resources-search-videos-controller-i-t-should-search-videos[Search Videos]
 
 `GET /api/virtual-classes/v3.0/content-providers/{provider}/videos`
 
 This operation search Videos. It returns only brief information about Videos.
+
+[NOTE]
+====
+The "New Releases" and "Around the Y" categories are excluded.
+====
 
 [[_request_headers_7]]
 ==== link:#_request_headers_7[Request headers]
@@ -1095,9 +1454,15 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |summary.facets.level[].id |String |false |Filter value the "level" filter.
 |summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
 |summary.facets.location |Array[Object] |false |Filter values the "location" filter.
-|summary.facets.program |Array[Object] |false |Filter values the "category" filter.
 |summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
 |summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
+|summary.facets.program |Array[Object] |false |Filter values the "category" filter.
+|summary.facets.program[].id |Array[Object] |false |Filter value for the "category" filter.
+|summary.facets.program[].count |Array[Object] |false |Number of search results relevant to the filter value.
+|summary.facets.program[].sub |Array[Object] |true |The list of sub-categories.
+|summary.facets.program[].sub[].id |Array[Object] |true |Filter value for the "category" filter.
+|summary.facets.program[].sub[].count |Array[Object] |true |Number of search results relevant to the filter value.
+|summary.facets.program[].sub[].sub |Array[Object] |true |The list of sub-sub-categories.
 |===
 
 [[_example_request_7]]
