@@ -23,6 +23,15 @@ Table of Contents
 *** link:#_response_fields_4[Response fields]
 *** link:#_example_4[Example]
 
+link:#_assoc_info[Association Info]
+
+* link:#resources-assoc-info[Top-level Categories]
+** link:#_request_headers_assoc_info[Request headers]
+** link:#_path_parameters_assoc_info[Path parameters]
+** link:#_response_fields_assoc_info[Response fields]
+** link:#_example_request_assoc_info[Example request]
+** link:#_example_response_assoc_info[Example response]
+
 link:#_program_briefs[Category Briefs]
 
 * link:#resources-top-level-categories[Top-level Categories]
@@ -269,6 +278,72 @@ Status Code: 403 Forbidden
 Content-Type: application/json;charset=UTF-8
 
 {"errors":{"param":"apiKey param is required."}}
+----
+
+[[_assoc_info]]
+== link:#_assoc_info[Info]
+
+[[resources-assoc-info]]
+=== link:#resources-assoc-info[Association Info]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/info`
+
+This operation returns association metadata (label and images).
+
+[[_request_headers_assoc_info]]
+==== link:#_request_headers_assoc_info[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|authorization |API key for authentication (e.g., `authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0`)
+|===
+
+[[_path_parameters_assoc_info]]
+==== link:#_path_parameters_assoc_info[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_response_fields_assoc_info]]
+==== link:#_response_fields_assoc_info[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|label |String |false |Association name.
+|images |Array[String] |false |Array of background image URLs. May be empty.
+|===
+
+[[_example_request_assoc_info]]
+==== link:#_example_request_assoc_info[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita/info' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_assoc_info]]
+==== link:#_example_response_assoc_info[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 271
+Content-Type: application/json;charset=UTF-8
+
+{
+  "label" : "YMCA of Greater Wichita",
+  "images" : [
+    "http://localhost:8080/sites/default/files/2020-11/north_banner.jpg",
+    "http://localhost:8080/sites/default/files/2020-11/south_banner.jpg"
+  ]
+}
 ----
 
 
