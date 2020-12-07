@@ -410,7 +410,16 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |items[].id |String |false |Unique ID of the Category.
 |items[].videoCount |Integer |false |Number of videos.
-|items[].thumbnail |String |false |Thumbnail of the Category.
+|items[].thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
+|items[].thumbnails |Object |false |Thumbnails of the Category.
+|items[].thumbnails.original |String |false |URL to the category image source or empty string.
+|items[].thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
+|items[].thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
+|items[].thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
+|items[].thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
+|items[].thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
+|items[].thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
+|items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -432,7 +441,7 @@ $ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita
 [source,highlightjs,highlight,nowrap]
 ----
 HTTP/1.1 200 OK
-Content-Length: 271
+Content-Length: 1271
 Content-Type: application/json;charset=UTF-8
 
 {
@@ -440,13 +449,33 @@ Content-Type: application/json;charset=UTF-8
     "id" : "44440",
     "name" : "Martial Arts",
     "videoCount" : 0,
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg"
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-03/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-03/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-03/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-03/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-03/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-03/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-03/kids-activities-opt.jpg?itok=a7DKhk7m"
+    }
   },
   {
     "id" : "44441",
     "name" : "Yoga",
     "videoCount" : 0,
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg"
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/sites/default/files/2020-04/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+    }
   }],
   "summary" : {
     "total" : 2,
@@ -512,7 +541,16 @@ This operation extracts sub-categories of a category. It returns only brief info
 |items[].name |String |false |Name of the Sub-category (e.g. 'Judo', 'Taekwondo').
 |items[].id |String |false |Unique ID of the Sub-category.
 |items[].videoCount |Integer |false |Number of videos.
-|items[].thumbnail |String |false |Thumbnail of the Sub-category.
+|items[].thumbnail |String |false |Thumbnail of the Sub-category (scaled and cropped to 1280x700).
+|items[].thumbnails |Object |false |Thumbnails of the Category.
+|items[].thumbnails.original |String |false |URL to the category image source or empty string.
+|items[].thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
+|items[].thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
+|items[].thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
+|items[].thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
+|items[].thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
+|items[].thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
+|items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -542,13 +580,33 @@ Content-Type: application/json;charset=UTF-8
     "id" : "44450",
     "name" : "Judo",
     "videoCount" : 10,
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg"
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/sites/default/files/2020-04/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+    }
   },
   {
     "id" : "44451",
     "name" : "Taekwondo",
     "videoCount" : 12,
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg"
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/sites/default/files/2020-04/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+    }
   }],
   "summary" : {
     "total" : 2,
@@ -620,7 +678,16 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |items[].id |String |false |Unique ID of the Category.
 |items[].videoCount |Integer |false |Number of videos.
-|items[].thumbnail |String |false |Thumbnail of the Category.
+|items[].thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
+|items[].thumbnails |Object |false |Thumbnails of the Category.
+|items[].thumbnails.original |String |false |URL to the category image source or empty string.
+|items[].thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
+|items[].thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
+|items[].thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
+|items[].thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
+|items[].thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
+|items[].thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
+|items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -650,7 +717,17 @@ Content-Type: application/json;charset=UTF-8
     "id" : "44440",
     "name" : "BODYSTEP",
     "videoCount" : 10,
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg"
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/sites/default/files/2020-04/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+    }
   } ],
   "summary" : {
     "total" : 1,
@@ -714,7 +791,16 @@ No request body.
 |brief.name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |brief.id |String |false |Unique ID of the Category.
 |brief.videoCount |Integer |false |Number of videos.
-|brief.thumbnail |String |false |Thumbnail of the Category.
+|brief.thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
+|brief.thumbnails |Object |false |Thumbnails of the Category.
+|brief.thumbnails.original |String |false |URL to the category image source or empty string.
+|brief.thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
+|brief.thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
+|brief.thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
+|brief.thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
+|brief.thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
+|brief.thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
+|brief.thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
 |programDetails |Object |false |Comprehensive details of the program.
 |programDetails.description |String |true |Long description of the program.
 |programDetails.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
@@ -743,7 +829,17 @@ Content-Type: application/json;charset=UTF-8
     "id" : "44440",
     "name" : "BODYSTEP",
     "videoCount" : 10,
-    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg"
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/sites/default/files/2020-04/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+    }
   },
   "programDetails" : {
     "description" : "Basic stepping, just like walking up and down stairs, is at the heart of BODYSTEP",
