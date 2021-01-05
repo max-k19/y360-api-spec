@@ -25,7 +25,7 @@ Table of Contents
 
 link:#_assoc_info[Association Info]
 
-* link:#resources-assoc-info[Top-level Categories]
+* link:#resources-assoc-info[Association Info]
 ** link:#_request_headers_assoc_info[Request headers]
 ** link:#_path_parameters_assoc_info[Path parameters]
 ** link:#_response_fields_assoc_info[Response fields]
@@ -409,6 +409,7 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |items[].id |String |false |Unique ID of the Category.
+|items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |items[].videoCount |Integer |false |Number of videos.
 |items[].thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
 |items[].thumbnails |Object |false |Thumbnails of the Category.
@@ -447,6 +448,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "items" : [ {
     "id" : "44440",
+    "parent_program_id": "44439",
     "name" : "Martial Arts",
     "videoCount" : 0,
     "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
@@ -463,6 +465,7 @@ Content-Type: application/json;charset=UTF-8
   },
   {
     "id" : "44441",
+    "parent_program_id": "44439",
     "name" : "Yoga",
     "videoCount" : 0,
     "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg",
@@ -539,6 +542,7 @@ This operation extracts sub-categories of a category. It returns only brief info
 |Path |Type |Optional |Description
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Sub-category (e.g. 'Judo', 'Taekwondo').
+|items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |items[].id |String |false |Unique ID of the Sub-category.
 |items[].videoCount |Integer |false |Number of videos.
 |items[].thumbnail |String |false |Thumbnail of the Sub-category (scaled and cropped to 1280x700).
@@ -578,6 +582,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "items" : [ {
     "id" : "44450",
+    "parent_program_id": "44439",
     "name" : "Judo",
     "videoCount" : 10,
     "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
@@ -594,6 +599,7 @@ Content-Type: application/json;charset=UTF-8
   },
   {
     "id" : "44451",
+    "parent_program_id": "44439",
     "name" : "Taekwondo",
     "videoCount" : 12,
     "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg",
@@ -677,6 +683,7 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |items[].id |String |false |Unique ID of the Category.
+|items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |items[].videoCount |Integer |false |Number of videos.
 |items[].thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
 |items[].thumbnails |Object |false |Thumbnails of the Category.
@@ -715,6 +722,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "items" : [ {
     "id" : "44440",
+    "parent_program_id": "44439",
     "name" : "BODYSTEP",
     "videoCount" : 10,
     "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
@@ -790,6 +798,7 @@ No request body.
 |brief |Object |false |Brief details of the program.
 |brief.name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |brief.id |String |false |Unique ID of the Category.
+|brief.parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |brief.videoCount |Integer |false |Number of videos.
 |brief.thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
 |brief.thumbnails |Object |false |Thumbnails of the Category.
@@ -827,6 +836,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "brief" : {
     "id" : "44440",
+    "parent_program_id": "44439",
     "name" : "BODYSTEP",
     "videoCount" : 10,
     "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
