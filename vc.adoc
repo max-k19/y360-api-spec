@@ -316,6 +316,7 @@ This operation returns association metadata (label, images and description).
 |===
 |Path |Type |Optional |Description
 |label |String |false |Association name.
+|subtitle |String |false |Short one-line description of the Association (plain text, might be empty).
 |description |String |true |Long description of the Association (plain text).
 |descriptionHtml |String |false |HTML markup for the description of the Association .
 |images |Array[String] |false |Array of background image URLs. May be empty.
@@ -336,11 +337,12 @@ $ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita
 [source,highlightjs,highlight,nowrap]
 ----
 HTTP/1.1 200 OK
-Content-Length: 271
+Content-Length: 311
 Content-Type: application/json;charset=UTF-8
 
 {
   "label" : "YMCA of Greater Wichita",
+  "substitle" : "Lorem ipsum dolor sit amet.",
   "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   "descriptionHtml" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
   "images" : [
