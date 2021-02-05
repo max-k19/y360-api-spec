@@ -47,10 +47,11 @@ link:#_program_briefs[Category Briefs]
 ** link:#_request_headers_14[Request headers]
 ** link:#_path_parameters_14[Path parameters]
 ** link:#_query_parameters_14[Query parameters]
-** link:#_request_fields_14[Request fields]
 ** link:#_response_fields_14[Response fields]
 ** link:#_example_request_14[Example request]
 ** link:#_example_response_14[Example response]
+** link:#_example_request_14_2[Example request (with recursive sub-category retriving)]
+** link:#_example_response_14_2[Example response (with recursive sub-category retriving)]
 
 * link:#resources-search-programs-controller-i-t-should-search-programs[Search Categories]
 ** link:#_request_headers_3[Request headers]
@@ -528,16 +529,9 @@ This operation extracts sub-categories of a category. It returns only brief info
 |===
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |true |Exerciser Unique ID.
-|===
-
-[[_request_fields_14]]
-==== link:#_request_fields_14[Request fields]
-
-[width="100%",cols="25%,25%,25%,25%",options="header",]
-|===
-|Path |Type |Optional |Description
 |page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
 |limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|recursive |Integer |true |1 to retrive the whole hierarchy tree branch. If set, the `page` and `limit` parameters are ignored.
 |===
 
 [[_response_fields_14]]
@@ -550,7 +544,7 @@ This operation extracts sub-categories of a category. It returns only brief info
 |items[].name |String |false |Name of the Sub-category (e.g. 'Judo', 'Taekwondo').
 |items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |items[].id |String |false |Unique ID of the Sub-category.
-|items[].videoCount |Integer |false |Number of videos.
+|items[].videoCount |Integer |false |An estimated number of videos in category (might not be precise).
 |items[].thumbnail |String |false |Thumbnail of the Sub-category (scaled and cropped to 1280x700).
 |items[].thumbnails |Object |false |Thumbnails of the Category.
 |items[].thumbnails.original |String |false |URL to the category image source or empty string.
@@ -561,6 +555,12 @@ This operation extracts sub-categories of a category. It returns only brief info
 |items[].thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
 |items[].thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
 |items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
+|items[].subCategories |Array[Object] |true a|
+The collection of sub-categories (including sub-categories of sub-categories). May be empty.
+
+The structure of objects is the same as `items[]`.
+
+Appears only if the recursive flag is set.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -624,6 +624,106 @@ Content-Type: application/json;charset=UTF-8
     "total" : 2,
     "page" : 0,
     "limit" : 50
+  }
+}
+----
+
+[[_example_request_14_2]]
+==== link:#_example_request_14_2[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita/categories/44440/subcategories?page=0&limit=50&recursive=1' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_14_2]]
+==== link:#_example_response_14_2[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 2710
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items": [ {
+    "id": "44450",
+    "parent_program_id": "44439",
+    "name": "Judo",
+    "videoCount": 10,
+    "thumbnail": "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/assets/2020-04/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/assets/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/assets/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/assets/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/assets/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/assets/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/assets/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/assets/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+    },
+    "subCategories": [
+      {
+        "id": "44460",
+        "parent_program_id": "44450",
+        "name": "Judo for Beginners",
+        "videoCount": 6,
+        "thumbnail": "https://vhx.imgix.net/lm-test/assets/beginners-judo.jpg",
+        "thumbnails": {
+          "original": "https://y360cms.docksal/assets/2020-04/beginners-judo.jpg",
+          "1920x1080": "https://y360cms.docksal/assets/styles/1920x1080/public/2020-04/beginners-judo.jpg?itok=rOhxuycg",
+          "1280x720": "https://y360cms.docksal/assets/styles/1280x720/public/2020-04/beginners-judo.jpg?itok=fZCnCCld",
+          "640x360": "https://y360cms.docksal/assets/styles/640x360/public/2020-04/beginners-judo.jpg?itok=nSKeOf8j",
+          "1920w": "https://y360cms.docksal/assets/styles/1920w/public/2020-04/beginners-judo.jpg?itok=gjqYtuPV",
+          "1280w": "https://y360cms.docksal/assets/styles/1280w/public/2020-04/beginners-judo.jpg?itok=9pZ4eVsv",
+          "640w": "https://y360cms.docksal/assets/styles/640w/public/2020-04/beginners-judo.jpg?itok=fICPL8pT",
+          "320w": "https://y360cms.docksal/assets/styles/320w/public/2020-04/beginners-judo.jpg?itok=a7DKhk7m"
+        },
+        "subCategories": []
+      },
+      {
+        "id": "44461",
+        "parent_program_id": "44450",
+        "name": "Advanced Judo",
+        "videoCount": 4,
+        "thumbnail": "https://vhx.imgix.net/lm-test/assets/advanced-judo.jpg",
+        "thumbnails": {
+          "original": "https://y360cms.docksal/assets/2020-04/advanced-judo.jpg",
+          "1920x1080": "https://y360cms.docksal/assets/styles/1920x1080/public/2020-04/advanced-judo.jpg?itok=rOhxuycg",
+          "1280x720": "https://y360cms.docksal/assets/styles/1280x720/public/2020-04/advanced-judo.jpg?itok=fZCnCCld",
+          "640x360": "https://y360cms.docksal/assets/styles/640x360/public/2020-04/advanced-judo.jpg?itok=nSKeOf8j",
+          "1920w": "https://y360cms.docksal/assets/styles/1920w/public/2020-04/advanced-judo.jpg?itok=gjqYtuPV",
+          "1280w": "https://y360cms.docksal/assets/styles/1280w/public/2020-04/advanced-judo.jpg?itok=9pZ4eVsv",
+          "640w": "https://y360cms.docksal/assets/styles/640w/public/2020-04/advanced-judo.jpg?itok=fICPL8pT",
+          "320w": "https://y360cms.docksal/assets/styles/320w/public/2020-04/advanced-judo.jpg?itok=a7DKhk7m"
+        },
+        "subCategories": []
+      }
+    ]
+  },
+  {
+    "id" : "44451",
+    "parent_program_id": "44439",
+    "name" : "Taekwondo",
+    "videoCount" : 12,
+    "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg",
+    "thumbnails": {
+      "original": "https://y360cms.docksal/assets/2020-04/kids-activities-opt.jpg",
+      "1920x1080": "https://y360cms.docksal/assets/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+      "1280x720": "https://y360cms.docksal/assets/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+      "640x360": "https://y360cms.docksal/assets/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+      "1920w": "https://y360cms.docksal/assets/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+      "1280w": "https://y360cms.docksal/assets/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+      "640w": "https://y360cms.docksal/assets/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+      "320w": "https://y360cms.docksal/assets/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+    },
+    "subCategories": []
+  }],
+  "summary" : {
+    "total" : 2,
+    "page" : 0,
+    "limit" : 0
   }
 }
 ----
