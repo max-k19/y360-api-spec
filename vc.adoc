@@ -131,6 +131,37 @@ link:#_video_details[Video Details]
 ** link:#_example_request_8[Example request]
 ** link:#_example_response_8[Example response]
 
+link:#_livestreams[Live Streams]
+
+link:#_livestream_briefs[Live Stream Briefs]
+
+* link:#resources-fetch-category-live-streams[Fetch Category Live Streams]
+** link:#_request_headers_15[Request headers]
+** link:#_path_parameters_15[Path parameters]
+** link:#_query_parameters_15[Query parameters]
+** link:#_response_fields_15[Response fields]
+** link:#_example_request_15[Example request]
+** link:#_example_response_15[Example response]
+
+* link:#resources-search-live-streams[Search Live Streams]
+** link:#_request_headers_16[Request headers]
+** link:#_path_parameters_16[Path parameters]
+** link:#_query_parameters_16[Query parameters]
+** link:#_response_fields_16[Response fields]
+** link:#_example_request_16[Example request]
+** link:#_example_response_16[Example response]
+
+link:#_livestream_details[Live Stream Details]
+
+* link:#resources-fetch-live-stream[Fetch Live Stream]
+** link:#_request_headers_17[Request headers]
+** link:#_path_parameters_17[Path parameters]
+** link:#_query_parameters_17[Query parameters]
+** link:#_request_fields_17[Request fields]
+** link:#_response_fields_17[Response fields]
+** link:#_example_request_17[Example request]
+** link:#_example_response_17[Example response]
+
 link:#widgets_api[Widgets API Guide]
 
 * link:#app_settings[Fetch App Settings]
@@ -1955,6 +1986,374 @@ Content-Type: application/json;charset=UTF-8
       "vttFileUrl" : "https://cdn.vhx.tv/file.vtt"
     } ]
   }
+}
+----
+
+[[_livestreams]]
+= link:#_livestreams[Live Streams]
+
+[[_livestream_briefs]]
+== link:#_livestream_briefs[Live Stream Briefs]
+
+[[resources-fetch-category-live-streams]]
+=== link:#resources-fetch-category-live-streams[Fetch Category Live Streams]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/programs/{programId}/live-streams`
+
+This operation returns brief information about Category upcoming Live Streams.
+
+[[_request_headers_15]]
+==== link:#_request_headers_15[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |API key for authentication
+|===
+
+[[_path_parameters_15]]
+==== link:#_path_parameters_15[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|programId |String |false |Unique ID of the Category.
+|===
+
+[[_query_parameters_15]]
+==== link:#_query_parameters_15[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|location[] |Array[String] |true |Location filter. Location names.
+|level[] |Array[String] |true |Workout level filter. Level names.
+|instructor[] |Array[String] |true |Instructor filter. Instructor names.
+|equipment[] |Array[String] |true |Equipment filter. Equipment names.
+| | | |
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_15]]
+==== link:#_response_fields_15[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].id |String |false |Unique ID of the Live Stream.
+|items[].name |String |false |Name of the Live Stream.
+|items[].startTime |Integer |false |The start time (UNIX timestamp).
+|items[].duration |Integer |false |Duration in seconds.
+|items[].thumbnail |String |false |Thumbnail of the Live Stream.
+|items[].instructor |String |true |Instructor name.
+|items[].level |String |true |Workout level.
+|items[].location |String |true |(Host's) Location name.
+|items[].program |Integer |false |Category ID.
+|items[].programName |String |false |Category name.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|summary.facets |Object |false |Filter values for faceted search.
+|summary.facets.level |Array[Object] |false |Filter values the "level" filter.
+|summary.facets.level[].id |String |false |Filter value the "level" filter.
+|summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
+|summary.facets.location |Array[Object] |false |Filter values the "location" filter.
+|summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
+|summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
+|===
+
+[[_example_request_15]]
+==== link:#_example_request_15[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/programs/44440/live-streams?location[]=Charlotte&location[]=Houston&location[]=Wichita&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_15]]
+==== link:#_example_response_15[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+
+{
+    "items": [
+        {
+            "id": "87",
+            "name": "KIDS YOGA WITH CORRI",
+            "startTime": 1612886400,
+            "duration": 2700,
+            "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
+            "instructor": "Corri Lewellen",
+            "level": "BEGINNER",
+            "program": 44440,
+            "programName": "Kid's Acitivities",
+            "location": "Wichita"
+            "customInfo": [
+                {
+                    "key": "vimeo-id",
+                    "value": "123123123"
+                }
+            ],
+        }
+    ],
+    "summary": {
+        "total": 1,
+        "page": 0,
+        "limit": 20,
+        "facets": {
+            "level": [
+                {
+                    "id": "BEGINNER",
+                    "count": 12
+                }
+            ],
+            "location": [
+                {
+                    "id": "Wichita",
+                    "count": 14
+                }
+            ],
+            "instructor": [{ ... }],
+            "equipment": [{ ... }]
+        }
+    }
+}
+----
+
+[[resources-search-live-streams]]
+=== link:#resources-search-live-streams[Search Live Streams]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/live-streams`
+
+This operation searches Live Streams. It returns brief information about live streams.
+
+[[_request_headers_16]]
+==== link:#_request_headers_16[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |Api key for authentication
+|===
+
+[[_path_parameters_16]]
+==== link:#_path_parameters_16[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_16]]
+==== link:#_query_parameters_16[Query parameters]
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|searchString |String |true |The term to search by.
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|program[] |Array[String] |true |Category filter. Category names.
+|location[] |Array[String] |true |Location filter. Location names.
+|level[] |Array[String] |true |Workout level filter. Level names.
+|instructor[] |Array[String] |true |Instructor filter. Instructor names.
+|equipment[] |Array[String] |true |Equipment filter. Equipment names.
+|===
+
+[[_response_fields_16]]
+==== link:#_response_fields_16[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].id |String |false |Unique ID of the Live Stream.
+|items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].startTime |Integer |false |The start time (UNIX timestamp).
+|items[].duration |Integer |false |Duration in seconds.
+|items[].thumbnail |String |false |Thumbnail URL.
+|items[].instructor |String |true |Instructor name.
+|items[].level |String |true |Workout level.
+|items[].location |String |true |Location name.
+|items[].program |Integer |false |Category ID.
+|items[].programName |String |false |Category name.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|summary.facets |Object |false |Filter values for faceted search.
+|summary.facets.level |Array[Object] |false |Filter values the "level" filter.
+|summary.facets.level[].id |String |false |Filter value the "level" filter.
+|summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
+|summary.facets.location |Array[Object] |false |Filter values the "location" filter.
+|summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
+|summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
+|summary.facets.program |Array[Object] |false |Filter values the "category" filter.
+|summary.facets.program[].id |Array[Object] |false |Filter value for the "category" filter.
+|summary.facets.program[].count |Array[Object] |false |Number of search results relevant to the filter value.
+|===
+
+[[_example_request_16]]
+==== link:#_example_request_16[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita/videos?searchString=yoga&page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-00000000ddd0'
+----
+
+[[_example_response_16]]
+==== link:#_example_response_16[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 341
+Content-Type: application/json;charset=UTF-8
+
+{
+    "items": [ {
+        "id": "87",
+        "name": "KIDS YOGA WITH CORRI",
+        "startTime": 1612886400,
+        "duration": 2700,
+        "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
+        "instructor": "Corri Lewellen",
+        "level": "BEGINNER",
+        "program": 22,
+        "programName": "Kids' Acitivities",
+        "location": "Wichita"
+    } ],
+    "summary": {
+        "total": 1,
+        "page": 0,
+        "limit": 50,
+        "facets": {
+            "level": [
+                {
+                  "id": "BEGINNER",
+                  "count": 1
+                }
+            ],
+            "location": [ ... ],
+            "program": [ ... ],
+            "instructor": [ ... ],
+            "equipment": [ ... ],
+        }
+    }
+}
+----
+
+
+[[_live_stream_details]]
+== link:#_live_stream_details[Live Stream Details]
+
+[[resources-fetch-live-stream]]
+=== link:#resources-fetch-live-stream[Fetch Live Stream]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/live-stream/{liveStreamId}`
+
+This operation returns all detailed information about a Live Stream.
+
+[[_request_headers_17]]
+==== link:#_request_headers_17[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |API key for authentication
+|===
+
+[[_path_parameters_17]]
+==== link:#_path_parameters_17[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|liveStreamId |String |false |Unique ID of the Live Stream.
+|===
+
+[[_response_fields_17]]
+==== link:#_response_fields_17[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|liveStreamDetails |Object |false |Comprehensive details of the video.
+|liveStreamDetails.description |String |true |Long description of the video (plain text).
+|liveStreamDetails.descriptionHtml |String |false |HTML markup for the video description.
+|liveStreamDetails.equipment |String |true |Equipment needed for workout.
+|liveStreamDetails.source |Array[Object] |false |Files of the video.
+|liveStreamDetails.source[].type |String |false |Source type.
+|liveStreamDetails.source[].id |String |false |Source ID.
+|liveStreamDetails.source[].url |String |false |Source URL.
+|liveStreamBrief |Object |false |Brief details of the video.
+|liveStreamBrief.id |String |false |Unique ID of the Live Stream.
+|liveStreamBrief.name |String |false |Name of the Live Stream.
+|liveStreamBrief.duration |Integer |false |Duration in seconds.
+|liveStreamBrief.thumbnail |String |false |Thumbnail URL.
+|liveStreamBrief.instructor |String |true |Instructor name.
+|liveStreamBrief.location |String |true |Location name.
+|liveStreamBrief.level |String |true |Workout level.
+|liveStreamBrief.program |Integer |false |Category ID.
+|liveStreamBrief.programName |String |false |Category name.
+|liveStreamBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|===
+
+[[_example_request_17]]
+==== link:#_example_request_17[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/live-streams/87' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_17]]
+==== link:#_example_response_17[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 2431
+Content-Type: application/json;charset=UTF-8
+
+{
+    "liveStreamBrief": {
+        "id": "87",
+        "name": "KIDS YOGA WITH CORRI",
+        "startTime": 1612886400,
+        "duration": 2700,
+        "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
+        "instructor": "Corri Lewellen",
+        "level": "BEGINNER",
+        "program": 22,
+        "programName": "Kids' Acitivities",
+        "location": "Wichita"
+    },
+    "liveStreamDetails": {
+        "description": "Let's move and stretch our bodies while we go on an imaginary adventure.",
+        "equipment": "stationary bike",
+        "source": [ {
+            "type": "vimeo",
+            "id": "12736828",
+            "url": "https://vimeo.com/12736828"
+        } ]
+    }
 }
 ----
 
