@@ -2301,12 +2301,13 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamDetails.description |String |true |Long description of the video (plain text).
 |liveStreamDetails.descriptionHtml |String |false |HTML markup for the video description.
 |liveStreamDetails.equipment |String |true |Equipment needed for workout.
-|liveStreamDetails.source |Array[Object] |false |Files of the video.
-|liveStreamDetails.source[].type |String |false |Source type.
+|liveStreamDetails.source |Array[Object] |false |Files of the video, it might be empty.
+|liveStreamDetails.source[].type |String |false |Source type ('vimeo' or 'm3u8').
 |liveStreamDetails.source[].id |String |false |Source ID.
 |liveStreamDetails.source[].url |String |false |Source URL.
 |liveStreamBrief |Object |false |Brief details of the video.
 |liveStreamBrief.id |String |false |Unique ID of the Live Stream.
+|liveStreamBrief.status |String |false |Status of the Live Stream ('offline' or 'live').
 |liveStreamBrief.name |String |false |Name of the Live Stream.
 |liveStreamBrief.startTime |Integer |false |The start time (UNIX timestamp).
 |liveStreamBrief.endTime |Integer |false |The end time (UNIX timestamp).
@@ -2342,6 +2343,7 @@ Content-Type: application/json;charset=UTF-8
     "liveStreamBrief": {
         "id": "87",
         "name": "KIDS YOGA WITH CORRI",
+        "status": "offline",
         "startTime": 1612886400,
         "endTime": 1612890000,
         "duration": 3600,
