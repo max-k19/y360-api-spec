@@ -2028,7 +2028,7 @@ This operation returns brief information about Category upcoming Live Streams.
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 |Parameter |Type |Optional |Description
-|location[] |Array[String] |true |Location filter. Location names.
+|association[] |Array[String] |true |Assocation filter. Assocation names.
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
@@ -2052,7 +2052,7 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].thumbnail |String |false |Thumbnail of the Live Stream.
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
-|items[].location |String |true |(Host's) Location name.
+|items[].association |String |true |(Host's) Association name.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
@@ -2064,7 +2064,7 @@ This operation returns brief information about Category upcoming Live Streams.
 |summary.facets.level |Array[Object] |false |Filter values the "level" filter.
 |summary.facets.level[].id |String |false |Filter value the "level" filter.
 |summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
-|summary.facets.location |Array[Object] |false |Filter values the "location" filter.
+|summary.facets.association |Array[Object] |false |Filter values the "association" filter.
 |summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
 |summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
 |===
@@ -2074,7 +2074,7 @@ This operation returns brief information about Category upcoming Live Streams.
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/programs/44440/live-streams?location[]=Charlotte&location[]=Houston&location[]=Wichita&page=0&limit=50' -i -X GET \
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/programs/44440/live-streams?association[]=Greater+Wichita+YMCA&page=0&limit=50' -i -X GET \
     -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -2099,7 +2099,7 @@ Content-Type: application/json;charset=UTF-8
             "level": "BEGINNER",
             "program": 44440,
             "programName": "Kid's Acitivities",
-            "location": "Wichita"
+            "association": "Greater Wichita YMCA"
             "customInfo": [
                 {
                     "key": "vimeo-id",
@@ -2119,9 +2119,9 @@ Content-Type: application/json;charset=UTF-8
                     "count": 12
                 }
             ],
-            "location": [
+            "association": [
                 {
-                    "id": "Wichita",
+                    "id": "Greater Wichita YMCA",
                     "count": 14
                 }
             ],
@@ -2167,7 +2167,7 @@ This operation searches Live Streams. It returns brief information about live st
 |page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
 |limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
 |program[] |Array[String] |true |Category filter. Category names.
-|location[] |Array[String] |true |Location filter. Location names.
+|association[] |Array[String] |true |Association filter. Association names.
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
@@ -2188,7 +2188,7 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].thumbnail |String |false |Thumbnail URL.
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
-|items[].location |String |true |Location name.
+|items[].association |String |true |Host Association name.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
@@ -2200,7 +2200,7 @@ This operation searches Live Streams. It returns brief information about live st
 |summary.facets.level |Array[Object] |false |Filter values the "level" filter.
 |summary.facets.level[].id |String |false |Filter value the "level" filter.
 |summary.facets.level[].count |Integer |false |Number of search results relevant to the filter value.
-|summary.facets.location |Array[Object] |false |Filter values the "location" filter.
+|summary.facets.association |Array[Object] |false |Filter values the "association" filter.
 |summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
 |summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
 |summary.facets.program |Array[Object] |false |Filter values the "category" filter.
@@ -2238,7 +2238,7 @@ Content-Type: application/json;charset=UTF-8
         "level": "BEGINNER",
         "program": 22,
         "programName": "Kids' Acitivities",
-        "location": "Wichita"
+        "association": "Wichita"
     } ],
     "summary": {
         "total": 1,
@@ -2251,7 +2251,7 @@ Content-Type: application/json;charset=UTF-8
                   "count": 1
                 }
             ],
-            "location": [ ... ],
+            "association": [ ... ],
             "program": [ ... ],
             "instructor": [ ... ],
             "equipment": [ ... ],
@@ -2298,6 +2298,7 @@ This operation returns all detailed information about a Live Stream.
 |===
 |Path |Type |Optional |Description
 |liveStreamDetails |Object |false |Comprehensive details of the video.
+|liveStreamDetails.status |String |false |Status of the Live Stream ('offline' or 'live').
 |liveStreamDetails.description |String |true |Long description of the video (plain text).
 |liveStreamDetails.descriptionHtml |String |false |HTML markup for the video description.
 |liveStreamDetails.equipment |String |true |Equipment needed for workout.
@@ -2307,14 +2308,13 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamDetails.source[].url |String |false |Source URL.
 |liveStreamBrief |Object |false |Brief details of the video.
 |liveStreamBrief.id |String |false |Unique ID of the Live Stream.
-|liveStreamBrief.status |String |false |Status of the Live Stream ('offline' or 'live').
 |liveStreamBrief.name |String |false |Name of the Live Stream.
 |liveStreamBrief.startTime |Integer |false |The start time (UNIX timestamp).
 |liveStreamBrief.endTime |Integer |false |The end time (UNIX timestamp).
 |liveStreamBrief.duration |Integer |false |Duration in seconds.
 |liveStreamBrief.thumbnail |String |false |Thumbnail URL.
 |liveStreamBrief.instructor |String |true |Instructor name.
-|liveStreamBrief.location |String |true |Location name.
+|liveStreamBrief.association |String |true |Host Association name.
 |liveStreamBrief.level |String |true |Workout level.
 |liveStreamBrief.program |Integer |false |Category ID.
 |liveStreamBrief.programName |String |false |Category name.
@@ -2343,7 +2343,6 @@ Content-Type: application/json;charset=UTF-8
     "liveStreamBrief": {
         "id": "87",
         "name": "KIDS YOGA WITH CORRI",
-        "status": "offline",
         "startTime": 1612886400,
         "endTime": 1612890000,
         "duration": 3600,
@@ -2352,9 +2351,10 @@ Content-Type: application/json;charset=UTF-8
         "level": "BEGINNER",
         "program": 22,
         "programName": "Kids' Acitivities",
-        "location": "Wichita"
+        "association": "Greater Wichita YMCA"
     },
     "liveStreamDetails": {
+        "status": "offline",
         "description": "Let's move and stretch our bodies while we go on an imaginary adventure.",
         "equipment": "stationary bike",
         "source": [ {
