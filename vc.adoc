@@ -2047,6 +2047,7 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].id |String |false |Unique ID of the Live Stream.
 |items[].name |String |false |Name of the Live Stream.
 |items[].startTime |Integer |false |The start time (UNIX timestamp).
+|items[].endTime |Integer |false |The end time (UNIX timestamp).
 |items[].duration |Integer |false |Duration in seconds.
 |items[].thumbnail |String |false |Thumbnail of the Live Stream.
 |items[].instructor |String |true |Instructor name.
@@ -2091,7 +2092,8 @@ Content-Type: application/json;charset=UTF-8
             "id": "87",
             "name": "KIDS YOGA WITH CORRI",
             "startTime": 1612886400,
-            "duration": 2700,
+            "endTime": 1612890000,
+            "duration": 3600,
             "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
@@ -2181,6 +2183,7 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].id |String |false |Unique ID of the Live Stream.
 |items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
 |items[].startTime |Integer |false |The start time (UNIX timestamp).
+|items[].endTime |Integer |false |The end time (UNIX timestamp).
 |items[].duration |Integer |false |Duration in seconds.
 |items[].thumbnail |String |false |Thumbnail URL.
 |items[].instructor |String |true |Instructor name.
@@ -2228,7 +2231,8 @@ Content-Type: application/json;charset=UTF-8
         "id": "87",
         "name": "KIDS YOGA WITH CORRI",
         "startTime": 1612886400,
-        "duration": 2700,
+        "endTime": 1612890000,
+        "duration": 3600,
         "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
         "instructor": "Corri Lewellen",
         "level": "BEGINNER",
@@ -2304,6 +2308,8 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief |Object |false |Brief details of the video.
 |liveStreamBrief.id |String |false |Unique ID of the Live Stream.
 |liveStreamBrief.name |String |false |Name of the Live Stream.
+|liveStreamBrief.startTime |Integer |false |The start time (UNIX timestamp).
+|liveStreamBrief.endTime |Integer |false |The end time (UNIX timestamp).
 |liveStreamBrief.duration |Integer |false |Duration in seconds.
 |liveStreamBrief.thumbnail |String |false |Thumbnail URL.
 |liveStreamBrief.instructor |String |true |Instructor name.
@@ -2337,7 +2343,8 @@ Content-Type: application/json;charset=UTF-8
         "id": "87",
         "name": "KIDS YOGA WITH CORRI",
         "startTime": 1612886400,
-        "duration": 2700,
+        "endTime": 1612890000,
+        "duration": 3600,
         "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
         "instructor": "Corri Lewellen",
         "level": "BEGINNER",
@@ -2352,7 +2359,12 @@ Content-Type: application/json;charset=UTF-8
             "type": "vimeo",
             "id": "12736828",
             "url": "https://vimeo.com/12736828"
-        } ]
+        },
+        {
+            "type": "m3u8",
+            "id": "VyPAdfNsZYHj",
+            "url": "https://a3a9497e12e9.us-east-1.playback.live-video.net/api/video/v1/us-east-1.806120511164.channel.VyPAdfNsZYHj.m3u8?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhd3M6Y2hhbm5lbC1hcm4iOiJhcm46YXdzOml2czp1cy1lYXN0LTE6ODA2MTIwNTExMTY0OmNoYW5uZWxcL1Z5UEFkZk5zWllIaiIsImF3czphY2Nlc3MtY29udHJvbC1hbGxvdy1vcmlnaW4iOiIqIiwiZXhwIjoxNjE4Mzk1MjgzfQ._XsTWC5-4We3RU7ihTVEUfP8Odv-Kn4Utsrk_CBzcUl5MkFfDAIpA_bldWt-842SZt09y7ra0kg9pJjpdiPThQ"
+        }]
     }
 }
 ----
