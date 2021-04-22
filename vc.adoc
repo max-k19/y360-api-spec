@@ -2053,6 +2053,8 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].association |String |true |(Host's) Association name.
+|items[].topLevelCategory |Integer |false |Top Level Category ID.
+|items[].topLevelCategoryName |String |false |Top Level Category Name.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
@@ -2097,6 +2099,8 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
+            "topLevelCategory": 203,
+            "topLevelCategoryName": "Kids Family",
             "program": 44440,
             "programName": "Kid's Acitivities",
             "association": "Greater Wichita YMCA"
@@ -2189,6 +2193,8 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].association |String |true |Host Association name.
+|items[].topLevelCategory |Integer |false |Top Level Category ID.
+|items[].topLevelCategoryName |String |false |Top Level Category Name.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
@@ -2236,6 +2242,8 @@ Content-Type: application/json;charset=UTF-8
         "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
         "instructor": "Corri Lewellen",
         "level": "BEGINNER",
+        "topLevelCategory": 203,
+        "topLevelCategoryName": "Kids Family",
         "program": 22,
         "programName": "Kids' Acitivities",
         "association": "Wichita"
@@ -2267,7 +2275,7 @@ Content-Type: application/json;charset=UTF-8
 [[resources-fetch-live-stream]]
 === link:#resources-fetch-live-stream[Fetch Live Stream]
 
-`GET /api/virtual-classes/v3.0/content-providers/{provider}/live-stream/{liveStreamId}`
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/live-streams/{liveStreamId}`
 
 This operation returns all detailed information about a Live Stream.
 
@@ -2298,7 +2306,7 @@ This operation returns all detailed information about a Live Stream.
 |===
 |Path |Type |Optional |Description
 |liveStreamDetails |Object |false |Comprehensive details of the video.
-|liveStreamDetails.status |String |false |Status of the Live Stream ('offline' or 'live').
+|liveStreamDetails.status |String |false |Status of the Live Stream ('offline', 'live', 'finished', 'cancelled').
 |liveStreamDetails.description |String |true |Long description of the video (plain text).
 |liveStreamDetails.descriptionHtml |String |false |HTML markup for the video description.
 |liveStreamDetails.equipment |String |true |Equipment needed for workout.
@@ -2316,6 +2324,8 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief.instructor |String |true |Instructor name.
 |liveStreamBrief.association |String |true |Host Association name.
 |liveStreamBrief.level |String |true |Workout level.
+|liveStreamBrief.topLevelCategory |Integer |false |Top Level Category ID.
+|liveStreamBrief.topLevelCategoryName |String |false |Top Level Category Name.
 |liveStreamBrief.program |Integer |false |Category ID.
 |liveStreamBrief.programName |String |false |Category name.
 |liveStreamBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
@@ -2349,6 +2359,8 @@ Content-Type: application/json;charset=UTF-8
         "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
         "instructor": "Corri Lewellen",
         "level": "BEGINNER",
+        "topLevelCategory": 203,
+        "topLevelCategoryName": "Kids Family",
         "program": 22,
         "programName": "Kids' Acitivities",
         "association": "Greater Wichita YMCA"
