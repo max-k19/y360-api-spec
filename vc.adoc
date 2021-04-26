@@ -348,6 +348,7 @@ This operation returns association metadata (label, images and description).
 |===
 |Path |Type |Optional |Description
 |label |String |false |Association name.
+|timezone |String |false |Timezone of the Association.
 |subtitle |String |false |Short one-line description of the Association (plain text, might be empty).
 |description |String |true |Long description of the Association (plain text).
 |descriptionHtml |String |false |HTML markup for the description of the Association .
@@ -374,6 +375,7 @@ Content-Type: application/json;charset=UTF-8
 
 {
   "label" : "YMCA of Greater Wichita",
+  "timezone" : "America/Chicago",
   "substitle" : "Lorem ipsum dolor sit amet.",
   "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   "descriptionHtml" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
