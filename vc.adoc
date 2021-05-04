@@ -1106,6 +1106,7 @@ values, therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].category |Integer |false |Video Category ID (deprecated).
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
+|items[].releaseDate |Integer |false |Video release timestamp.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1316,6 +1317,7 @@ Can be one of [`yes`, `no`].
 |items[].category |Integer |false |Video Category ID (deprecated).
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
+|items[].releaseDate |Integer |false |Video release timestamp.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1508,6 +1510,7 @@ level.
 |items[].category |Integer |false |Video Category ID (deprecated).
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
+|items[].releaseDate |Integer |false |Video release timestamp.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
@@ -1615,6 +1618,7 @@ This operation fetches recently added Videos. It returns only brief information 
 |items[].category |Integer |false |Video Category ID (deprecated).
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
+|items[].releaseDate |Integer |false |Video release timestamp.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
@@ -1670,7 +1674,7 @@ This operation search Videos. It returns only brief information about Videos.
 
 [NOTE]
 ====
-The "New Releases" and "Around the Y" categories are excluded.
+The "Around the Y" category videos are excluded.
 ====
 
 [[_request_headers_7]]
@@ -1772,6 +1776,7 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].category |Integer |false |Video Category ID (deprecated).
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
+|items[].releaseDate |Integer |false |Video release timestamp.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1942,6 +1947,7 @@ No request body.
 |videoBrief.category |Integer |false |Video Category ID (deprecated).
 |videoBrief.program |Integer |false |Video Category ID.
 |videoBrief.programName |String |false |Video Category name.
+|videoBrief.releaseDate |Integer |false |Video release timestamp.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |===
 
