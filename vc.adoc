@@ -2458,7 +2458,7 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief.program |Integer |false |Category ID.
 |liveStreamBrief.programName |String |false |Category name.
 |liveStreamBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|liveStreamBrief.attachments |Array[Object] |true |Video attachments.
+|liveStreamBrief.attachments |Array[Object] |true |Live Stream attachments.
 |liveStreamBrief.attachments[].title |string |false |Title of the attachment.
 |liveStreamBrief.attachments[].url |string |false |URL of the attachment.
 |===
