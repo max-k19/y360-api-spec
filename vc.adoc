@@ -1100,9 +1100,9 @@ values, therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-|items[].attachments[].title |string |false |Title of the "attachment".
-|items[].attachments[].url |string |false |URL of the "attachment".
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
@@ -1354,9 +1354,9 @@ Can be one of [`yes`, `no`].
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-|items[].attachments[].title |string |false |Title of the "attachment".
-|items[].attachments[].url |string |false |URL of the "attachment".
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
@@ -1599,9 +1599,9 @@ level.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-|items[].attachments[].title |string |false |Title of the "attachment".
-|items[].attachments[].url |string |false |URL of the "attachment".
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1710,9 +1710,9 @@ This operation fetches recently added Videos. It returns only brief information 
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-|items[].attachments[].title |string |false |Title of the "attachment".
-|items[].attachments[].url |string |false |URL of the "attachment".
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1870,9 +1870,9 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
-|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-|items[].attachments[].title |string |false |Title of the "attachment".
-|items[].attachments[].url |string |false |URL of the "attachment".
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2171,9 +2171,9 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-|items[].attachments[].title |string |false |Title of the "attachment".
-|items[].attachments[].url |string |false |URL of the "attachment".
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2324,9 +2324,9 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-|items[].attachments[].title |string |false |Title of the "attachment".
-|items[].attachments[].url |string |false |URL of the "attachment".
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2458,8 +2458,9 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief.program |Integer |false |Category ID.
 |liveStreamBrief.programName |String |false |Category name.
 |liveStreamBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|liveStreamBrief.attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
-
+|liveStreamBrief.attachments |Array[Object] |true |Video attachments.
+|liveStreamBrief.attachments[].title |string |false |Title of the attachment.
+|liveStreamBrief.attachments[].url |string |false |URL of the attachment.
 |===
 
 [[_example_request_17]]
