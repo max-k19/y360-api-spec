@@ -1100,6 +1100,7 @@ values, therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
@@ -1145,6 +1146,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
             "duration": 1366,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
@@ -1158,6 +1169,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/51317da5e144c5bc9d22de93f428ecf7.bin",
             "duration": 247,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
@@ -1171,6 +1192,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/3ef03bf4cafba35268ce4adbd95f2ad0.bin",
             "duration": 149,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
@@ -1184,6 +1215,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/f19964cf5b49a85522e8085fbd0a9231.bin",
             "duration": 1335,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 22,
@@ -1311,6 +1352,7 @@ Can be one of [`yes`, `no`].
 |items[].episode.season |Integer |true |Number of season.
 |items[].thumbnail |String |false |Thumbnail of the Video.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
 |items[].instructor |String |true |Instructor name.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
@@ -1329,6 +1371,7 @@ Can be one of [`yes`, `no`].
 |summary.facets.location |Array[Object] |false |Filter values the "location" filter.
 |summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
 |summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
+
 |===
 
 [[_example_request_11]]
@@ -1356,6 +1399,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
             "duration": 1366,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 122,
@@ -1369,6 +1422,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/51317da5e144c5bc9d22de93f428ecf7.bin",
             "duration": 247,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 122,
@@ -1382,6 +1445,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/3ef03bf4cafba35268ce4adbd95f2ad0.bin",
             "duration": 149,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 122,
@@ -1395,6 +1468,16 @@ Content-Type: application/json;charset=UTF-8
             "thumbnail": "http://embed.wistia.com/deliveries/f19964cf5b49a85522e8085fbd0a9231.bin",
             "duration": 1335,
             "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
             "instructor": "Corri Lewellen",
             "level": "BEGINNER",
             "category": 122,
@@ -1512,6 +1595,7 @@ level.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1620,6 +1704,7 @@ This operation fetches recently added Videos. It returns only brief information 
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1777,6 +1862,7 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1949,6 +2035,8 @@ No request body.
 |videoBrief.programName |String |false |Video Category name.
 |videoBrief.releaseDate |Integer |false |Video release timestamp.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|videoBrief.attachment |String |false |Attachment URL.
+|videoBrief.attachmentName |String |false |Attachment Name.
 |===
 
 [[_example_request_8]]
@@ -2073,6 +2161,7 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2123,6 +2212,16 @@ Content-Type: application/json;charset=UTF-8
                 {
                     "key": "vimeo-id",
                     "value": "123123123"
+                }
+            ],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
                 }
             ],
         }
@@ -2213,6 +2312,7 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2344,6 +2444,8 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief.program |Integer |false |Category ID.
 |liveStreamBrief.programName |String |false |Category name.
 |liveStreamBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|liveStreamBrief.attachments |Map |true |Array of Key-Value to represent the title & url of an "attachment".
+
 |===
 
 [[_example_request_17]]
@@ -2722,7 +2824,17 @@ Content-Type: application/json;charset=UTF-8
             "name":"FREESTYLE SWIMMING - 5 MOST COMMON MISTAKES (2019)",
             "thumbnail":"http://embed.wistia.com/deliveries/1a4efc93b070c0af918129bd86157661d70754dd.bin",
             "duration":835,
-            "customInfo":[]
+            "customInfo":[],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
          }
       }],
       {
