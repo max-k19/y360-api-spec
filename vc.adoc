@@ -350,8 +350,8 @@ This operation returns association metadata (label, images and description).
 |subtitle |String |false |Short one-line description of the Association (plain text, might be empty).
 |description |String |true |Long description of the Association (plain text).
 |descriptionHtml |String |false |HTML markup for the description of the Association .
-|images |Array[String] |false |Array of legacy background image URLs. May be empty.
-|billboardImages |Array[String] |false |Array of new generation background (billboard) image URLs. May be empty.
+|images |Array[String] |false |Array of legacy background image URLs. May be empty. Deprecated, do not use.
+|billboardImages |Array[String] |false |Array of new generation background (billboard) image URLs. May be empty. Deprecated, do not use.
 |billboard |Array[Object] |false |Array of background (billboard) objects. May be empty.
 |billboard[].image |String |false |Image URL.
 |billboard[].link |String |false |Link URL. May be empty.
