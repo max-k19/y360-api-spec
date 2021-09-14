@@ -350,8 +350,11 @@ This operation returns association metadata (label, images and description).
 |subtitle |String |false |Short one-line description of the Association (plain text, might be empty).
 |description |String |true |Long description of the Association (plain text).
 |descriptionHtml |String |false |HTML markup for the description of the Association .
-|images |Array[String] |false |Array of legacy background image URLs. May be empty.
-|billboardImages |Array[String] |false |Array of new generation background (billboard) image URLs. May be empty.
+|images |Array[String] |false |Array of legacy background image URLs. May be empty. Deprecated, do not use.
+|billboardImages |Array[String] |false |Array of new generation background (billboard) image URLs. May be empty. Deprecated, do not use.
+|billboards |Array[Object] |false |Array of background (billboard) objects. May be empty.
+|billboards[].image |String |false |Image URL.
+|billboards[].link |String |false |Link URL. May be empty.
 |===
 
 [[_example_request_assoc_info]]
@@ -387,6 +390,24 @@ Content-Type: application/json;charset=UTF-8
     "https://localhost/sites/default/files/2021-03/south_banner_ng.jpg",
     "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
     "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg"
+  ],
+  "billboards": [
+    {
+      "image": "https://localhost/sites/default/files/2021-03/north_banner_ng.jpg",
+      "url": "https://ymcawichita.org/locations/dennis-schoenebeck-north-ymca"
+    },
+    {
+      "image": "https://localhost/sites/default/files/2021-03/south_banner_ng.jpg",
+      "url": "https://ymcawichita.org/locations/richard-devore-south-ymca"
+    },
+    {
+      "image": "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
+      "url": ""
+    },
+    {
+      "image": "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg",
+      "url": ""
+    }
   ]
 }
 ----
