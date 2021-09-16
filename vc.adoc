@@ -73,6 +73,26 @@ link:#_program_details[Category Details]
 ** link:#_example_request_4[Example request]
 ** link:#_example_response_4[Example response]
 
+link:#_collections[Collections]
+
+* link:#resources-collections[Collections]
+** link:#_request_headers_18[Request headers]
+** link:#_path_parameters_18[Path parameters]
+** link:#_query_parameters_18[Query parameters]
+** link:#_response_fields_18[Response fields]
+** link:#_example_request_18[Example request]
+** link:#_example_response_18[Example response]
+
+link:#_collection_details[Collection Details]
+
+* link:#resources-collection-details[Fetch Collection Details]
+** link:#_request_headers_19[Request headers]
+** link:#_path_parameters_19[Path parameters]
+** link:#_query_parameters_19[Query parameters]
+** link:#_response_fields_19[Response fields]
+** link:#_example_request_19[Example request]
+** link:#_example_response_19[Example response]
+
 link:#_video_briefs[Video Briefs]
 
 * link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Category Videos]
@@ -1025,6 +1045,331 @@ Content-Type: application/json;charset=UTF-8
   }
 }
 ----
+
+
+[[_collections]]
+== link:#_collections[Collections]
+
+[[resources-collections]]
+=== link:#resources-collections[Collections]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/collections`
+
+This endpoints lists available collections. It returns only brief information about Categories.
+
+[[_request_headers_18]]
+==== link:#_request_headers_18[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
+|===
+
+[[_path_parameters_18]]
+==== link:#_path_parameters_18[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_18]]
+==== link:#_query_parameters_18[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |true |Exerciser Unique ID.
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_18]]
+==== link:#_response_fields_18[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].id |String |false |Unique ID of the Collection.
+|items[].name |String |false |Name of the Collection.
+|items[].videos |Object |false |Collection videos.
+|items[].videos.summary |Object |false |Summary for the collection videos.
+|items[].videos.summary.limit |Integer |false |Size of the page. Always 20. Use the Collection details to retrieve more than first 20 videos.
+|items[].videos.summary.page |Integer |false |Page number. Always 0.
+|items[].videos.summary.total |Integer |false |Total number of included videos.
+|items[].videos.items[] |Array[Object] |false |Video objects.
+|items[].videos.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].videos.items[].id |String |false |Unique ID of the Video.
+|items[].videos.items[].duration |Integer |false |Video duration in seconds.
+|items[].videos.items[].episode |Object |true |Video Episode.
+|items[].videos.items[].episode.number |Integer |true |Number of episode in season.
+|items[].videos.items[].episode.season |Integer |true |Number of season.
+|items[].videos.items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].videos.items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].videos.items[].attachments |Array[Object] |true |Video attachments.
+|items[].videos.items[].attachments[].title |string |false |Title of the attachment.
+|items[].videos.items[].attachments[].url |string |false |URL of the attachment.
+|items[].videos.items[].instructor |String |true |Instructor name.
+|items[].videos.items[].level |String |true |Workout level.
+|items[].videos.items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|items[].videos.items[].category |Integer |false |Video Category ID (deprecated).
+|items[].videos.items[].program |Integer |false |Video Category ID.
+|items[].videos.items[].programName |String |false |Video Category name.
+|items[].videos.items[].releaseDate |Integer |false |Video release timestamp.
+|items[].weight |Integer |false |The collection weight (defines the order).
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|===
+
+[[_example_request_18]]
+==== link:#_example_request_18[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/collections' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_18]]
+==== link:#_example_response_18[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 4271
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items": [
+    {
+      "id": "997",
+      "name": "Collection A",
+      "videos": {
+        "summary": {
+          "total": 3,
+          "page": 0,
+          "limit": 20
+        },
+        "items": [
+          {
+            "id": "159",
+            "name": "8 Minute Abs",
+            "thumbnail": "http://embed.wistia.com/deliveries/f767eb45c5df4a0c3b7ccaedaf30bc69.bin",
+            "duration": 521,
+            "customInfo": [],
+            "instructor": "Bret Michael",
+            "level": "Intermediate",
+            "category": 139,
+            "program": 139,
+            "programName": "Core Conditioning",
+            "description": "This tough ab workout takes your through 8 exercises for a minute each.",
+            "equipment": "None",
+            "attachments": [],
+            "releaseDate": 1590702428,
+            "location": "Greater Wichita YMCA"
+          },
+          {
+            "id": "1002",
+            "name": "Book Press",
+            "thumbnail": "http://embed.wistia.com/deliveries/a42a9aa349561de16749566930474e8a.bin",
+            "duration": 679,
+            "customInfo": [
+              {
+                "key": "subtitle",
+                "value": "Book bench press"
+              }
+            ],
+            "instructor": "",
+            "level": "",
+            "category": 213,
+            "program": 213,
+            "programName": "Literary Arts",
+            "description": "This tough ab workout takes your through 8 exercises for a minute each",
+            "equipment": "",
+            "attachments": [],
+            "releaseDate": 1631552287,
+            "location": "Capital District"
+          }
+        ]
+      },
+      "weight": "-50"
+    },
+    {
+      "id": "1003",
+      "name": "Collection B",
+      "videos": {
+        "summary": {
+          "total": 0,
+          "page": 0,
+          "limit": 20
+        },
+        "items": []
+      },
+      "weight": "-49"
+    },
+  ],
+  "summary": {
+    "total": 3,
+    "page": 0,
+    "limit": 20
+  }
+}
+----
+
+[[_collection_details]]
+== link:#_collection_details[Collection Details]
+
+[[resources-collection-details]]
+=== link:#resources-collection-details[Fetch Collection Details]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/collections/{collectionId}`
+
+This operation returns all information about a Collection and lists the included videos.
+
+[[_request_headers_19]]
+==== link:#_request_headers_19[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
+|===
+
+[[_path_parameters_19]]
+==== link:#_path_parameters_19[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|collectionId |String |false |Unique ID of the Collection.
+|===
+
+[[_query_parameters_19]]
+==== link:#_query_parameters_19[Query parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|exerciserUuid |String |true |Exerciser Unique ID.
+|page |Integer |true |Page to retrieve, 0 indexed and defaults to ``0`.
+|limit |Integer |true |Size of the page to retrieve, defaults to `20`.
+|===
+
+[[_response_fields_19]]
+==== link:#_response_fields_19[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|id |String |false |Unique ID of the Collection.
+|name |String |false |Name of the Collection.
+|videos |Object |false |Number of videos.
+|videos.summary |Object |false |Number of videos.
+|videos.summary.limit |Integer |false |Requested page size.
+|videos.summary.page |Integer |false |Requested page number.
+|videos.summary.total |Integer |false |Total number of items (videos).
+|videos.items[] |Array[Object] |false |Video objects.
+|videos.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|videos.items[].id |String |false |Unique ID of the Video.
+|videos.items[].duration |Integer |false |Video duration in seconds.
+|videos.items[].episode |Object |true |Video Episode.
+|videos.items[].episode.number |Integer |true |Number of episode in season.
+|videos.items[].episode.season |Integer |true |Number of season.
+|videos.items[].thumbnail |String |false |Thumbnail of the Video.
+|videos.items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|videos.items[].attachments |Array[Object] |true |Video attachments.
+|videos.items[].attachments[].title |string |false |Title of the attachment.
+|videos.items[].attachments[].url |string |false |URL of the attachment.
+|videos.items[].instructor |String |true |Instructor name.
+|videos.items[].level |String |true |Workout level.
+|videos.items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|videos.items[].category |Integer |false |Video Category ID (deprecated).
+|videos.items[].program |Integer |false |Video Category ID.
+|videos.items[].programName |String |false |Video Category name.
+|videos.items[].releaseDate |Integer |false |Video release timestamp.
+|weight |Integer |false |The collection weight (defines the order).
+|===
+
+[[_example_request_19]]
+==== link:#_example_request_19[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/collections/997' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_19]]
+==== link:#_example_response_19[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 2417
+Content-Type: application/json;charset=UTF-8
+
+{
+  "id": "997",
+  "name": "Collection A",
+  "videos": {
+    "summary": {
+      "total": 3,
+      "page": 0,
+      "limit": 20
+    },
+    "items": [
+      {
+        "id": "159",
+        "name": "8 Minute Abs",
+        "thumbnail": "http://embed.wistia.com/deliveries/f767eb45c5df4a0c3b7ccaedaf30bc69.bin",
+        "duration": 521,
+        "customInfo": [],
+        "instructor": "Bret Michael",
+        "level": "Intermediate",
+        "category": 139,
+        "program": 139,
+        "programName": "Core Conditioning",
+        "description": "This tough ab workout takes your through 8 exercises for a minute each.",
+        "equipment": "None",
+        "attachments": [],
+        "releaseDate": 1590702428,
+        "location": "Greater Wichita YMCA"
+      },
+      {
+        "id": "1002",
+        "name": "Book Press",
+        "thumbnail": "http://embed.wistia.com/deliveries/a42a9aa349561de16749566930474e8a.bin",
+        "duration": 679,
+        "customInfo": [
+          {
+            "key": "subtitle",
+            "value": "Book bench press"
+          }
+        ],
+        "instructor": "",
+        "level": "",
+        "category": 213,
+        "program": 213,
+        "programName": "Literary Arts",
+        "description": "This tough ab workout takes your through 8 exercises for a minute each",
+        "equipment": "",
+        "attachments": [],
+        "releaseDate": 1631552287,
+        "location": "Capital District"
+      }
+    ]
+  }
+}
+----
+
 
 [[_video_briefs]]
 == link:#_video_briefs[Video Briefs]
