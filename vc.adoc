@@ -2940,23 +2940,23 @@ featured videos, recent videos, collections
 | featuredVideos.summary.limit |Integer |false |Requested size of the page.
 | featuredVideos.summary.page |Integer |false |Page number.
 | featuredVideos.summary.total |Integer |false |Total count of items.
-| recentVideos | Object | false | Recent videos listing.
-| recentVideos.items |Array[Object] |false |A page of the recent videos listing.
-| recentVideos.items[].id |String |false |Unique ID of the Video.
-| recentVideos.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
-| recentVideos.items[].duration |Integer |false |Video duration in seconds.
-| recentVideos.items[].thumbnail |String |false |Thumbnail of the Video.
-| recentVideos.items[].program |Integer |false |Video Category ID.
-| recentVideos.items[].programName |String |false |Video Category name.
-| recentVideos.items[].releaseDate |Integer |false |Video release timestamp.
-| recentVideos.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
-| recentVideos.items[].attachments |Array[Object] |true |Video attachments.
-| recentVideos.items[].attachments[].title |string |false |Title of the attachment.
-| recentVideos.items[].attachments[].url |string |false |URL of the attachment.
-| recentVideos.summary |Object |false |Page summary.
-| recentVideos.summary.limit |Integer |false |Requested size of the page.
-| recentVideos.summary.page |Integer |false |Page number.
-| recentVideos.summary.total |Integer |false |Total count of items.
+| newReleases | Object | false | Listing of new video releases.
+| newReleases.items |Array[Object] |false |A page of the recent videos listing.
+| newReleases.items[].id |String |false |Unique ID of the Video.
+| newReleases.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| newReleases.items[].duration |Integer |false |Video duration in seconds.
+| newReleases.items[].thumbnail |String |false |Thumbnail of the Video.
+| newReleases.items[].program |Integer |false |Video Category ID.
+| newReleases.items[].programName |String |false |Video Category name.
+| newReleases.items[].releaseDate |Integer |false |Video release timestamp.
+| newReleases.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| newReleases.items[].attachments |Array[Object] |true |Video attachments.
+| newReleases.items[].attachments[].title |string |false |Title of the attachment.
+| newReleases.items[].attachments[].url |string |false |URL of the attachment.
+| newReleases.summary |Object |false |Page summary.
+| newReleases.summary.limit |Integer |false |Requested size of the page.
+| newReleases.summary.page |Integer |false |Page number.
+| newReleases.summary.total |Integer |false |Total count of items.
 | collections[] | Array[Object] | false |Full Listing of collections.
 | collections[].id |String |false |Unique ID of the Collection.
 | collections[].name |String |false |Name of the Collection.
@@ -3002,7 +3002,7 @@ Content-Length: 2341
 Content-Type: application/json;charset=UTF-8
 
 {
-  "featureVideos": {
+  "featuredVideos": {
     "items": [
       {
         "id": "87",
@@ -3034,7 +3034,7 @@ Content-Type: application/json;charset=UTF-8
       "limit": 20
     }
   },
-  "recentVideos": {
+  "newReleases": {
     "items": [
       {
         "id": "887",
