@@ -2923,6 +2923,17 @@ featured videos, recent videos, collections
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 | Path | Type | Optional | Description
+| association |Object |false | Association info.
+| association.label |String |false |Association name.
+| association.timezone |String |false |Timezone of the Association.
+| association.subtitle |String |false |Short one-line description of the Association (plain text, might be empty).
+| association.description |String |true |Long description of the Association (plain text).
+| association.descriptionHtml |String |false |HTML markup for the description of the Association .
+| association.images |Array[String] |false |Array of legacy background image URLs. May be empty. Deprecated, do not use.
+| association.billboardImages |Array[String] |false |Array of new generation background (billboard) image URLs. May be empty. Deprecated, do not use.
+| association.billboards |Array[Object] |false |Array of background (billboard) objects. May be empty.
+| association.billboards[].image |String |false |Image URL.
+| association.billboards[].link |String |false |Link URL. May be empty.
 | featuredVideos | Object | false | Featured videos listing.
 | featuredVideos.items |Array[Object] |false |A page of featured videos.
 | featuredVideos.items[].id |String |false |Unique ID of the Video.
@@ -3002,6 +3013,41 @@ Content-Length: 2341
 Content-Type: application/json;charset=UTF-8
 
 {
+  "association": {
+    "label" : "YMCA of Greater Wichita",
+    "timezone" : "America/Chicago",
+    "substitle" : "Lorem ipsum dolor sit amet.",
+    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "descriptionHtml" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+    "images" : [
+      "http://localhost:8080/sites/default/files/2020-11/north_banner.jpg",
+      "http://localhost:8080/sites/default/files/2020-11/south_banner.jpg"
+    ],
+    "billboardImages": [
+      "https://localhost/sites/default/files/2021-03/north_banner_ng.jpg",
+      "https://localhost/sites/default/files/2021-03/south_banner_ng.jpg",
+      "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
+      "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg"
+    ],
+    "billboards": [
+      {
+        "image": "https://localhost/sites/default/files/2021-03/north_banner_ng.jpg",
+        "url": "https://ymcawichita.org/locations/dennis-schoenebeck-north-ymca"
+      },
+      {
+        "image": "https://localhost/sites/default/files/2021-03/south_banner_ng.jpg",
+        "url": "https://ymcawichita.org/locations/richard-devore-south-ymca"
+      },
+      {
+        "image": "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
+        "url": ""
+      },
+      {
+        "image": "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg",
+        "url": ""
+      }
+    ]
+  },
   "featuredVideos": {
     "items": [
       {
