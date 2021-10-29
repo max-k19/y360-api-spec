@@ -180,6 +180,15 @@ link:#_live_stream_details[Live Stream Details]
 ** link:#_example_request_17[Example request]
 ** link:#_example_response_17[Example response]
 
+link:#combined_api[Combined API endpoints]
+
+* link:#frontpage_combined_api[Frontpage]
+** link:#_request_headers_frontpage_combined_api[Request headers]
+** link:#_path_parameters_frontpage_combined_api[Path parameters]
+** link:#_response_fields_frontpage_combined_api[Response fields]
+** link:#_example_request_frontpage_combined_api[Example request]
+** link:#_example_response_frontpage_combined_api[Example response]
+
 link:#widgets_api[Widgets API Guide]
 
 * link:#app_settings[Fetch App Settings]
@@ -2881,6 +2890,307 @@ Content-Type: application/json;charset=UTF-8
     }
 }
 ----
+
+[[combined_api]]
+== link:#combined_api[Combined API endpoints]
+
+[[frontpage_combined_api]]
+=== link:#frontpage_combined_api[Frontpage]
+
+`GET /settings/v3.0/content-providers/{provider}/combined/frontpage`
+
+This operation returns data needed to build the ymca360.org frontpage:
+
+featured videos, recent videos, collections
+
+[[_request_headers_frontpage_combined_api]]
+==== link:#_request_headers_frontpage_combined_api[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |Api key for authentication
+|===
+
+[[_path_parameters_frontpage_combined_api]]
+==== link:#_path_parameters_frontpage_combined_api[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_response_fields_frontpage_combined_api]]
+==== link:#_response_fields_frontpage_combined_api[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+| Path | Type | Optional | Description
+| association |Object |false | Association info.
+| association.label |String |false |Association name.
+| association.timezone |String |false |Timezone of the Association.
+| association.subtitle |String |false |Short one-line description of the Association (plain text, might be empty).
+| association.description |String |true |Long description of the Association (plain text).
+| association.descriptionHtml |String |false |HTML markup for the description of the Association .
+| association.images |Array[String] |false |Array of legacy background image URLs. May be empty. Deprecated, do not use.
+| association.billboardImages |Array[String] |false |Array of new generation background (billboard) image URLs. May be empty. Deprecated, do not use.
+| association.billboards |Array[Object] |false |Array of background (billboard) objects. May be empty.
+| association.billboards[].image |String |false |Image URL.
+| association.billboards[].link |String |false |Link URL. May be empty.
+| featuredVideos | Object | false | Featured videos listing.
+| featuredVideos.items |Array[Object] |false |A page of featured videos.
+| featuredVideos.items[].id |String |false |Unique ID of the Video.
+| featuredVideos.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| featuredVideos.items[].duration |Integer |false |Video duration in seconds.
+| featuredVideos.items[].thumbnail |String |false |Thumbnail of the Video.
+| featuredVideos.items[].program |Integer |false |Video Category ID.
+| featuredVideos.items[].programName |String |false |Video Category name.
+| featuredVideos.items[].releaseDate |Integer |false |Video release timestamp.
+| featuredVideos.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| featuredVideos.items[].attachments |Array[Object] |true |Video attachments.
+| featuredVideos.items[].attachments[].title |string |false |Title of the attachment.
+| featuredVideos.items[].attachments[].url |string |false |URL of the attachment.
+| featuredVideos.summary |Object |false |Page summary.
+| featuredVideos.summary.limit |Integer |false |Requested size of the page.
+| featuredVideos.summary.page |Integer |false |Page number.
+| featuredVideos.summary.total |Integer |false |Total count of items.
+| newReleases | Object | false | Listing of new video releases.
+| newReleases.items |Array[Object] |false |A page of the recent videos listing.
+| newReleases.items[].id |String |false |Unique ID of the Video.
+| newReleases.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| newReleases.items[].duration |Integer |false |Video duration in seconds.
+| newReleases.items[].thumbnail |String |false |Thumbnail of the Video.
+| newReleases.items[].program |Integer |false |Video Category ID.
+| newReleases.items[].programName |String |false |Video Category name.
+| newReleases.items[].releaseDate |Integer |false |Video release timestamp.
+| newReleases.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| newReleases.items[].attachments |Array[Object] |true |Video attachments.
+| newReleases.items[].attachments[].title |string |false |Title of the attachment.
+| newReleases.items[].attachments[].url |string |false |URL of the attachment.
+| newReleases.summary |Object |false |Page summary.
+| newReleases.summary.limit |Integer |false |Requested size of the page.
+| newReleases.summary.page |Integer |false |Page number.
+| newReleases.summary.total |Integer |false |Total count of items.
+| collections[] | Array[Object] | false |Full Listing of collections.
+| collections[].id |String |false |Unique ID of the Collection.
+| collections[].name |String |false |Name of the Collection.
+| collections[].videos |Object |false |Collection videos.
+| collections[].videos.summary |Object |false |Summary for the collection videos.
+| collections[].videos.summary.limit |Integer |false |Size of the page. Always 20. Use the Collection details to retrieve more than first 20 videos.
+| collections[].videos.summary.page |Integer |false |Page number. Always 0.
+| collections[].videos.summary.total |Integer |false |Total number of included videos.
+| collections[].videos.items[] |Array[Object] |false |Video objects.
+| collections[].videos.items[].id |String |false |Unique ID of the Video.
+| collections[].videos.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| collections[].videos.items[].duration |Integer |false |Video duration in seconds.
+| collections[].videos.items[].thumbnail |String |false |Thumbnail of the Video.
+| collections[].videos.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| collections[].videos.items[].attachments |Array[Object] |true |Video attachments.
+| collections[].videos.items[].attachments[].title |string |false |Title of the attachment.
+| collections[].videos.items[].attachments[].url |string |false |URL of the attachment.
+| collections[].videos.items[].instructor |String |true |Instructor name.
+| collections[].videos.items[].level |String |true |Workout level.
+| collections[].videos.items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+| collections[].videos.items[].program |Integer |false |Video Category ID.
+| collections[].videos.items[].programName |String |false |Video Category name.
+| collections[].videos.items[].releaseDate |Integer |false |Video release timestamp.
+| collections[].weight |Integer |false |The collection weight (defines the order).
+|===
+
+[[_example_request_frontpage_combined_api]]
+==== link:#_example_request_frontpage_combined_api[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/settings/v3.0/content-providers/wichita/combined/frontpage' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_frontpage_combined_api]]
+==== link:#_example_response_frontpage_combined_api[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 2341
+Content-Type: application/json;charset=UTF-8
+
+{
+  "association": {
+    "label" : "YMCA of Greater Wichita",
+    "timezone" : "America/Chicago",
+    "substitle" : "Lorem ipsum dolor sit amet.",
+    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "descriptionHtml" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<\/p>",
+    "images" : [
+      "http://localhost:8080/sites/default/files/2020-11/north_banner.jpg",
+      "http://localhost:8080/sites/default/files/2020-11/south_banner.jpg"
+    ],
+    "billboardImages": [
+      "https://localhost/sites/default/files/2021-03/north_banner_ng.jpg",
+      "https://localhost/sites/default/files/2021-03/south_banner_ng.jpg",
+      "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
+      "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg"
+    ],
+    "billboards": [
+      {
+        "image": "https://localhost/sites/default/files/2021-03/north_banner_ng.jpg",
+        "url": "https://ymcawichita.org/locations/dennis-schoenebeck-north-ymca"
+      },
+      {
+        "image": "https://localhost/sites/default/files/2021-03/south_banner_ng.jpg",
+        "url": "https://ymcawichita.org/locations/richard-devore-south-ymca"
+      },
+      {
+        "image": "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
+        "url": ""
+      },
+      {
+        "image": "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg",
+        "url": ""
+      }
+    ]
+  },
+  "featuredVideos": {
+    "items": [
+      {
+        "id": "87",
+        "name": "Intro to Barre",
+        "duration": 3600,
+        "thumbnail": "https://cdn.ymca360.org/live-stream/11/thumb-small.jpg",
+        "customInfo": [],
+        "attachments": [
+          {
+            "title": "Attachment1.pdf",
+            "url": "https://cdn.ymca360.org/2021-07/Attachment1.pdf"
+          },
+          {
+            "title": "Attachment2.pdf",
+            "url": "https://cdn.ymca360.org/2021-07/Attachment2.pdf"
+          }
+        ],
+        "instructor": "Corri Lewellen",
+        "level": "BEGINNER",
+        "location": "Wichita",
+        "program": 44440,
+        "programName": "Kid's Acitivities",
+        "releaseDate": 1612886400
+      }
+    ],
+    "summary": {
+      "total": 1,
+      "page": 0,
+      "limit": 20
+    }
+  },
+  "newReleases": {
+    "items": [
+      {
+        "id": "887",
+        "name": "KIDS YOGA WITH CORRI",
+        "duration": 3600,
+        "thumbnail": "https://cdn.ymca360.org/live-stream/1/thumb-small.jpg",
+        "customInfo": [],
+        "attachments": [],
+        "instructor": "Corri Lewellen",
+        "level": "BEGINNER",
+        "location": "Wichita",
+        "program": 44440,
+        "programName": "Kid's Acitivities",
+        "releaseDate": 1612886400
+      },
+      {
+        "id": "888",
+        "name": "KIDS YOGA WITH LARRY",
+        "duration": 3600,
+        "thumbnail": "https://cdn.ymca360.org/live-stream/2/thumb-small.jpg",
+        "customInfo": [],
+        "attachments": [],
+        "instructor": "Larry Johnson",
+        "level": "BEGINNER",
+        "location": "Wichita",
+        "program": 44440,
+        "programName": "Kid's Acitivities",
+        "releaseDate": 1612886400
+      }
+    ],
+    "summary": {
+      "total": 2,
+      "page": 0,
+      "limit": 20
+    }
+  },
+  "collections": [
+    {
+      "id": "997",
+      "name": "Collection A",
+      "videos": {
+        "summary": {
+          "total": 3,
+          "page": 0,
+          "limit": 20
+        },
+        "items": [
+          {
+            "id": "159",
+            "name": "8 Minute Abs",
+            "thumbnail": "http://embed.wistia.com/deliveries/f767eb45c5df4a0c3b7ccaedaf30bc69.bin",
+            "duration": 521,
+            "customInfo": [],
+            "instructor": "Bret Michael",
+            "level": "Intermediate",
+            "program": 139,
+            "programName": "Core Conditioning",
+            "description": "This tough ab workout takes your through 8 exercises for a minute each.",
+            "equipment": "None",
+            "attachments": [],
+            "releaseDate": 1590702428,
+            "location": "Greater Wichita YMCA"
+          },
+          {
+            "id": "1002",
+            "name": "Book Press",
+            "thumbnail": "http://embed.wistia.com/deliveries/a42a9aa349561de16749566930474e8a.bin",
+            "duration": 679,
+            "customInfo": [
+              {
+                "key": "subtitle",
+                "value": "Book bench press"
+              }
+            ],
+            "instructor": "",
+            "level": "",
+            "program": 213,
+            "programName": "Literary Arts",
+            "description": "This tough ab workout takes your through 8 exercises for a minute each",
+            "equipment": "",
+            "attachments": [],
+            "releaseDate": 1631552287,
+            "location": "Capital District"
+          }
+        ]
+      },
+      "weight": "-50"
+    },
+    {
+      "id": "1003",
+      "name": "Collection B",
+      "videos": {
+        "summary": {
+          "total": 0,
+          "page": 0,
+          "limit": 20
+        },
+        "items": []
+      },
+      "weight": "-49"
+    }
+  ]
+}
+----
+
 
 [[widgets_api]]
 == link:#widgets_api[Widgets API Guide]
