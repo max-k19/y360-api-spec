@@ -1137,6 +1137,10 @@ This endpoints lists available collections. It returns only brief information ab
 |items[].videos.items[].attachments[].title |string |false |Title of the attachment.
 |items[].videos.items[].attachments[].url |string |false |URL of the attachment.
 |items[].videos.items[].instructor |String |true |Instructor name.
+|items[].videos.items[].instructorId |String |true |Instructor ID.
+|items[].videos.items[].instructors[] |Array[Object] |false |Instructor objects.
+|items[].videos.items[].instructors[].name |String |true |Instructor name.
+|items[].videos.items[].instructors[].id |String |true |Instructor ID.
 |items[].videos.items[].level |String |true |Workout level.
 |items[].videos.items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |items[].videos.items[].category |Integer |false |Video Category ID (deprecated).
@@ -1187,6 +1191,13 @@ Content-Type: application/json;charset=UTF-8
             "duration": 521,
             "customInfo": [],
             "instructor": "Bret Michael",
+            "instructorId": "10",
+            "instructors": [
+              {
+                "name": "Bret Michael",
+                "id": "10",
+              }
+            ],
             "level": "Intermediate",
             "category": 139,
             "program": 139,
@@ -1209,6 +1220,8 @@ Content-Type: application/json;charset=UTF-8
               }
             ],
             "instructor": "",
+            "instructorId": "",
+            "instructors": [],
             "level": "",
             "category": 213,
             "program": 213,
@@ -1312,6 +1325,10 @@ This operation returns all information about a Collection and lists the included
 |videos.items[].attachments[].title |string |false |Title of the attachment.
 |videos.items[].attachments[].url |string |false |URL of the attachment.
 |videos.items[].instructor |String |true |Instructor name.
+|videos.items[].instructorId |String |true |Instructor ID.
+|videos.items[].instructors[] |Array[Object] |false |Instructor objects.
+|videos.items[].instructors[].name |String |true |Instructor name.
+|videos.items[].instructors[].id |String |true |Instructor ID.
 |videos.items[].level |String |true |Workout level.
 |videos.items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |videos.items[].category |Integer |false |Video Category ID (deprecated).
@@ -1356,6 +1373,13 @@ Content-Type: application/json;charset=UTF-8
         "duration": 521,
         "customInfo": [],
         "instructor": "Bret Michael",
+        "instructorId": "10",
+        "instructors": [
+          {
+            "name": "Bret Michael",
+            "id": "10",
+          }
+        ],
         "level": "Intermediate",
         "category": 139,
         "program": 139,
@@ -1378,6 +1402,8 @@ Content-Type: application/json;charset=UTF-8
           }
         ],
         "instructor": "",
+        "instructorId": "",
+        "instructors": [],
         "level": "",
         "category": 213,
         "program": 213,
@@ -1491,6 +1517,10 @@ values, therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
 |items[].instructor |String |true |Instructor name.
+|items[].instructorId |String |true |Instructor ID.
+|items[].instructors[] |Array[Object] |false |Instructor objects.
+|items[].instructors[].name |String |true |Instructor name.
+|items[].instructors[].id |String |true |Instructor ID.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |items[].category |Integer |false |Video Category ID (deprecated).
@@ -1546,6 +1576,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 22,
             "program": 22,
@@ -1569,6 +1606,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 22,
             "program": 22,
@@ -1592,6 +1636,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 22,
             "program": 22,
@@ -1615,6 +1666,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 22,
             "program": 22,
@@ -1745,6 +1803,10 @@ Can be one of [`yes`, `no`].
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
 |items[].instructor |String |true |Instructor name.
+|items[].instructorId |String |true |Instructor ID.
+|items[].instructors[] |Array[Object] |false |Instructor objects.
+|items[].instructors[].name |String |true |Instructor name.
+|items[].instructors[].id |String |true |Instructor ID.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |items[].category |Integer |false |Video Category ID (deprecated).
@@ -1801,6 +1863,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 122,
             "program": 122,
@@ -1824,6 +1893,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 122,
             "program": 122,
@@ -1847,6 +1923,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 122,
             "program": 122,
@@ -1870,6 +1953,13 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
             "level": "BEGINNER",
             "category": 122,
             "program": 122,
@@ -2251,6 +2341,10 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].thumbnail |String |false |Thumbnail of the Video.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |items[].instructor |String |true |Instructor name.
+|items[].instructorId |String |true |Instructor ID.
+|items[].instructors[] |Array[Object] |false |Instructor objects.
+|items[].instructors[].name |String |true |Instructor name.
+|items[].instructors[].id |String |true |Instructor ID.
 |items[].level |String |true |Workout level.
 |items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |items[].category |Integer |false |Video Category ID (deprecated).
@@ -2309,6 +2403,13 @@ Content-Type: application/json;charset=UTF-8
     "thumbnail": "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
     "duration": 90,
     "instructor": "John Doe",
+    "instructorId": "15",
+    "instructors": [
+      {
+        "name": "John Doe",
+        "id": "15",
+      }
+    ],
     "level": "ADVANCED",
     "location": "Wichita",
     "category": 16
@@ -2425,6 +2526,10 @@ No request body.
 |videoBrief.episode.season |Integer |true |Number of season.
 |videoBrief.thumbnail |String |false |Thumbnail of the Video.
 |videoBrief.instructor |String |true |Instructor name.
+|videoBrief.instructorId |String |true |Instructor ID.
+|videoBrief.instructors[] |Array[Object] |false |Instructor objects.
+|videoBrief.instructors[].name |String |true |Instructor name.
+|videoBrief.instructors[].id |String |true |Instructor ID.
 |videoBrief.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
 |videoBrief.level |String |true |Workout level.
 |videoBrief.category |Integer |false |Video Category ID (deprecated).
@@ -2458,6 +2563,13 @@ Content-Type: application/json;charset=UTF-8
     "name" : "RPM #79 Express",
     "location" : "Wichita",
     "instructor" : "John Doe",
+    "instructorId" : "15",
+    "instructors": [
+      {
+        "name": "John Doe",
+        "id": "15",
+      }
+    ],
     "episode" : {
       "season" : 4,
       "number" : 1
@@ -2549,6 +2661,10 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].duration |Integer |false |Duration in seconds.
 |items[].thumbnail |String |false |Thumbnail of the Live Stream.
 |items[].instructor |String |true |Instructor name.
+|items[].instructorId |String |true |Instructor ID.
+|items[].instructors[] |Array[Object] |false |Instructor objects.
+|items[].instructors[].name |String |true |Instructor name.
+|items[].instructors[].id |String |true |Instructor ID.
 |items[].level |String |true |Workout level.
 |items[].association |String |true |(Host's) Association name.
 |items[].topLevelCategory |Integer |false |Top Level Category ID.
@@ -2599,6 +2715,13 @@ Content-Type: application/json;charset=UTF-8
             "duration": 3600,
             "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
             "instructor": "Corri Lewellen",
+            "instructorId": "17",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "17",
+              }
+            ],
             "level": "BEGINNER",
             "topLevelCategory": 203,
             "topLevelCategoryName": "Kids Family",
@@ -2702,6 +2825,10 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].duration |Integer |false |Duration in seconds.
 |items[].thumbnail |String |false |Thumbnail URL.
 |items[].instructor |String |true |Instructor name.
+|items[].instructorId |String |true |Instructor ID.
+|items[].instructors[] |Array[Object] |false |Instructor objects.
+|items[].instructors[].name |String |true |Instructor name.
+|items[].instructors[].id |String |true |Instructor ID.
 |items[].level |String |true |Workout level.
 |items[].association |String |true |Host Association name.
 |items[].topLevelCategory |Integer |false |Top Level Category ID.
@@ -2755,6 +2882,13 @@ Content-Type: application/json;charset=UTF-8
         "duration": 3600,
         "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
         "instructor": "Corri Lewellen",
+        "instructorId": "12",
+        "instructors": [
+          {
+            "name": "Corri Lewellen",
+            "id": "12",
+          }
+        ],
         "level": "BEGINNER",
         "topLevelCategory": 203,
         "topLevelCategoryName": "Kids Family",
@@ -2836,6 +2970,10 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief.duration |Integer |false |Duration in seconds.
 |liveStreamBrief.thumbnail |String |false |Thumbnail URL.
 |liveStreamBrief.instructor |String |true |Instructor name.
+|liveStreamBrief.instructorId |String |true |Instructor ID.
+|liveStreamBrief.instructors[] |Array[Object] |false |Instructor objects.
+|liveStreamBrief.instructors[].name |String |true |Instructor name.
+|liveStreamBrief.instructors[].id |String |true |Instructor ID.
 |liveStreamBrief.association |String |true |Host Association name.
 |liveStreamBrief.level |String |true |Workout level.
 |liveStreamBrief.topLevelCategory |Integer |false |Top Level Category ID.
@@ -2875,6 +3013,13 @@ Content-Type: application/json;charset=UTF-8
         "duration": 3600,
         "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
         "instructor": "Corri Lewellen",
+        "instructorId": "12",
+        "instructors": [
+          {
+            "name": "Corri Lewellen",
+            "id": "12",
+          }
+        ],
         "level": "BEGINNER",
         "topLevelCategory": 203,
         "topLevelCategoryName": "Kids Family",
