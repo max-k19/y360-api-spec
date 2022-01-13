@@ -2675,6 +2675,8 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].attachments |Array[Object] |true |Live Stream attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
+|items[].restream |Boolean |false |Determines if this is re-stream of pre-recorded lesson or not.
+|items[].originalLivestream |Integer |true |ID of original livestream (used for "re-streams" only).
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2744,6 +2746,8 @@ Content-Type: application/json;charset=UTF-8
                     "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
                 }
             ],
+            "restream": true,
+            "originalLivestream": 123
         }
     ],
     "summary": {
@@ -2839,6 +2843,8 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].attachments |Array[Object] |true |Live Stream attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
+|items[].restream |Boolean |false |Determines if this is re-stream of pre-recorded lesson or not.
+|items[].originalLivestream |Integer |true |ID of original livestream (used for "re-streams" only).
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2894,7 +2900,9 @@ Content-Type: application/json;charset=UTF-8
         "topLevelCategoryName": "Kids Family",
         "program": 22,
         "programName": "Kids' Acitivities",
-        "association": "Wichita"
+        "association": "Wichita",
+        "restream": false,
+        "originalLivestream": null
     } ],
     "summary": {
         "total": 1,
@@ -2984,6 +2992,8 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief.attachments |Array[Object] |true |Live Stream attachments.
 |liveStreamBrief.attachments[].title |string |false |Title of the attachment.
 |liveStreamBrief.attachments[].url |string |false |URL of the attachment.
+|liveStreamBrief.restream |Boolean |false |Determines if this is re-stream of pre-recorded lesson or not.
+|liveStreamBrief.originalLivestream |Integer |true |ID of original livestream (used for "re-streams" only).
 |===
 
 [[_example_request_17]]
@@ -3025,7 +3035,9 @@ Content-Type: application/json;charset=UTF-8
         "topLevelCategoryName": "Kids Family",
         "program": 22,
         "programName": "Kids' Acitivities",
-        "association": "Greater Wichita YMCA"
+        "association": "Greater Wichita YMCA",
+        "restream": true,
+        "originalLivestream": 123
     },
     "liveStreamDetails": {
         "status": "offline",
