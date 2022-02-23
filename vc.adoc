@@ -131,6 +131,14 @@ link:#_video_briefs[Video Briefs]
 ** link:#_example_request_12[Example request]
 ** link:#_example_response_12[Example response]
 
+* link:#resources-fetch-past-livestreams[Fetch Past Live Streams]
+** link:#_request_headers_past_livestreams[Request headers]
+** link:#_path_parameters_past_livestreams[Path parameters]
+** link:#_request_fields_past_livestreams[Request fields]
+** link:#_response_fields_past_livestreams[Response fields]
+** link:#_example_request_past_livestreams[Example request]
+** link:#_example_response_past_livestreams[Example response]
+
 * link:#resources-search-videos-controller-i-t-should-search-videos[Search Videos]
 ** link:#_request_headers_7[Request headers]
 ** link:#_path_parameters_7[Path parameters]
@@ -2233,6 +2241,171 @@ Content-Type: application/json;charset=UTF-8
 }
 ----
 
+
+[[resources-fetch-past-livestreams]]
+=== link:#resources-fetch-past-livestreams[Fetch Past Livestreams]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/past-livestreams`
+
+This operation fetches Videos that were automatically created from past livestreams. It returns only brief information about Video.
+
+[[_request_headers_past_livestreams]]
+==== link:#_request_past_livestreams[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
+|===
+
+[[_path_parameters_past_livestreams]]
+==== link:#_path_parameters_past_livestreams[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_request_fields_past_livestreams]]
+==== link:#_request_fields_past_livestreams[Request fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_past_livestreams]]
+==== link:#_response_fields_past_livestreams[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items |Array[Object] |false |Actual items.
+|items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].id |String |false |Unique ID of the Video.
+|items[].duration |Integer |false |Video duration in seconds.
+|items[].episode |Object |true |Video Episode.
+|items[].episode.number |Integer |true |Number of episode in season.
+|items[].episode.season |Integer |true |Number of season.
+|items[].thumbnail |String |false |Thumbnail of the Video.
+|items[].category |Integer |false |Video Category ID (deprecated).
+|items[].program |Integer |false |Video Category ID.
+|items[].programName |String |false |Video Category name.
+|items[].releaseDate |Integer |false |Video release timestamp.
+|items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].attachments |Array[Object] |true |Video attachments.
+|items[].attachments[].title |string |false |Title of the attachment.
+|items[].attachments[].url |string |false |URL of the attachment.
+|items[].originalLivestream |Object |false |Original Livestream info
+|items[].originalLivestream.id |String |false |Unique ID of the Live Stream.
+|items[].originalLivestream.name |String |false |Name of the Live Stream.
+|items[].originalLivestream.startTime |Integer |false |The start time (UNIX timestamp).
+|items[].originalLivestream.endTime |Integer |false |The end time (UNIX timestamp).
+|items[].originalLivestream.duration |Integer |false |Duration in seconds.
+|items[].originalLivestream.thumbnail |String |false |Thumbnail of the Live Stream.
+|items[].originalLivestream.instructor |String |true |Instructor name.
+|items[].originalLivestream.instructorId |String |true |Instructor ID.
+|items[].originalLivestream.instructors[] |Array[Object] |false |Instructor objects.
+|items[].originalLivestream.instructors[].name |String |true |Instructor name.
+|items[].originalLivestream.instructors[].id |String |true |Instructor ID.
+|items[].originalLivestream.level |String |true |Workout level.
+|items[].originalLivestream.association |String |true |(Host's) Association name.
+|items[].originalLivestream.topLevelCategory |Integer |false |Top Level Category ID.
+|items[].originalLivestream.topLevelCategoryName |String |false |Top Level Category Name.
+|items[].originalLivestream.program |Integer |false |Category ID.
+|items[].originalLivestream.programName |String |false |Category name.
+|items[].originalLivestream.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].originalLivestream.attachments |Array[Object] |true |Live Stream attachments.
+|items[].originalLivestream.attachments[].title |string |false |Title of the attachment.
+|items[].originalLivestream.attachments[].url |string |false |URL of the attachment.
+|summary |Object |false |Page summary.
+|summary.limit |Integer |false |Requested size of the page.
+|summary.page |Integer |false |Page number.
+|summary.total |Integer |false |Total count of items.
+|===
+
+[[_example_request_past_livestreams]]
+==== link:#_example_request_past_livestreams[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/lmod/past-livestreams?page=0&limit=50' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_past_livestreams]]
+==== link:#_example_response_past_livestreams[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 341
+Content-Type: application/json;charset=UTF-8
+
+{
+  "items" : [  {
+            "id": "1187",
+            "name": "KIDS YOGA WITH CORRI",
+            "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
+            "duration": 1366,
+            "customInfo": [],
+            "attachments": [
+                {
+                    "title": "Attachment1.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+                },
+                {
+                    "title": "Attachment2.pdf",
+                    "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+                }
+            ],
+            "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
+            "level": "BEGINNER",
+            "category": 122,
+            "program": 122,
+            "programName": "Past livestreams",
+            "location": "Wichita",
+            "originalLivestream": {
+                "id": "87",
+                "name": "KIDS YOGA WITH CORRI",
+                "startTime": 1612886400,
+                "endTime": 1612890000,
+                "duration": 3600,
+                "thumbnail": "https://cms.ymca360.org/sites/default/files/live-stream/1/thumb-small.jpg",
+                "instructor": "Corri Lewellen",
+                "instructorId": "12",
+                "instructors": [
+                  {
+                    "name": "Corri Lewellen",
+                    "id": "12",
+                  }
+                ],
+                "level": "BEGINNER",
+                "topLevelCategory": 203,
+                "topLevelCategoryName": "Kids Family",
+                "program": 22,
+                "programName": "Kids' Acitivities",
+                "association": "Wichita"
+           }
+        } ],
+  "summary" : {
+    "total" : 1,
+    "page" : 0,
+    "limit" : 50
+  }
+}
+----
 
 
 [[resources-search-videos-controller-i-t-should-search-videos]]
