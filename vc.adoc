@@ -134,7 +134,6 @@ link:#_video_briefs[Video Briefs]
 * link:#resources-fetch-past-livestreams[Fetch Past Live Streams]
 ** link:#_request_headers_past_livestreams[Request headers]
 ** link:#_path_parameters_past_livestreams[Path parameters]
-** link:#_request_fields_past_livestreams[Request fields]
 ** link:#_response_fields_past_livestreams[Response fields]
 ** link:#_example_request_past_livestreams[Example request]
 ** link:#_example_response_past_livestreams[Example response]
@@ -2268,16 +2267,6 @@ This operation fetches Videos that were automatically created from past livestre
 |provider |String |false |Unique ID of the Content Provider.
 |===
 
-[[_request_fields_past_livestreams]]
-==== link:#_request_fields_past_livestreams[Request fields]
-
-[width="100%",cols="25%,25%,25%,25%",options="header",]
-|===
-|Path |Type |Optional |Description
-|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
-|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
-|===
-
 [[_response_fields_past_livestreams]]
 ==== link:#_response_fields_past_livestreams[Response fields]
 
@@ -2323,8 +2312,6 @@ This operation fetches Videos that were automatically created from past livestre
 |items[].originalLivestream.attachments[].title |string |false |Title of the attachment.
 |items[].originalLivestream.attachments[].url |string |false |URL of the attachment.
 |summary |Object |false |Page summary.
-|summary.limit |Integer |false |Requested size of the page.
-|summary.page |Integer |false |Page number.
 |summary.total |Integer |false |Total count of items.
 |===
 
@@ -2400,9 +2387,7 @@ Content-Type: application/json;charset=UTF-8
            }
         } ],
   "summary" : {
-    "total" : 1,
-    "page" : 0,
-    "limit" : 50
+    "total" : 1
   }
 }
 ----
