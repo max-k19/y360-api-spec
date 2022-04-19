@@ -1483,6 +1483,10 @@ Can be one of [`yes`, `no`].
 `no` matches videos without equipment set or set to 'N/A'.
 
 *Only the first value is used.*
+
+|workoutModality |String |true |Workout modality filter.
+
+
 |===
 
 .Deprecation note
@@ -1534,6 +1538,7 @@ values, therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].workoutModality |String |false |Workout modality.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1594,7 +1599,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 22,
             "program": 22,
             "programName": "Yoga",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         },
         {
             "id": "94",
@@ -1624,7 +1630,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 22,
             "program": 22,
             "programName": "Yoga",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         },
         {
             "id": "116",
@@ -1654,7 +1661,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 22,
             "program": 22,
             "programName": "Yoga",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         },
         {
             "id": "128",
@@ -1684,7 +1692,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 22,
             "program": 22,
             "programName": "Yoga",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         }
     ],
     "summary": {
@@ -1721,7 +1730,8 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": [{ ... }],
-            "equipment": [{ ... }]
+            "equipment": [{ ... }],
+            "workoutModality": [{ ... }]
         }
     }
 }
@@ -1779,6 +1789,7 @@ Can be one of [`yes`, `no`].
 `no` matches videos without equipment set or set to 'N/A'.
 
 *Only the first value is used.*
+|workoutModality |String |true |Workout modality filter.
 |===
 
 [[_request_fields_11]]
@@ -1820,6 +1831,7 @@ Can be one of [`yes`, `no`].
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].workoutModality |String |false |Workout modality.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1831,6 +1843,9 @@ Can be one of [`yes`, `no`].
 |summary.facets.location |Array[Object] |false |Filter values the "location" filter.
 |summary.facets.instructor |Array[Object] |false |Filter values the "instructor" filter.
 |summary.facets.equipment |Array[Object] |false |Filter values the "equipment" filter.
+|summary.facets.workoutModality |Array[Object] |false |Filter values the "workoutModality" filter.
+|summary.facets.workoutModality[].id |String |false |Filter value for the "workoutModality" filter.
+|summary.facets.workoutModality[].count |Integer |false |Number of search results relevant to the filter value.
 
 |===
 
@@ -1881,7 +1896,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 122,
             "program": 122,
             "programName": "Around the Y",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         },
         {
             "id": "94",
@@ -1911,7 +1927,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 122,
             "program": 122,
             "programName": "Around the Y",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         },
         {
             "id": "116",
@@ -1941,7 +1958,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 122,
             "program": 122,
             "programName": "Around the Y",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         },
         {
             "id": "128",
@@ -1971,7 +1989,8 @@ Content-Type: application/json;charset=UTF-8
             "category": 122,
             "program": 122,
             "programName": "Around the Y",
-            "location": "Wichita"
+            "location": "Wichita",
+            "workoutModality": "Bike"
         }
     ],
     "summary": {
@@ -2008,7 +2027,8 @@ Content-Type: application/json;charset=UTF-8
                 }
             ],
             "instructor": [{ ... }],
-            "equipment": [{ ... }]
+            "equipment": [{ ... }],
+            "workoutModality": [{ ... }]
         }
     }
 }
@@ -2086,6 +2106,7 @@ level.
 |items[].attachments |Array[Object] |true |Video attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
+|items[].workoutModality |String |false |Workout modality.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2197,6 +2218,7 @@ This operation fetches recently added Videos. It returns only brief information 
 |items[].attachments |Array[Object] |true |Video attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
+|items[].workoutModality |String |false |Workout modality.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2470,6 +2492,7 @@ Can be one of [`yes`, `no`].
 `no` matches videos without equipment set or set to 'N/A'.
 
 *Only the first value is used.*
+|workoutModality |String |true |Workout modality filter.
 |===
 
 .Deprecation note
@@ -2512,6 +2535,7 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].attachments |Array[Object] |true |Video attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
+|items[].workoutModality |String |false |Workout modality.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2530,6 +2554,9 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |summary.facets.program[].sub[].id |Array[Object] |true |Filter value for the "category" filter.
 |summary.facets.program[].sub[].count |Array[Object] |true |Number of search results relevant to the filter value.
 |summary.facets.program[].sub[].sub |Array[Object] |true |The list of sub-sub-categories.
+|summary.facets.workoutModality |Array[Object] |false |Filter values the "workoutModality" filter.
+|summary.facets.workoutModality[].id |String |false |Filter value for the "workoutModality" filter.
+|summary.facets.workoutModality[].count |Integer |false |Number of search results relevant to the filter value.
 |===
 
 [[_example_request_7]]
@@ -2603,6 +2630,7 @@ Content-Type: application/json;charset=UTF-8
       "program": [ ... ],
       "instructor": [ ... ],
       "equipment": [ ... ],
+      "workoutModality": [ ... ]
     }
   }
 }
@@ -2695,6 +2723,7 @@ No request body.
 |videoBrief.programName |String |false |Video Category name.
 |videoBrief.releaseDate |Integer |false |Video release timestamp.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|videoBrief.workoutModality |String |false |Workout modality.
 |===
 
 [[_example_request_8]]
