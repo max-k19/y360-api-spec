@@ -1154,6 +1154,9 @@ This endpoints lists available collections. It returns only brief information ab
 |items[].videos.items[].program |Integer |false |Video Category ID.
 |items[].videos.items[].programName |String |false |Video Category name.
 |items[].videos.items[].releaseDate |Integer |false |Video release timestamp.
+|items[].videos.items[].workoutModality |String |false |Workout modality.
+|items[].videos.items[].hardwareManufacturer |String |true |Hardware manufacturer.
+|items[].videos.items[].language |String |false |Video language.
 |items[].weight |Integer |false |The collection weight (defines the order).
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
@@ -1213,7 +1216,9 @@ Content-Type: application/json;charset=UTF-8
             "equipment": "None",
             "attachments": [],
             "releaseDate": 1590702428,
-            "location": "Greater Wichita YMCA"
+            "location": "Greater Wichita YMCA",
+            "language": "English",
+            "workoutModality": ""
           },
           {
             "id": "1002",
@@ -1237,7 +1242,9 @@ Content-Type: application/json;charset=UTF-8
             "equipment": "",
             "attachments": [],
             "releaseDate": 1631552287,
-            "location": "Capital District"
+            "location": "Capital District",
+            "language": "English",
+            "workoutModality": ""
           }
         ]
       },
@@ -1302,7 +1309,7 @@ This operation returns all information about a Collection and lists the included
 |===
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |true |Exerciser Unique ID.
-|page |Integer |true |Page to retrieve, 0 indexed and defaults to ``0`.
+|page |Integer |true |Page to retrieve, 0 indexed and defaults to `0`.
 |limit |Integer |true |Size of the page to retrieve, defaults to `20`.
 |===
 
@@ -1342,6 +1349,7 @@ This operation returns all information about a Collection and lists the included
 |videos.items[].program |Integer |false |Video Category ID.
 |videos.items[].programName |String |false |Video Category name.
 |videos.items[].releaseDate |Integer |false |Video release timestamp.
+|videos.items[].language |String |false |Video language.
 |weight |Integer |false |The collection weight (defines the order).
 |===
 
@@ -1395,7 +1403,8 @@ Content-Type: application/json;charset=UTF-8
         "equipment": "None",
         "attachments": [],
         "releaseDate": 1590702428,
-        "location": "Greater Wichita YMCA"
+        "location": "Greater Wichita YMCA",
+        "language": "English"
       },
       {
         "id": "1002",
@@ -1419,7 +1428,8 @@ Content-Type: application/json;charset=UTF-8
         "equipment": "",
         "attachments": [],
         "releaseDate": 1631552287,
-        "location": "Capital District"
+        "location": "Capital District",
+        "language": "English"
       }
     ]
   }
@@ -1483,9 +1493,9 @@ Can be one of [`yes`, `no`].
 `no` matches videos without equipment set or set to 'N/A'.
 
 *Only the first value is used.*
-
+|language[] |Array[String] |true |Language filter. Language names.
 |workoutModality |String |true |Workout modality filter.
-
+|hardwareManufacturer |String |true |Hardware manufacturer filter.
 
 |===
 
@@ -1538,7 +1548,9 @@ values, therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].language |String |false |Video language.
 |items[].workoutModality |String |false |Workout modality.
+|items[].hardwareManufacturer |String |true |Hardware manufacturer.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1600,7 +1612,9 @@ Content-Type: application/json;charset=UTF-8
             "program": 22,
             "programName": "Yoga",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": "Bike",
+            "hardwareManufacturer": "Matrix"
         },
         {
             "id": "94",
@@ -1631,7 +1645,9 @@ Content-Type: application/json;charset=UTF-8
             "program": 22,
             "programName": "Yoga",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": "Bike",
+            "hardwareManufacturer": "Matrix"
         },
         {
             "id": "116",
@@ -1662,7 +1678,8 @@ Content-Type: application/json;charset=UTF-8
             "program": 22,
             "programName": "Yoga",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": ""
         },
         {
             "id": "128",
@@ -1693,7 +1710,8 @@ Content-Type: application/json;charset=UTF-8
             "program": 22,
             "programName": "Yoga",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": ""
         }
     ],
     "summary": {
@@ -1789,7 +1807,9 @@ Can be one of [`yes`, `no`].
 `no` matches videos without equipment set or set to 'N/A'.
 
 *Only the first value is used.*
+|language[] |Array[String] |true |Language filter. Language names.
 |workoutModality |String |true |Workout modality filter.
+|hardwareManufacturer |String |true |Hardware manufacturer filter.
 |===
 
 [[_request_fields_11]]
@@ -1831,7 +1851,9 @@ Can be one of [`yes`, `no`].
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].language |String |false |Video language.
 |items[].workoutModality |String |false |Workout modality.
+|items[].hardwareManufacturer |String |true |Hardware manufacturer.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1897,7 +1919,9 @@ Content-Type: application/json;charset=UTF-8
             "program": 122,
             "programName": "Around the Y",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": "Bike",
+            "hardwareManufacturer": "Matrix"
         },
         {
             "id": "94",
@@ -1928,7 +1952,9 @@ Content-Type: application/json;charset=UTF-8
             "program": 122,
             "programName": "Around the Y",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": "Bike",
+            "hardwareManufacturer": "Matrix"
         },
         {
             "id": "116",
@@ -1959,7 +1985,9 @@ Content-Type: application/json;charset=UTF-8
             "program": 122,
             "programName": "Around the Y",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": "Bike",
+            "hardwareManufacturer": "Matrix"
         },
         {
             "id": "128",
@@ -1990,7 +2018,9 @@ Content-Type: application/json;charset=UTF-8
             "program": 122,
             "programName": "Around the Y",
             "location": "Wichita",
-            "workoutModality": "Bike"
+            "language": "English",
+            "workoutModality": "Bike",
+            "hardwareManufacturer": "Matrix"
         }
     ],
     "summary": {
@@ -2102,11 +2132,13 @@ level.
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].language |String |false |Video language.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |items[].attachments |Array[Object] |true |Video attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
 |items[].workoutModality |String |false |Workout modality.
+|items[].hardwareManufacturer |String |true |Hardware manufacturer.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2214,11 +2246,13 @@ This operation fetches recently added Videos. It returns only brief information 
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].language |String |false |Video language.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |items[].attachments |Array[Object] |true |Video attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
 |items[].workoutModality |String |false |Workout modality.
+|items[].hardwareManufacturer |String |true |Hardware manufacturer.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2307,6 +2341,7 @@ This operation fetches Videos that were automatically created from past livestre
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].language |String |false |Video language.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |items[].attachments |Array[Object] |true |Video attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
@@ -2329,6 +2364,7 @@ This operation fetches Videos that were automatically created from past livestre
 |items[].originalLivestream.topLevelCategoryName |String |false |Top Level Category Name.
 |items[].originalLivestream.program |Integer |false |Category ID.
 |items[].originalLivestream.programName |String |false |Category name.
+|items[].originalLivestream.language |String |false |Live stream language.
 |items[].originalLivestream.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |items[].originalLivestream.attachments |Array[Object] |true |Live Stream attachments.
 |items[].originalLivestream.attachments[].title |string |false |Title of the attachment.
@@ -2384,6 +2420,7 @@ Content-Type: application/json;charset=UTF-8
             "category": 122,
             "program": 122,
             "programName": "Past livestreams",
+            "language": "English",
             "location": "Wichita",
             "originalLivestream": {
                 "id": "87",
@@ -2492,7 +2529,9 @@ Can be one of [`yes`, `no`].
 `no` matches videos without equipment set or set to 'N/A'.
 
 *Only the first value is used.*
+|language |Array[String] |true |Language filter. Langauge names
 |workoutModality |String |true |Workout modality filter.
+|hardwareManufacturer |String |true |Hardware manufacturer filter.
 |===
 
 .Deprecation note
@@ -2532,10 +2571,12 @@ therefore this way is deprecated in 2.0 and is removed in 3.0.
 |items[].program |Integer |false |Video Category ID.
 |items[].programName |String |false |Video Category name.
 |items[].releaseDate |Integer |false |Video release timestamp.
+|items[].language |String |false |Video language.
 |items[].attachments |Array[Object] |true |Video attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
 |items[].attachments[].url |string |false |URL of the attachment.
 |items[].workoutModality |String |false |Workout modality.
+|items[].hardwareManufacturer |String |true |Hardware manufacturer.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -2597,7 +2638,8 @@ Content-Type: application/json;charset=UTF-8
     ],
     "level": "ADVANCED",
     "location": "Wichita",
-    "category": 16
+    "category": 16,
+    "language": "English"
   } ],
   "summary": {
     "total": 1,
@@ -2722,8 +2764,10 @@ No request body.
 |videoBrief.program |Integer |false |Video Category ID.
 |videoBrief.programName |String |false |Video Category name.
 |videoBrief.releaseDate |Integer |false |Video release timestamp.
+|videoBrief.language |String |false |Video language.
 |videoBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |videoBrief.workoutModality |String |false |Workout modality.
+|videoBrief.hardwareManufacturer |String |true |Hardware manufacturer.
 |===
 
 [[_example_request_8]]
@@ -2762,7 +2806,9 @@ Content-Type: application/json;charset=UTF-8
       "number" : 1
     },
     "thumbnail" : "https://vhx.imgix.net/lm-test/assets/46223c19-95d9-428d-8a48-4cd0c9230f49-dc0ec788.jpg",
-    "duration" : 90
+    "duration" : 90,
+    "language" : "English",
+    "workoutModality": ""
   },
   "videoDetails" : {
     "presenter" : "Glen Ostergaard, Brent Findlay, Dee Tjeong, Joshua Berrier, Amanda Breen",
@@ -2829,6 +2875,7 @@ This operation returns brief information about Category upcoming Live Streams.
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
+|language[] |Array[String] |true |Language filter. Language names.
 | | | |
 |page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
 |limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
@@ -2858,6 +2905,7 @@ This operation returns brief information about Category upcoming Live Streams.
 |items[].topLevelCategoryName |String |false |Top Level Category Name.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
+|items[].language |String |false |Live stream language.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |items[].attachments |Array[Object] |true |Live Stream attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
@@ -2916,7 +2964,8 @@ Content-Type: application/json;charset=UTF-8
             "topLevelCategoryName": "Kids Family",
             "program": 44440,
             "programName": "Kid's Acitivities",
-            "association": "Greater Wichita YMCA"
+            "association": "Greater Wichita YMCA",
+            "language": "English",
             "customInfo": [
                 {
                     "key": "vimeo-id",
@@ -3000,6 +3049,7 @@ This operation searches Live Streams. It returns brief information about live st
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
+|language[] |Array[String] |true |Language filter. Language names.
 |===
 
 [[_response_fields_16]]
@@ -3026,6 +3076,7 @@ This operation searches Live Streams. It returns brief information about live st
 |items[].topLevelCategoryName |String |false |Top Level Category Name.
 |items[].program |Integer |false |Category ID.
 |items[].programName |String |false |Category name.
+|items[].language |String |false |Live stream language.
 |items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |items[].attachments |Array[Object] |true |Live Stream attachments.
 |items[].attachments[].title |string |false |Title of the attachment.
@@ -3088,6 +3139,7 @@ Content-Type: application/json;charset=UTF-8
         "program": 22,
         "programName": "Kids' Acitivities",
         "association": "Wichita",
+        "language": "English",
         "restream": false,
         "originalLivestream": null
     } ],
@@ -3175,6 +3227,7 @@ This operation returns all detailed information about a Live Stream.
 |liveStreamBrief.topLevelCategoryName |String |false |Top Level Category Name.
 |liveStreamBrief.program |Integer |false |Category ID.
 |liveStreamBrief.programName |String |false |Category name.
+|liveStreamBrief.language |String |false |Live stream language.
 |liveStreamBrief.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
 |liveStreamBrief.attachments |Array[Object] |true |Live Stream attachments.
 |liveStreamBrief.attachments[].title |string |false |Title of the attachment.
@@ -3223,6 +3276,7 @@ Content-Type: application/json;charset=UTF-8
         "program": 22,
         "programName": "Kids' Acitivities",
         "association": "Greater Wichita YMCA",
+        "language": "English",
         "restream": true,
         "originalLivestream": 123
     },
@@ -3301,6 +3355,7 @@ featured videos, recent videos, collections
 | featuredVideos.items[].program |Integer |false |Video Category ID.
 | featuredVideos.items[].programName |String |false |Video Category name.
 | featuredVideos.items[].releaseDate |Integer |false |Video release timestamp.
+| featuredVideos.items[].language |String |false |Video language.
 | featuredVideos.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
 | featuredVideos.items[].attachments |Array[Object] |true |Video attachments.
 | featuredVideos.items[].attachments[].title |string |false |Title of the attachment.
@@ -3318,6 +3373,7 @@ featured videos, recent videos, collections
 | newReleases.items[].program |Integer |false |Video Category ID.
 | newReleases.items[].programName |String |false |Video Category name.
 | newReleases.items[].releaseDate |Integer |false |Video release timestamp.
+| newReleases.items[].language |String |false |Video language.
 | newReleases.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
 | newReleases.items[].attachments |Array[Object] |true |Video attachments.
 | newReleases.items[].attachments[].title |string |false |Title of the attachment.
@@ -3349,6 +3405,7 @@ featured videos, recent videos, collections
 | collections[].videos.items[].program |Integer |false |Video Category ID.
 | collections[].videos.items[].programName |String |false |Video Category name.
 | collections[].videos.items[].releaseDate |Integer |false |Video release timestamp.
+| collections[].videos.items[].language |String |false |Video language.
 | collections[].weight |Integer |false |The collection weight (defines the order).
 |===
 
@@ -3429,7 +3486,8 @@ Content-Type: application/json;charset=UTF-8
         "location": "Wichita",
         "program": 44440,
         "programName": "Kid's Acitivities",
-        "releaseDate": 1612886400
+        "releaseDate": 1612886400,
+        "language": "English"
       }
     ],
     "summary": {
@@ -3452,7 +3510,8 @@ Content-Type: application/json;charset=UTF-8
         "location": "Wichita",
         "program": 44440,
         "programName": "Kid's Acitivities",
-        "releaseDate": 1612886400
+        "releaseDate": 1612886400,
+        "language": "English"
       },
       {
         "id": "888",
@@ -3466,7 +3525,8 @@ Content-Type: application/json;charset=UTF-8
         "location": "Wichita",
         "program": 44440,
         "programName": "Kid's Acitivities",
-        "releaseDate": 1612886400
+        "releaseDate": 1612886400,
+        "language": "English"
       }
     ],
     "summary": {
@@ -3500,6 +3560,7 @@ Content-Type: application/json;charset=UTF-8
             "equipment": "None",
             "attachments": [],
             "releaseDate": 1590702428,
+            "language": "English",
             "location": "Greater Wichita YMCA"
           },
           {
@@ -3521,6 +3582,7 @@ Content-Type: application/json;charset=UTF-8
             "equipment": "",
             "attachments": [],
             "releaseDate": 1631552287,
+            "language": "English",
             "location": "Capital District"
           }
         ]
@@ -3970,4 +4032,3 @@ Content-Type: application/json;charset=UTF-8
 
 [[footer]]
 [[footer-text]]
-Last updated 2020-02-03 13:55:00 +0200
