@@ -23,6 +23,16 @@ Table of Contents
 *** link:#_response_fields_4[Response fields]
 *** link:#_example_4[Example]
 
+link:#_proxy_endpoints[Proxy API Endpoints]
+
+* link:#resources_gp_proxy_endpoints[General Purpose proxy endpoints]
+** link:#_request_headers_gp_proxy_endpoints[Request headers]
+** link:#_path_parameters_gp_proxy_endpoints[Path parameters]
+** link:#_response_fields_gp_proxy_endpoints[Response fields]
+** link:#_example_request_gp_proxy_endpoints[Example request]
+** link:#_example_response_gp_proxy_endpoints[Example response]
+
+
 link:#_assoc_info[Association Info]
 
 * link:#resources-assoc-info[Association Info]
@@ -354,6 +364,68 @@ Content-Type: application/json;charset=UTF-8
 
 {"errors":{"param":"apiKey param is required."}}
 ----
+
+[[_proxy_endpoints]]
+== link:#_proxy_endpoints[Proxy API Endpoints]
+
+The purpose of Proxy API endpoints is to provide an alias to other existing API endpoints (target endpoints).
+
+The aliases are controlled in the CMS: new can be added and the existing ones can be updated or removed.
+
+Proxy endpoints are mapped to URL that can include query parameters.
+
+Due to their nature, proxy endpoints inherit specification of headers and query parameters from the endpoints they are pointed to.
+
+Although query parameters are inherited, they are not mandatory if the URL an endpoint is mapped to specifies the value of such parameter. Generally speaking, all the query parameters that are required in the target endpoint must be specified either in the proxy endpoint URL or in the mapping (in the CMS settings) or both.
+
+If both proxy and target endpoint URLs contain the same query parameter, the value from the proxy endpoint URL is used.
+
+If the `provider` path parameter is presented it is always passed to the target endpoint.
+
+[[resources_gp_proxy_endpoints]]
+=== link:#resources_gp_proxy_endpoints[General Purpose proxy endpoints]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/proxy/{endpoint_name}`
+
+
+[[_request_headers_gp_proxy_endpoints]]
+==== link:#_request_headers_gp_proxy_endpoints[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|authorization |API key for authentication
+|===
+
+[[_path_parameters_gp_proxy_endpoints]]
+==== link:#_path_parameters_gp_proxy_endpoints[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_response_fields_gp_proxy_endpoints]]
+==== link:#_response_fields_gp_proxy_endpoints[Response fields]
+
+Depends on the Mapping set in the CMS.
+
+[[_example_request_gp_proxy_endpoints]]
+==== link:#_example_request_gp_proxy_endpoints[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita/proxy/test' -i -X GET \
+    -H 'Accept: application/json' \
+    -H 'Authorization: apiKey XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXX'
+----
+
+[[_example_response_gp_proxy_endpoints]]
+==== link:#_example_response_gp_proxy_endpoints[Example response]
+
+Depends on the Mapping set in the CMS.
 
 [[_assoc_info]]
 == link:#_assoc_info[Info]
