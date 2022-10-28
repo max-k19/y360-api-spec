@@ -543,7 +543,7 @@ Content-Type: application/json;charset=UTF-8
 
 `GET /api/virtual-classes/v3.0/content-providers/{provider}/categories`
 
-This operation extracts top-level catgories. It returns only brief information about categories.
+This operation extracts top-level catgories. It returns only brief information about categories. Does not return categories marked as hidden until explicitly requested.
 
 [NOTE]
 ====
@@ -576,6 +576,7 @@ The "New Releases" and "Around the Y" categories are excluded.
 |===
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |true |Exerciser Unique ID.
+|hidden |Integer |true |Non-zero value to not exclude hidden categories.
 |===
 
 [[_request_fields_13]]
@@ -597,6 +598,7 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |items[].id |String |false |Unique ID of the Category.
+|items[].hidden |Boolean |false |Indicates whether the Category is hidden or not.
 |items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |items[].videoCount |Integer |false |Number of videos.
 |items[].thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
@@ -636,6 +638,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "items" : [ {
     "id" : "44440",
+    "hidden": false,
     "parent_program_id": "44439",
     "name" : "Martial Arts",
     "videoCount" : 0,
@@ -653,6 +656,7 @@ Content-Type: application/json;charset=UTF-8
   },
   {
     "id" : "44441",
+    "hidden": false,
     "parent_program_id": "44439",
     "name" : "Yoga",
     "videoCount" : 0,
@@ -681,7 +685,7 @@ Content-Type: application/json;charset=UTF-8
 
 `GET /api/virtual-classes/v3.0/content-providers/{provider}/categories/{categoryId}/sub-categories`
 
-This operation extracts sub-categories of a category. It returns only brief information about categories.
+This operation extracts sub-categories of a category. It returns only brief information about categories. Does not include hidden categories until explicitly requested.
 
 [[_request_headers_14]]
 ==== link:#_request_headers_14[Request headers]
@@ -713,6 +717,7 @@ This operation extracts sub-categories of a category. It returns only brief info
 |page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
 |limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
 |recursive |Integer |true |1 to retrive the whole hierarchy tree branch. If set, the `page` and `limit` parameters are ignored.
+|hidden |Integer |true |Non-zero value to not exclude hidden categories.
 |===
 
 [[_response_fields_14]]
@@ -723,6 +728,7 @@ This operation extracts sub-categories of a category. It returns only brief info
 |Path |Type |Optional |Description
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Sub-category (e.g. 'Judo', 'Taekwondo').
+|items[].hidden |Boolean |false |Indicates whether the Category is hidden or not.
 |items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |items[].id |String |false |Unique ID of the Sub-category.
 |items[].videoCount |Integer |false |An estimated number of videos in category (might not be precise).
@@ -769,6 +775,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "items" : [ {
     "id" : "44450",
+    "hidden": false,
     "parent_program_id": "44439",
     "name" : "Judo",
     "videoCount" : 10,
@@ -786,6 +793,7 @@ Content-Type: application/json;charset=UTF-8
   },
   {
     "id" : "44451",
+    "hidden": false,
     "parent_program_id": "44439",
     "name" : "Taekwondo",
     "videoCount" : 12,
@@ -830,6 +838,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "items": [ {
     "id": "44450",
+    "hidden": false,
     "parent_program_id": "44439",
     "name": "Judo",
     "videoCount": 10,
@@ -847,6 +856,7 @@ Content-Type: application/json;charset=UTF-8
     "subCategories": [
       {
         "id": "44460",
+        "hidden": false,
         "parent_program_id": "44450",
         "name": "Judo for Beginners",
         "videoCount": 6,
@@ -865,6 +875,7 @@ Content-Type: application/json;charset=UTF-8
       },
       {
         "id": "44461",
+        "hidden": false,
         "parent_program_id": "44450",
         "name": "Advanced Judo",
         "videoCount": 4,
@@ -885,6 +896,7 @@ Content-Type: application/json;charset=UTF-8
   },
   {
     "id" : "44451",
+    "hidden": false,
     "parent_program_id": "44439",
     "name" : "Taekwondo",
     "videoCount" : 12,
@@ -915,7 +927,7 @@ Content-Type: application/json;charset=UTF-8
 
 `GET /api/virtual-classes/v3.0/content-providers/{provider}/programs`
 
-This operation searches for Categories. It returns only brief information about Categories.
+This operation searches for Categories. It returns only brief information about Categories. Does not include hidden categories until explicitly requested.
 
 [NOTE]
 ====
@@ -949,6 +961,7 @@ The "New Releases" and "Around the Y" categories are excluded.
 |Parameter |Type |Optional |Description
 |exerciserUuid |String |true |Exerciser Unique ID.
 |searchString |String |true |The query to search.
+|hidden |Integer |true |Non-zero value to not exclude hidden categories.
 |===
 
 [[_request_fields_3]]
@@ -970,6 +983,7 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items |Array[Object] |false |Actual items.
 |items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |items[].id |String |false |Unique ID of the Category.
+|items[].hidden |Boolean |false |Indicates whether the category is hidden or not.
 |items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |items[].videoCount |Integer |false |Number of videos.
 |items[].thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
@@ -1009,6 +1023,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "items" : [ {
     "id" : "44440",
+    "hidden": false,
     "parent_program_id": "44439",
     "name" : "BODYSTEP",
     "videoCount" : 10,
@@ -1085,6 +1100,7 @@ No request body.
 |brief |Object |false |Brief details of the program.
 |brief.name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
 |brief.id |String |false |Unique ID of the Category.
+|brief.hidden |Boolean |false |Indicates whether the Category is hidden or not.
 |brief.parent_program_id |String or null |false |Unique ID of the parent Category or null.
 |brief.videoCount |Integer |false |Number of videos.
 |brief.thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
@@ -1123,6 +1139,7 @@ Content-Type: application/json;charset=UTF-8
 {
   "brief" : {
     "id" : "44440",
+    "hidden": false,
     "parent_program_id": "44439",
     "name" : "BODYSTEP",
     "videoCount" : 10,
