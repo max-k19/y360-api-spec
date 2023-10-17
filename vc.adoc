@@ -215,6 +215,30 @@ link:#instructor_api[Instructor API endpoints]
 ** link:#_example_request_instructor_details_api[Example request]
 ** link:#_example_response_instructor_details_api[Example response]
 
+link:#worlds_api[Worlds API endpoints]
+
+* link:#worlds_list_api[List Worlds]
+** link:#_request_headers_worlds_list_api[Request headers]
+** link:#_path_parameters_worlds_list_api[Path parameters]
+** link:#_query_parameters_worlds_list_api[Query parameters]
+** link:#_response_fields_worlds_list_api[Response fields]
+** link:#_example_request_worlds_list_api[Example request]
+** link:#_example_response_worlds_list_api[Example response]
+
+* link:#worlds_details_api[Fetch Worlds Details]
+** link:#_request_headers_worlds_details_api[Request headers]
+** link:#_path_parameters_worlds_details_api[Path parameters]
+** link:#_response_fields_worlds_details_api[Response fields]
+** link:#_example_request_worlds_details_api[Example request]
+** link:#_example_response_worlds_details_api[Example response]
+
+* link:#worlds_videos_api[Fetch Worlds Videos]
+** link:#_request_headers_worlds_videos_api[Request headers]
+** link:#_path_parameters_worlds_videos_api[Path parameters]
+** link:#_response_fields_worlds_videos_api[Response fields]
+** link:#_example_request_worlds_videos_api[Example request]
+** link:#_example_response_worlds_videos_api[Example response]
+
 link:#widgets_api[Widgets API Guide]
 
 * link:#app_settings[Fetch App Settings]
@@ -3763,6 +3787,448 @@ Content-Type: application/json;charset=UTF-8
 
 ----
 
+[[worlds_api]]
+== link:#worlds_api[Worlds API endpoints]
+
+[[worlds_list]]
+=== link:#worlds_list_api[List Worlds]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/worlds`
+
+This endpoint lists available worlds
+
+[[_request_headers_worlds_list_api]]
+==== link:#_request_headers_worlds_list_api[Request Headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |API key for authentication
+|===
+
+[[_path_parameters_worlds_list_api]]
+==== link:#_path_parameters_worlds_list_api[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_query_parameters_worlds_list_api]]
+==== link:#_query_parameters_worlds_list_api[Query parameters]
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|page |Integer |true |Page you want to retrieve, 0 indexed and defaults to 0.
+|limit |Integer |true |Size of the page you want to retrieve, defaults to 20.
+|===
+
+[[_response_fields_worlds_list_api]]
+==== link:#_response_fields_worlds_list_api[Response fields]
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|id |Integer |false |Unique ID of the World.
+|name |String |false |Name of the World. Localized if the requesting organization localized it.
+|slug |String |false |World's slug.
+|===
+
+[[_example_request_worlds_list_api]]
+==== link:#_example_request_worlds_list_api[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita/worlds' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd1'
+----
+
+[[_example_response_worlds_list_api]]
+==== link:#_example_response_worlds_list_api[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+{
+  "items": [
+    {
+      "id": 13864,
+      "name": "Test world (Greater Wichita YMCA) test",
+      "slug": "test"
+    },
+    {
+      "id": 13865,
+      "name": "Water Fitness",
+      "slug": "water-fitness"
+    },
+    {
+      "id": 13866,
+      "name": "Yoga fusion",
+      "slug": "yoga-fusion"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "page": 0,
+    "limit": 20
+  }
+}
+----
+
+[[worlds_details_api]]
+=== link:#worlds_details_api[Fetch World's Details]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/worlds/{worldId}`
+
+This endpoint lists available worlds
+
+[[_request_headers_worlds_details_api]]
+==== link:#_request_headers_worlds_details_api[Request Headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |API key for authentication
+|===
+
+[[_path_parameters_worlds_details_api]]
+==== link:#_path_parameters_worlds_details_api[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|worldId |Integer or String |false |Unique ID of the World or its slug.
+|===
+
+[[_response_fields_worlds_details_api]]
+==== link:#_response_fields_worlds_details_api[Response fields]
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|id |Integer |false |Unique ID of the World.
+|slug |String |false |World's slug.
+|title |String |false |Name of the World. Localized if the requesting organization localized it.
+|subtitle |String |true |World's subtitle or short description.
+|background |String |false |World's background image URL.
+|thumbnail |String |true |World's thumbnail image URL.
+|sections |Object |false |Sections of the World.
+|sections.spotlights |Object |true |The Spotlights section.
+|sections.spotlights.title |String |false |The Spotlights section title.
+|sections.spotlights.subtitle |String |true |The Spotlights section subtitle.
+|sections.spotlights.items |Array[Object] |false |The Spotlights section items.
+|sections.spotlights.items[].title |Array |false |The Spotlights section item's title.
+|sections.spotlights.items[].subtitle |Array |true |The Spotlights section item's subtitle.
+|sections.spotlights.items[].image |String |true |The Spotlights section item's image URL.
+|sections.spotlights.items[].video |Object |true |The Spotlights section item's video. A full video object. Same structure as the response to link:#_response_fields_11[Fetch Video endpoint]
+|sections.featuredVideo |Object |true |The featured/introductory video section.
+|sections.featuredVideo.title |String |false |The featured/introductory video section title.
+|sections.featuredVideo.subtitle |String |true |The featured/introductory video section subtitle.
+|sections.featuredVideo.video |Object |false |The featured/introductory video object. See TODO
+|sections.videos |Object |true |World's localized videos if the requesting organization localized it. Not in MVP. Same structure as `sections.nationalVideos`
+|sections.nationalVideos |Object |false |The National videos section.
+|sections.nationalVideos.title |String |false |The National videos section title.
+|sections.nationalVideos.subtitle |String |true |The National videos section subtitle.
+|sections.nationalVideos.items |Array[Object] |false |A subset of National videos to show in the section. See TODO.
+|sections.trainers |Object |true |The "Meet Our Trainers" section.
+|sections.trainers.title |String |false |The "Meet Our Trainers" section title.
+|sections.trainers.subtitle |String |true |The "Meet Our Trainers" section subtitle.
+|sections.trainers.items |Array[Object] |false |The "Meet Our Trainers" section instructors tiles.
+|sections.trainers.items[].title |String |false |The instructor tile title.
+|sections.trainers.items[].subtitle |String |true |he instructor tile subtitle.
+|sections.trainers.items[].image |String |false |he instructor tile image URL.
+|sections.links |Object |true |The "Registration & Links" section.
+|sections.links.title |String |false |The "Registration & Links" section title.
+|sections.links.subtitle |String |false |The "Registration & Links" section subtitle.
+|sections.links.items |Array[Object] |false |The "Registration & Links" section links.
+|sections.links.items[].title |String |false |The link title.
+|sections.links.items[].url |String |false |The link URL.
+|sections.social |Object |true |The social media feeds section.
+|sections.social.title |String |false |The social media feeds section title.
+|sections.social.subtitle |String |true |The social media feeds section subtitle.
+|sections.social.items |Array[Object] |false |The social media feeds.
+|sections.social.items[].title |Array[Object] |false |The feed name.
+|sections.social.items[].url |Array[Object] |false |The feed URL.
+|sections.social.items[].hashtags |Array[String] |false |The feed's hashtags to be used as filters.
+|===
+
+[[_example_request_worlds_details_api]]
+==== link:#_example_request_worlds_details_api[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita/worlds/test' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd1'
+----
+
+[[_example_response_worlds_details_api]]
+==== link:#_example_response_worlds_details_api[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+{
+    "id": 13864,
+    "slug": "test",
+    "title": "Test world (Greater Wichita YMCA) test",
+    "subtitle": "Test world Subtitle (Greater Wichita YMCA)",
+    "background": "http://worlds.y360cms.demo.fivejars.com/sites/default/files/2021-02/YMCA360_Logo_White.jpg",
+    "thumbnail": "",
+    "sections": {
+        "national_videos": {
+            "title": "National videos ",
+            "subtitle": "National videos subtitle",
+            "items": []
+        },
+        "featuredVideo": {
+            "title": "Introductory video (Greater Wichita YMCA)",
+            "subtitle": "Introductory video subtitle (Greater Wichita YMCA)",
+            "video": {
+                "videoBrief": {
+                    "id": "616",
+                    "name": "Intro to Gymnastics at the Y",
+                    "thumbnail": "http://embed.wistia.com/deliveries/517e8ebd257d448be5fe6c3bc795b1250e638ecb.bin",
+                    "duration": 171,
+                    "customInfo": [],
+                    "instructor": "Danni Hybsha",
+                    "instructorId": "558",
+                    "instructors": [
+                        {
+                            "name": "Danni Hybsha",
+                            "id": "558"
+                        }
+                    ],
+                    "level": "All Levels",
+                    "category": 216,
+                    "program": 216,
+                    "programName": "Gymnastics & Cheer",
+                    "description": "Beginner youth gymnastics skills.",
+                    "equipment": "",
+                    "attachments": [],
+                    "language": "English",
+                    "releaseDate": 1620008939,
+                    "workoutModality": "",
+                    "hardwareManufacturer": "",
+                    "location": "Greater Wichita YMCA"
+                },
+                "videoDetails": {
+                    "descriptionHtml": "<p>Beginner youth gymnastics skills.</p>\n",
+                    "description": "Beginner youth gymnastics skills.",
+                    "equipment": "",
+                    "hashId": "o7j6rt5w2g",
+                    "videoFiles": [
+                        {
+                            "mimeType": "video/mp4",
+                            "format": "mp4",
+                            "quality": "origin",
+                            "sizeInBytes": 216500050,
+                            "sourceUrl": "http://embed.wistia.com/deliveries/5327ee7c933db7d096aacd2f590c9d87.bin"
+                        },
+                        {
+                            "mimeType": "video/mp4",
+                            "format": "mp4",
+                            "quality": "360p",
+                            "sizeInBytes": 11549822,
+                            "sourceUrl": "http://embed.wistia.com/deliveries/503b03dbfc3c4014c268a5f19aad3bcbd1b956fa.bin"
+                        },
+                        {
+                            "mimeType": "video/mp4",
+                            "format": "mp4",
+                            "quality": "224p",
+                            "sizeInBytes": 6776857,
+                            "sourceUrl": "http://embed.wistia.com/deliveries/7e9522a6950812805be51b68fff4b1913399bde8.bin"
+                        },
+                        {
+                            "mimeType": "video/mp4",
+                            "format": "mp4",
+                            "quality": "540p",
+                            "sizeInBytes": 18782873,
+                            "sourceUrl": "http://embed.wistia.com/deliveries/ac7b3e228eee08d5bdc4830d69b6ab9511d2b0ed.bin"
+                        },
+                        {
+                            "mimeType": "video/mp4",
+                            "format": "mp4",
+                            "quality": "720p",
+                            "sizeInBytes": 28183288,
+                            "sourceUrl": "http://embed.wistia.com/deliveries/6889928b79c779876de35b3b2a1b1a7321fdd282.bin"
+                        },
+                        {
+                            "mimeType": "video/mp4",
+                            "format": "mp4",
+                            "quality": "1080p",
+                            "sizeInBytes": 58542558,
+                            "sourceUrl": "http://embed.wistia.com/deliveries/4c0dac16c4b00eed0c8bab9133e8d1f72645be39.bin"
+                        },
+                        {
+                            "mimeType": "application/x-mpegURL",
+                            "format": "m3u8",
+                            "sourceUrl": "http://fast.wistia.net/embed/medias/o7j6rt5w2g.m3u8",
+                            "quality": "adaptive",
+                            "method": "hls"
+                        }
+                    ],
+                    "subtitles": []
+                }
+            }
+        }
+    }
+}
+----
+
+
+[[worlds_videos_api]]
+=== link:#worlds_videos_api[Fetch World's Videos]
+
+`GET /api/virtual-classes/v3.0/content-providers/{provider}/worlds/{worldId}/videos`
+
+This endpoint lists available worlds
+
+[[_request_headers_worlds_videos_api]]
+==== link:#_request_headers_worlds_videos_api[Request Headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |API key for authentication
+|===
+
+[[_path_parameters_worlds_videos_api]]
+==== link:#_path_parameters_worlds_videos_api[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|worldId |Integer or String |false |Unique ID of the World or its slug.
+|===
+
+[[_response_fields_worlds_videos_api]]
+==== link:#_response_fields_worlds_videos_api[Response fields]
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|national |Array[Object] |false |National video groups of the World.
+|national[].name |String |false |Name of the group.
+|national[].skillsheet |String |true |The URL of the group's skillsheet.
+|national[].videos |Array[Object] |false |Collection of video briefs.
+|national[].videos.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|national[].videos.items[].id |String |false |Unique ID of the Video.
+|national[].videos.items[].duration |Integer |false |Video duration in seconds.
+|national[].videos.items[].episode |Object |true |Video Episode.
+|national[].videos.items[].episode.number |Integer |true |Number of episode in season.
+|national[].videos.items[].episode.season |Integer |true |Number of season.
+|national[].videos.items[].thumbnail |String |false |Thumbnail of the Video.
+|national[].videos.items[].customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|national[].videos.items[].attachments |Array[Object] |true |Video attachments.
+|national[].videos.items[].attachments[].title |string |false |Title of the attachment.
+|national[].videos.items[].attachments[].url |string |false |URL of the attachment.
+|national[].videos.items[].instructor |String |true |Instructor name.
+|national[].videos.items[].instructorId |String |true |Instructor ID.
+|national[].videos.items[].instructors[] |Array[Object] |false |Instructor objects.
+|national[].videos.items[].instructors[].name |String |true |Instructor name.
+|national[].videos.items[].instructors[].id |String |true |Instructor ID.
+|national[].videos.items[].level |String |true |Workout level.
+|national[].videos.items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|national[].videos.items[].category |Integer |false |Video Category ID (deprecated).
+|national[].videos.items[].program |Integer |false |Video Category ID.
+|national[].videos.items[].programName |String |false |Video Category name.
+|national[].videos.items[].releaseDate |Integer |false |Video release timestamp.
+|national[].videos.items[].workoutModality |String |false |Workout modality.
+|national[].videos.items[].hardwareManufacturer |String |true |Hardware manufacturer.
+|national[].videos.items[].language |String |false |Video language.
+|videos |Array[Object] |false |Localized video groups of the World. Same structure as for National videos. May be empty.
+|===
+
+[[_example_request_worlds_videos_api]]
+==== link:#_example_request_worlds_videos_api[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v3.0/content-providers/wichita/worlds/test/videos' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd1'
+----
+
+[[_example_response_worlds_videos_api]]
+==== link:#_example_response_worlds_videos_api[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+{
+    "national": [
+        {
+            "name": "Beginners",
+            "videos": [
+                {
+                    "id": "510",
+                    "name": "Beginner Gymnastics Class",
+                    "thumbnail": "http://embed.wistia.com/deliveries/195aef6835efd70a99d718c4241dbeff.bin",
+                    "duration": 855,
+                    "customInfo": [],
+                    "instructor": "Barbie Castor",
+                    "instructorId": "494",
+                    "instructors": [
+                        {
+                            "name": "Barbie Castor",
+                            "id": "494"
+                        }
+                    ],
+                    "level": "Beginner",
+                    "category": 216,
+                    "program": 216,
+                    "programName": "Gymnastics & Cheer",
+                    "description": "Beginner youth gymnastics skills.",
+                    "equipment": "None",
+                    "attachments": [],
+                    "language": "English",
+                    "releaseDate": 1616403603,
+                    "workoutModality": "",
+                    "hardwareManufacturer": "",
+                    "location": "Greater Wichita YMCA"
+                },
+                {
+                    "id": "720",
+                    "name": "Beginner Gymnastics",
+                    "thumbnail": "http://embed.wistia.com/deliveries/6b93a36746df77d39cd54b53b058508c.bin",
+                    "duration": 285,
+                    "customInfo": [],
+                    "instructor": "Brittany LaMere",
+                    "instructorId": "578",
+                    "instructors": [
+                        {
+                            "name": "Brittany LaMere",
+                            "id": "578"
+                        },
+                        {
+                            "name": "Hannah Best",
+                            "id": "579"
+                        }
+                    ],
+                    "level": "Beginner",
+                    "category": 216,
+                    "program": 216,
+                    "programName": "Gymnastics & Cheer",
+                    "description": "Teaching beginner tumbling skills - forward roll, handstand and cartwheel",
+                    "equipment": "",
+                    "attachments": [],
+                    "language": "English",
+                    "releaseDate": 1620163368,
+                    "workoutModality": "",
+                    "hardwareManufacturer": "",
+                    "location": "Crossroads YMCA"
+                }
+            ]
+        }
+    ],
+    "videos": []
+}
+----
 
 [[widgets_api]]
 == link:#widgets_api[Widgets API Guide]
