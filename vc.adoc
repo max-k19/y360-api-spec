@@ -206,6 +206,13 @@ link:#combined_api[Combined API endpoints]
 ** link:#_example_request_frontpage_combined_api[Example request]
 ** link:#_example_response_frontpage_combined_api[Example response]
 
+* link:#watchscreen_combined_api[Watchscreen]
+** link:#_request_headers_watchscreen_combined_api[Request headers]
+** link:#_path_parameters_watchscreen_combined_api[Path parameters]
+** link:#_response_fields_watchscreen_combined_api[Response fields]
+** link:#_example_request_watchscreen_combined_api[Example request]
+** link:#_example_response_watchscreen_combined_api[Example response]
+
 link:#instructor_api[Instructor API endpoints]
 
 * link:#instructor_details_api[Instructor Details]
@@ -268,6 +275,14 @@ link:#group_exp[GroupXClass API Guide]
 ** link:#_response_fields_group_exp[Response fields]
 ** link:#_example_request_group_exp[Example request]
 ** link:#_example_response_group_exp[Example response]
+
+link:#_promo[Promo API]
+
+* link:#resources-promo[Promo]
+** link:#_request_headers_promo[Request headers]
+** link:#_response_fields_promo[Response fields]
+** link:#_example_request_promo[Example request]
+** link:#_example_response_promo[Example response]
 
 [[content]]
 [[resources-programs]]
@@ -3780,6 +3795,344 @@ Content-Type: application/json;charset=UTF-8
   ]
 }
 ----
+[[watchscreen_combined_api]]
+=== link:#watchscreen_combined_api[Watchscreen]
+
+`GET /settings/v4.0/content-providers/{provider}/combined/watchscreen`
+
+This operation returns data needed to build the ymca360.org watchscreen:
+
+highlighted videos, new releases, playlists, channels
+
+[[_request_headers_watchscreen_combined_api]]
+==== link:#_request_headers_watchscreen_combined_api[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |Api key for authentication
+|===
+
+[[_path_parameters_watchscreen_combined_api]]
+==== link:#_path_parameters_watchscreen_combined_api[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_response_fields_watchscreen_combined_api]]
+==== link:#_response_fields_watchscreen_combined_api[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+| Path | Type | Optional | Description
+| highlightedVideos |Object |false |Highlighted videos listing.
+| highlightedVideos.items |Array[Object] |false |A list of highlighted videos.
+| highlightedVideos.items[].image |String |false |Image URL.
+| highlightedVideos.items[].imageWithButton |String |true |URL of image with button.
+| highlightedVideos.items[].mobileImage |String |true |URL of mobile optimized image.
+| highlightedVideos.items[].video |Object |false |Highlighted video object.
+| highlightedVideos.items[].video.id |String |false |Unique ID of the Video.
+| highlightedVideos.items[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| highlightedVideos.items[].video.duration |Integer |false |Video duration in seconds.
+| highlightedVideos.items[].video.thumbnail |String |false |Thumbnail of the Video.
+| highlightedVideos.items[].video.customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| highlightedVideos.items[].video.attachments |Array[Object] |true |Video attachments.
+| highlightedVideos.items[].video.attachments[].title |string |false |Title of the attachment.
+| highlightedVideos.items[].video.attachments[].url |string |false |URL of the attachment.
+| highlightedVideos.items[].video.premium |Boolean |false |Whether the video belongs to Premium category.
+| highlightedVideos.items[].video.instructor |String |true |Instructor name.
+| highlightedVideos.items[].video.level |String |true |Workout level.
+| highlightedVideos.items[].video.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+| highlightedVideos.items[].video.program |Integer |false |Video Category ID.
+| highlightedVideos.items[].video.programName |String |false |Video Category name.
+| highlightedVideos.items[].video.releaseDate |Integer |false |Video release timestamp.
+| highlightedVideos.items[].video.language |String |false |Video language.
+| channels | Object | false | Top-level categories listing.
+| channels.items |Array[Object] |false |Actual category items.
+| channels.items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
+| channels.items[].id |String |false |Unique ID of the Category.
+| channels.items[].hidden |Boolean |false |Indicates whether the Category is hidden or not.
+| channels.items[].parent_program_id |String or null |false |Unique ID of the parent Category or null.
+| channels.items[].videoCount |Integer |false |Number of videos.
+| channels.items[].thumbnail |String |false |Thumbnail of the Category (scaled and cropped to 1280x700).
+| channels.items[].thumbnails |Object |false |Thumbnails of the Category.
+| channels.items[].thumbnails.original |String |false |URL to the category image source or empty string.
+| channels.items[].thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
+| channels.items[].thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
+| channels.items[].thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
+| channels.items[].thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
+| channels.items[].thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
+| channels.items[].thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
+| channels.items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
+| channels.items[].premium |Boolean |false |Indicates whether the Category is premium or not.
+| channels.items[].circle_icon |String |false |URL to the category circle image source or empty string.
+| channels.summary |Object |false | Top-level categories page summary.
+| channels.summary.limit |Integer |false |Requested size of the page.
+| channels.summary.page |Integer |false |Page number.
+| channels.summary.total |Integer |false |Total count of items.
+| newReleases | Object | false | Listing of new video releases.
+| newReleases.items |Array[Object] |false |A page of the recent videos listing.
+| newReleases.items[].id |String |false |Unique ID of the Video.
+| newReleases.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| newReleases.items[].duration |Integer |false |Video duration in seconds.
+| newReleases.items[].thumbnail |String |false |Thumbnail of the Video.
+| newReleases.items[].program |Integer |false |Video Category ID.
+| newReleases.items[].programName |String |false |Video Category name.
+| newReleases.items[].releaseDate |Integer |false |Video release timestamp.
+| newReleases.items[].language |String |false |Video language.
+| newReleases.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| newReleases.items[].attachments |Array[Object] |true |Video attachments.
+| newReleases.items[].attachments[].title |string |false |Title of the attachment.
+| newReleases.items[].attachments[].url |string |false |URL of the attachment.
+| newReleases.summary |Object |false |Page summary.
+| newReleases.summary.limit |Integer |false |Requested size of the page.
+| newReleases.summary.page |Integer |false |Page number.
+| newReleases.summary.total |Integer |false |Total count of items.
+| collections[] | Array[Object] | false |Full Listing of collections.
+| collections[].id |String |false |Unique ID of the Collection.
+| collections[].name |String |false |Name of the Collection.
+| collections[].videos |Object |false |Collection videos.
+| collections[].videos.summary |Object |false |Summary for the collection videos.
+| collections[].videos.summary.limit |Integer |false |Size of the page. Always 20. Use the Collection details to retrieve more than first 20 videos.
+| collections[].videos.summary.page |Integer |false |Page number. Always 0.
+| collections[].videos.summary.total |Integer |false |Total number of included videos.
+| collections[].videos.items[] |Array[Object] |false |Video objects.
+| collections[].videos.items[].id |String |false |Unique ID of the Video.
+| collections[].videos.items[].name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| collections[].videos.items[].duration |Integer |false |Video duration in seconds.
+| collections[].videos.items[].thumbnail |String |false |Thumbnail of the Video.
+| collections[].videos.items[].customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| collections[].videos.items[].attachments |Array[Object] |true |Video attachments.
+| collections[].videos.items[].attachments[].title |string |false |Title of the attachment.
+| collections[].videos.items[].attachments[].url |string |false |URL of the attachment.
+| collections[].videos.items[].premium |Boolean |false |Whether the video belongs to Premium category.
+| collections[].videos.items[].instructor |String |true |Instructor name.
+| collections[].videos.items[].level |String |true |Workout level.
+| collections[].videos.items[].location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+| collections[].videos.items[].program |Integer |false |Video Category ID.
+| collections[].videos.items[].programName |String |false |Video Category name.
+| collections[].videos.items[].releaseDate |Integer |false |Video release timestamp.
+| collections[].videos.items[].language |String |false |Video language.
+| collections[].weight |Integer |false |The collection weight (defines the order).
+|===
+
+[[_example_request_watchscreen_combined_api]]
+==== link:#_example_request_watchscreen_combined_api[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/settings/v4.0/content-providers/wichita/combined/frontpage' -i -X GET \
+-H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_watchscreen_combined_api]]
+==== link:#_example_response_watchscreen_combined_api[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 2341
+Content-Type: application/json;charset=UTF-8
+
+{
+    "highlightedVideos": {
+      "items": [
+        {
+          "image": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
+          "imageWithButton": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
+          "mobileImage": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
+          "video": {
+            "id": "87",
+            "name": "KIDS YOGA WITH CORRI",
+            "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
+            "duration": 1366,
+            "customInfo": [],
+            "attachments": [],
+            "premium": false,
+            "instructor": "Corri Lewellen",
+            "instructorId": "12",
+            "instructors": [
+              {
+                "name": "Corri Lewellen",
+                "id": "12",
+              }
+            ],
+            "level": "BEGINNER",
+            "category": 22,
+            "program": 22,
+            "programName": "Yoga",
+            "location": "Wichita",
+            "language": "English",
+            "workoutModality": "Bike",
+            "hardwareManufacturer": "Matrix"
+          }
+        }
+      ]
+    },
+    "channels": {
+      "items" : [ {
+        "id" : "44440",
+        "hidden": false,
+        "parent_program_id": "44439",
+        "name" : "Martial Arts",
+        "videoCount" : 0,
+        "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
+        "thumbnails": {
+          "original": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
+          "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-03/kids-activities-opt.jpg?itok=rOhxuycg",
+          "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-03/kids-activities-opt.jpg?itok=fZCnCCld",
+          "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-03/kids-activities-opt.jpg?itok=nSKeOf8j",
+          "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-03/kids-activities-opt.jpg?itok=gjqYtuPV",
+          "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-03/kids-activities-opt.jpg?itok=9pZ4eVsv",
+          "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-03/kids-activities-opt.jpg?itok=fICPL8pT",
+          "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-03/kids-activities-opt.jpg?itok=a7DKhk7m"
+        },
+        "premium": false,
+        "circle_icon": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg"
+      },
+      {
+        "id" : "44441",
+        "hidden": false,
+        "parent_program_id": "44439",
+        "name" : "Yoga",
+        "videoCount" : 0,
+        "thumbnail" : "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-852a31c78802-c00044eb.jpg",
+        "thumbnails": {
+          "original": "https://y360cms.docksal/sites/default/files/2020-04/kids-activities-opt.jpg",
+          "1920x1080": "https://y360cms.docksal/sites/default/files/styles/1920x1080/public/2020-04/kids-activities-opt.jpg?itok=rOhxuycg",
+          "1280x720": "https://y360cms.docksal/sites/default/files/styles/1280x720/public/2020-04/kids-activities-opt.jpg?itok=fZCnCCld",
+          "640x360": "https://y360cms.docksal/sites/default/files/styles/640x360/public/2020-04/kids-activities-opt.jpg?itok=nSKeOf8j",
+          "1920w": "https://y360cms.docksal/sites/default/files/styles/1920w/public/2020-04/kids-activities-opt.jpg?itok=gjqYtuPV",
+          "1280w": "https://y360cms.docksal/sites/default/files/styles/1280w/public/2020-04/kids-activities-opt.jpg?itok=9pZ4eVsv",
+          "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
+          "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
+        },
+        "premium": false,
+        "circle_icon": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg"
+      }],
+      "summary" : {
+        "total" : 2,
+        "page" : 0,
+        "limit" : 50
+      }
+    },
+    "newReleases": {
+      "items": [
+        {
+          "id": "887",
+          "name": "KIDS YOGA WITH CORRI",
+          "duration": 3600,
+          "thumbnail": "https://cdn.ymca360.org/live-stream/1/thumb-small.jpg",
+          "customInfo": [],
+          "attachments": [],
+          "premium": false,
+          "instructor": "Corri Lewellen",
+          "level": "BEGINNER",
+          "location": "Wichita",
+          "program": 44440,
+          "programName": "Kid's Acitivities",
+          "releaseDate": 1612886400,
+          "language": "English"
+        },
+        {
+          "id": "888",
+          "name": "KIDS YOGA WITH LARRY",
+          "duration": 3600,
+          "thumbnail": "https://cdn.ymca360.org/live-stream/2/thumb-small.jpg",
+          "customInfo": [],
+          "attachments": [],
+          "premium": false,
+          "instructor": "Larry Johnson",
+          "level": "BEGINNER",
+          "location": "Wichita",
+          "program": 44440,
+          "programName": "Kid's Acitivities",
+          "releaseDate": 1612886400,
+          "language": "English"
+        }
+      ],
+      "summary": {
+        "total": 2,
+        "page": 0,
+        "limit": 20
+      }
+    },
+    "collections": [
+      {
+        "id": "997",
+        "name": "Collection A",
+        "videos": {
+          "summary": {
+            "total": 3,
+            "page": 0,
+            "limit": 20
+          },
+          "items": [
+            {
+              "id": "159",
+              "name": "8 Minute Abs",
+              "thumbnail": "http://embed.wistia.com/deliveries/f767eb45c5df4a0c3b7ccaedaf30bc69.bin",
+              "duration": 521,
+              "customInfo": [],
+              "premium": false,
+              "instructor": "Bret Michael",
+              "level": "Intermediate",
+              "program": 139,
+              "programName": "Core Conditioning",
+              "description": "This tough ab workout takes your through 8 exercises for a minute each.",
+              "equipment": "None",
+              "attachments": [],
+              "releaseDate": 1590702428,
+              "language": "English",
+              "location": "Greater Wichita YMCA"
+            },
+            {
+              "id": "1002",
+              "name": "Book Press",
+              "thumbnail": "http://embed.wistia.com/deliveries/a42a9aa349561de16749566930474e8a.bin",
+              "duration": 679,
+              "customInfo": [
+                {
+                  "key": "subtitle",
+                  "value": "Book bench press"
+                }
+              ],
+              "premium": false,
+              "instructor": "",
+              "level": "",
+              "program": 213,
+              "programName": "Literary Arts",
+              "description": "This tough ab workout takes your through 8 exercises for a minute each",
+              "equipment": "",
+              "attachments": [],
+              "releaseDate": 1631552287,
+              "language": "English",
+              "location": "Capital District"
+            }
+          ]
+        },
+        "weight": "-50"
+      },
+      {
+        "id": "1003",
+        "name": "Collection B",
+        "videos": {
+          "summary": {
+            "total": 0,
+            "page": 0,
+            "limit": 20
+          },
+          "items": []
+        },
+        "weight": "-49"
+      }
+    ],
+}
+----
 
 [[instructor_api]]
 == link:#instructor_api[Instructor API endpoints]
@@ -4653,7 +5006,7 @@ Content-Type: application/json;charset=UTF-8
 [[_promo]]
 == link:#_promo[Promo]
 
-[[resources-assoc-info]]
+[[resources-promo]]
 === link:#resources-promo[Promo]
 
 `GET /api/virtual-classes/v4.0/promo`
