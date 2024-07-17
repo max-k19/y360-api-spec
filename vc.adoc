@@ -3647,6 +3647,42 @@ Content-Type: application/json;charset=UTF-8
         "image": "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg",
         "url": ""
       }
+    ],
+    "highlightedVideos": [
+      {
+        "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2020-01/tild6465-3939-4633-b031-623836313966_tild3563-3434-4635-b.jpg",
+        "imageWithButton": "",
+        "mobileImage": "",
+        "video": {
+          "id": "81",
+          "name": "Cyclist's and Runner's Yoga",
+          "thumbnail": "http://embed.wistia.com/deliveries/3d0f5343cd73a4e6877f5a66e6e897b4.bin",
+          "duration": 1405,
+          "customInfo": [],
+          "premium": false,
+          "instructor": "Linda Myers",
+          "instructorId": "248",
+          "instructors": [
+            {
+              "name": "Linda Myers",
+              "id": "248"
+            }
+          ],
+          "level": "Beginner",
+          "category": 240,
+          "program": 240,
+          "programName": "Intermediate Yoga",
+          "description": "A yoga flow directed towards activating muscles and body parts that are important to running and cycling",
+          "equipment": "Blocks, Straps, Yoga Mat",
+          "attachments": [],
+          "language": "English",
+          "releaseDate": 1580237226,
+          "workoutModality": "",
+          "workoutModalities": [],
+          "hardwareManufacturer": "",
+          "location": "Greater Wichita YMCA"
+        }
+      }
     ]
   },
   "featuredVideos": {
@@ -3950,39 +3986,87 @@ Content-Length: 2341
 Content-Type: application/json;charset=UTF-8
 
 {
-    "highlightedVideos": {
-      "items": [
-        {
-          "image": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
-          "imageWithButton": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
-          "mobileImage": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg",
-          "video": {
-            "id": "87",
-            "name": "KIDS YOGA WITH CORRI",
-            "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
-            "duration": 1366,
-            "customInfo": [],
-            "attachments": [],
-            "premium": false,
-            "instructor": "Corri Lewellen",
-            "instructorId": "12",
-            "instructors": [
-              {
-                "name": "Corri Lewellen",
-                "id": "12",
-              }
-            ],
-            "level": "BEGINNER",
-            "category": 22,
-            "program": 22,
-            "programName": "Yoga",
-            "location": "Wichita",
-            "language": "English",
-            "workoutModality": "Bike",
-            "hardwareManufacturer": "Matrix"
-          }
-        }
-      ]
+    "association": {
+        "label": "Greater Wichita YMCA",
+        "timezone": "America/Chicago",
+        "subtitle": "A place where all of us belong.",
+        "images": [
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2020-12/Wichita%2010.png",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2021-01/Wichita%201.png",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2021-01/Wichita%205.png",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2021-01/Wichita%206.png",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2021-01/Wichita%202.png",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2021-01/Wichita%203.png"
+        ],
+        "billboardImages": [
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/YMCA360_Billboard_1760x531_StepClasses_Button_1.jpg",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/YMCA360_Cardio-Dance-Party_6-22-24_Billboard_1760x531_Final.jpg",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/Pickleball_YMCA360_Billboard_1760x531_Button.jpg",
+            "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/FAMFEST_YMCA360%20Billboard_South_6-8-24_1760x531_3.jpg"
+        ],
+        "descriptionHtml": "",
+        "billboards": [
+            {
+                "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/YMCA360_Billboard_1760x531_StepClasses_Button_1.jpg",
+                "imageWithButton": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/YMCA360_Billboard_1760x531_StepClasses_Button.jpg",
+                "mobileImage": "",
+                "url": "https://ymca360.org/categories/227/videos/11669"
+            },
+            {
+                "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/YMCA360_Cardio-Dance-Party_6-22-24_Billboard_1760x531_Final.jpg",
+                "imageWithButton": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/YMCA360_Cardio-Dance-Party_6-22-24_Billboard_1760x531_Final.jpg",
+                "mobileImage": "",
+                "url": "https://ymcawichita.org/cardiodanceparty"
+            },
+            {
+                "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/Pickleball_YMCA360_Billboard_1760x531_Button.jpg",
+                "imageWithButton": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/Pickleball_YMCA360_Billboard_1760x531_Button.jpg",
+                "mobileImage": "",
+                "url": "https://ymca360.org/collections/29276/videos/29482"
+            },
+            {
+                "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/FAMFEST_YMCA360%20Billboard_South_6-8-24_1760x531_3.jpg",
+                "imageWithButton": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2024-05/FAMFEST_YMCA360%20Billboard_South_6-8-24_1760x531_3.jpg",
+                "mobileImage": "",
+                "url": "https://ymcawichita.org/events/june-famfest"
+            }
+        ],
+        "highlightedVideos": [
+            {
+                "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2020-01/tild6465-3939-4633-b031-623836313966_tild3563-3434-4635-b.jpg",
+                "imageWithButton": "",
+                "mobileImage": "",
+                "video": {
+                    "id": "81",
+                    "name": "Cyclist's and Runner's Yoga",
+                    "thumbnail": "http://embed.wistia.com/deliveries/3d0f5343cd73a4e6877f5a66e6e897b4.bin",
+                    "duration": 1405,
+                    "customInfo": [],
+                    "premium": false,
+                    "instructor": "Linda Myers",
+                    "instructorId": "248",
+                    "instructors": [
+                        {
+                            "name": "Linda Myers",
+                            "id": "248"
+                        }
+                    ],
+                    "level": "Beginner",
+                    "category": 240,
+                    "program": 240,
+                    "programName": "Intermediate Yoga",
+                    "description": "A yoga flow directed towards activating muscles and body parts that are important to running and cycling",
+                    "equipment": "Blocks, Straps, Yoga Mat",
+                    "attachments": [],
+                    "language": "English",
+                    "releaseDate": 1580237226,
+                    "workoutModality": "",
+                    "workoutModalities": [],
+                    "hardwareManufacturer": "",
+                    "location": "Greater Wichita YMCA"
+                }
+            }
+        ]
     },
     "channels": {
       "items" : [ {
