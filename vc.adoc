@@ -3802,7 +3802,7 @@ Content-Type: application/json;charset=UTF-8
 
 This operation returns data needed to build the ymca360.org watchscreen:
 
-highlighted videos, new releases, playlists, channels
+association info (including highlighted videos), new releases, playlists, channels
 
 [[_request_headers_watchscreen_combined_api]]
 ==== link:#_request_headers_watchscreen_combined_api[Request headers]
@@ -3829,28 +3829,39 @@ highlighted videos, new releases, playlists, channels
 [width="100%",cols="25%,25%,25%,25%",options="header",]
 |===
 | Path | Type | Optional | Description
-| highlightedVideos |Object |false |Highlighted videos listing.
-| highlightedVideos.items |Array[Object] |false |A list of highlighted videos.
-| highlightedVideos.items[].image |String |false |Image URL.
-| highlightedVideos.items[].imageWithButton |String |true |URL of image with button.
-| highlightedVideos.items[].mobileImage |String |true |URL of mobile optimized image.
-| highlightedVideos.items[].video |Object |false |Highlighted video object.
-| highlightedVideos.items[].video.id |String |false |Unique ID of the Video.
-| highlightedVideos.items[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
-| highlightedVideos.items[].video.duration |Integer |false |Video duration in seconds.
-| highlightedVideos.items[].video.thumbnail |String |false |Thumbnail of the Video.
-| highlightedVideos.items[].video.customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
-| highlightedVideos.items[].video.attachments |Array[Object] |true |Video attachments.
-| highlightedVideos.items[].video.attachments[].title |string |false |Title of the attachment.
-| highlightedVideos.items[].video.attachments[].url |string |false |URL of the attachment.
-| highlightedVideos.items[].video.premium |Boolean |false |Indicates whether the video belongs to the premium category.
-| highlightedVideos.items[].video.instructor |String |true |Instructor name.
-| highlightedVideos.items[].video.level |String |true |Workout level.
-| highlightedVideos.items[].video.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
-| highlightedVideos.items[].video.program |Integer |false |Video Category ID.
-| highlightedVideos.items[].video.programName |String |false |Video Category name.
-| highlightedVideos.items[].video.releaseDate |Integer |false |Video release timestamp.
-| highlightedVideos.items[].video.language |String |false |Video language.
+| association |Object |false | Association info.
+| association.label |String |false |Association name.
+| association.timezone |String |false |Timezone of the Association.
+| association.subtitle |String |false |Short one-line description of the Association (plain text, might be empty).
+| association.description |String |true |Long description of the Association (plain text).
+| association.descriptionHtml |String |false |HTML markup for the description of the Association .
+| association.images |Array[String] |false |Array of legacy background image URLs. May be empty. Deprecated, do not use.
+| association.billboardImages |Array[String] |false |Array of new generation background (billboard) image URLs. May be empty. Deprecated, do not use.
+| association.billboards |Array[Object] |false |Array of background (billboard) objects. May be empty.
+| association.billboards[].image |String |false |Image URL.
+| association.billboards[].link |String |false |Link URL. May be empty.
+| association.highlightedVideos |Object |false |Highlighted videos listing.May be empty.
+| association.highlightedVideos.items |Array[Object] |false |A list of highlighted videos.
+| association.highlightedVideos.items[].image |String |false |Image URL.
+| association.highlightedVideos.items[].imageWithButton |String |true |URL of image with button.
+| association.highlightedVideos.items[].mobileImage |String |true |URL of mobile optimized image.
+| association.highlightedVideos.items[].video |Object |false |Highlighted video object.
+| association.highlightedVideos.items[].video.id |String |false |Unique ID of the Video.
+| association.highlightedVideos.items[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+| association.highlightedVideos.items[].video.duration |Integer |false |Video duration in seconds.
+| association.highlightedVideos.items[].video.thumbnail |String |false |Thumbnail of the Video.
+| association.highlightedVideos.items[].video.customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
+| association.highlightedVideos.items[].video.attachments |Array[Object] |true |Video attachments.
+| association.highlightedVideos.items[].video.attachments[].title |string |false |Title of the attachment.
+| association.highlightedVideos.items[].video.attachments[].url |string |false |URL of the attachment.
+| association.highlightedVideos.items[].video.premium |Boolean |false |Indicates whether the video belongs to the premium category.
+| association.highlightedVideos.items[].video.instructor |String |true |Instructor name.
+| association.highlightedVideos.items[].video.level |String |true |Workout level.
+| association.highlightedVideos.items[].video.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+| association.highlightedVideos.items[].video.program |Integer |false |Video Category ID.
+| association.highlightedVideos.items[].video.programName |String |false |Video Category name.
+| association.highlightedVideos.items[].video.releaseDate |Integer |false |Video release timestamp.
+| association.highlightedVideos.items[].video.language |String |false |Video language.
 | channels | Object | false | Top-level categories listing.
 | channels.items |Array[Object] |false |Actual category items.
 | channels.items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
