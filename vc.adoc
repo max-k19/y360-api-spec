@@ -5128,9 +5128,8 @@ This operation returns Promo sections data (label, images and description).
 |promoLink[].title |String |false |Title of CTA button.
 |promoLink[].url |String |true |URL of CTA button.
 |sections |Array[Object] |false |Array of promo sections(slides). May be empty.
-|sections[].image |String |false |Image URL.
-|sections[].imageWithButton |String |true |URL of image with button.
-|sections[].mobileImage |String |true |URL of mobile optimized image.
+|sections[].imageTV |String |false |Image URL.
+|sections[].imageMobile |String |true |URL of mobile optimized image.
 |sections[].title |String |false |The title of promo section.
 |sections[].description |String |false |The description of promo section.
 |===
@@ -5158,16 +5157,14 @@ Content-Type: application/json;charset=UTF-8
         {
             "title": "Slide 1",
             "description": "Slide description text",
-            "image": "http://y360cms.docksal.site/sites/default/files/2020-01/477A9289%20%281%29.jpg",
-            "imageWithButton": "",
-            "mobileImage": ""
+            "imageTV": "http://y360cms.docksal.site/sites/default/files/2020-01/477A9289%20%281%29.jpg",
+            "imageMobile": ""
         },
         {
             "title": "Slide 2",
             "description": "Slide description text",
-            "image": "http://y360cms.docksal.site/sites/default/files/2020-01/477A9289%20%281%29.jpg",
-            "imageWithButton": "http://y360cms.docksal.site/sites/default/files/2020-01/477a0890_1.jpg",
-            "mobileImage": "http://y360cms.docksal.site/sites/default/files/2023-01/Kelley-min.jpg"
+            "imageTV": "http://y360cms.docksal.site/sites/default/files/2020-01/477A9289%20%281%29.jpg",
+            "imageMobile": "http://y360cms.docksal.site/sites/default/files/2023-01/Kelley-min.jpg"
         }
     ],
     "promoLink": {
