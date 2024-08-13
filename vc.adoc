@@ -512,6 +512,55 @@ This operation returns association metadata (label, images and description).
 |billboards[].image |String |false |Image URL.
 |billboards[].imageWithButton |String |true |URL of image with button.
 |billboards[].link |String |false |Link URL. May be empty.
+|highlightedVideos|Array[Object] |false |Array of highlighted videos data. May be empty.
+|highlightedVideos[].image |String |false |Highlighted video image URL.
+|highlightedVideos[].video |Object |false |Highlighted video object.
+|highlightedVideos[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|highlightedVideos[].video.id |String |false |Unique ID of the Video.
+|highlightedVideos[].video.duration |Integer |false |Video duration in seconds.
+|highlightedVideos[].video.episode |Object |true |Video Episode.
+|highlightedVideos[].video.episode.number |Integer |true |Number of episode in season.
+|highlightedVideos[].video.episode.season |Integer |true |Number of season.
+|highlightedVideos[].video.thumbnail |String |false |Thumbnail of the Video.
+|highlightedVideos[].video.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|highlightedVideos[].video.attachments |Array[Object] |true |Video attachments.
+|highlightedVideos[].video.attachments[].title |string |false |Title of the attachment.
+|highlightedVideos[].video.attachments[].url |string |false |URL of the attachment.
+|highlightedVideos[].video.premium |Boolean |false |Indicates whether the video belongs to the premium category.
+|highlightedVideos[].video.instructor |String |true |Instructor name.
+|highlightedVideos[].video.instructorId |String |true |Instructor ID.
+|highlightedVideos[].video.instructors[] |Array[Object] |false |Instructor objects.
+|highlightedVideos[].video.instructors[].name |String |true |Instructor name.
+|highlightedVideos[].video.instructors[].id |String |true |Instructor ID.
+|highlightedVideos[].video.level |String |true |Workout level.
+|highlightedVideos[].video.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|highlightedVideos[].video.category |Integer |false |Video Category ID (deprecated).
+|highlightedVideos[].video.program |Integer |false |Video Category ID.
+|highlightedVideos[].video.programName |String |false |Video Category name.
+|highlightedVideos[].video.releaseDate |Integer |false |Video release timestamp.
+|highlightedVideos[].video.workoutModality |String |false |Workout modality.
+|highlightedVideos[].video.hardwareManufacturer |String |true |Hardware manufacturer.
+|highlightedVideos[].video.language |String |false |Video language.
+|highlightedVideos[].topLevelCategory |Object |false |Top level category related to highlighted videos.
+|highlightedVideos[].topLevelCategory.name |String |false |Name of the Sub-category (e.g. 'Judo', 'Taekwondo').
+|highlightedVideos[].topLevelCategory.hidden |Boolean |false |Indicates whether the Category is hidden or not.
+|highlightedVideos[].topLevelCategory.parent_program_id |String or null |false |Unique ID of the parent Category or null.
+|highlightedVideos[].topLevelCategory.id |String |false |Unique ID of the Sub-category.
+|highlightedVideos[].topLevelCategory.videoCount |Integer |false |An estimated number of videos in category (might not be precise).
+|highlightedVideos[].topLevelCategory.thumbnail |String |false |Thumbnail of the Sub-category (scaled and cropped to 1280x700).
+|highlightedVideos[].topLevelCategory.thumbnails |Object |false |Thumbnails of the Category.
+|highlightedVideos[].topLevelCategory.thumbnails.original |String |false |URL to the category image source or empty string.
+|highlightedVideos[].topLevelCategory.thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
+|highlightedVideos[].topLevelCategory.thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
+|highlightedVideos[].topLevelCategory.thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
+|highlightedVideos[].topLevelCategory.thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
+|highlightedVideos[].topLevelCategory.thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
+|highlightedVideos[].topLevelCategory.thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
+|highlightedVideos[].topLevelCategory.thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
+|highlightedVideos[].topLevelCategory.premium |Boolean |false |Indicates whether the category is premium or not.
+|highlightedVideos[].topLevelCategory.circle_icon |String |false |URL to the category circle image source or empty string.
+|highlightedVideos[].topLevelCategory.color |String | false| Category hex color value.
+|highlightedVideos[].topLevelCategory.background |String | false| Url to the category background image.
 |===
 
 [[_example_request_assoc_info]]
@@ -573,7 +622,69 @@ Content-Type: application/json;charset=UTF-8
       "mobileImage": "",
       "url": ""
     }
-  ]
+  ],
+  "highlightedVideos": [
+    {
+      "image": "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
+      "video": {
+        "id": "87",
+        "name": "KIDS YOGA WITH CORRI",
+        "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
+        "duration": 1366,
+        "customInfo": [],
+        "attachments": [
+            {
+                "title": "Attachment1.pdf",
+                "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+            },
+            {
+                "title": "Attachment2.pdf",
+                "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+            }
+        ],
+        "premium": false,
+        "instructor": "Corri Lewellen",
+        "instructorId": "12",
+        "instructors": [
+          {
+            "name": "Corri Lewellen",
+            "id": "12",
+          }
+        ],
+        "level": "BEGINNER",
+        "category": 22,
+        "program": 22,
+        "programName": "Yoga",
+        "location": "Wichita",
+        "language": "English",
+        "workoutModality": "Bike",
+        "hardwareManufacturer": "Matrix",
+        "topLevelCategory": 219,
+      },
+      "topLevelCategory": {
+          "id": "219",
+          "name": "Fitness First",
+          "videoCount": 0,
+          "thumbnail": "http://y360cms.site/sites/default/files/styles/image_response_big/public/2020-12/_fitness_first_chevron_stroke.png?itok=wU4KX-st",
+          "hidden": false,
+          "parent_program_id": null,
+          "thumbnails": {
+              "original": "http://y360cms.site/sites/default/files/2020-12/_fitness_first_chevron_stroke.png",
+              "1920x1080": "http://y360cms.site/sites/default/files/styles/1920x1080/public/2020-12/_fitness_first_chevron_stroke.png?itok=UuZeptoM",
+              "1280x720": "http://y360cms.site/sites/default/files/styles/1280x720/public/2020-12/_fitness_first_chevron_stroke.png?itok=zvWqm0qR",
+              "640x360": "http://y360cms.site/sites/default/files/styles/640x360/public/2020-12/_fitness_first_chevron_stroke.png?itok=VnRlTY8u",
+              "1920w": "http://y360cms.site/sites/default/files/styles/1920w/public/2020-12/_fitness_first_chevron_stroke.png?itok=zuHqAbEn",
+              "1280w": "http://y360cms.site/sites/default/files/styles/1280w/public/2020-12/_fitness_first_chevron_stroke.png?itok=FV-br774",
+              "640w": "http://y360cms.site/sites/default/files/styles/640w/public/2020-12/_fitness_first_chevron_stroke.png?itok=4uThDy04",
+              "320w": "http://y360cms.site/sites/default/files/styles/320w/public/2020-12/_fitness_first_chevron_stroke.png?itok=3B_BVwsd"
+          },
+          "color": "#FCAF17",
+          "background": "",
+          "premium": false,
+          "circle_icon": ""
+      }
+    }
+  ],
 }
 ----
 
@@ -656,6 +767,8 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
 |items[].premium |Boolean |false |Indicates whether the category is premium or not.
 |items[].circle_icon |String |false |URL to the category circle image source or empty string.
+|items[].color |String | false| Category hex color value.
+|items[].background |String | false| Url to the category background image.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -698,6 +811,8 @@ Content-Type: application/json;charset=UTF-8
       "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-03/kids-activities-opt.jpg?itok=fICPL8pT",
       "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-03/kids-activities-opt.jpg?itok=a7DKhk7m"
     },
+    "color": "#20BDBE",
+    "background": "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
     "premium": false,
     "circle_icon": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg"
   },
@@ -718,6 +833,8 @@ Content-Type: application/json;charset=UTF-8
       "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
       "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
     },
+    "color": "",
+    "background": "",
     "premium": false,
     "circle_icon": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg"
   }],
@@ -793,6 +910,8 @@ This operation extracts sub-categories of a category. It returns only brief info
 |items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
 |items[].premium |Boolean |false |Indicates whether the category is premium or not.
 |items[].circle_icon |String |false |URL to the category circle image source or empty string.
+|items[].color |String | false| Category hex color value.
+|items[].background |String | false| Url to the category background image.
 |items[].subCategories |Array[Object] |true a|
 The collection of sub-categories (including sub-categories of sub-categories). May be empty.
 
@@ -841,6 +960,8 @@ Content-Type: application/json;charset=UTF-8
       "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
       "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
     },
+    "color": "#20BDBE",
+    "background": "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
     "premium": false,
     "circle_icon": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg"
   },
@@ -861,6 +982,8 @@ Content-Type: application/json;charset=UTF-8
       "640w": "https://y360cms.docksal/sites/default/files/styles/640w/public/2020-04/kids-activities-opt.jpg?itok=fICPL8pT",
       "320w": "https://y360cms.docksal/sites/default/files/styles/320w/public/2020-04/kids-activities-opt.jpg?itok=a7DKhk7m"
     },
+    "color": "",
+    "background": "",
     "premium": false,
     "circle_icon": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg"
   }],
@@ -1061,6 +1184,8 @@ The "New Releases" and "Around the Y" categories are excluded.
 |items[].thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
 |items[].premium |Boolean |false |Indicates whether the category is premium or not.
 |items[].circle_icon |String |false |URL to the category circle image source or empty string.
+|items[].color |String | false| Category hex color value.
+|items[].background |String | false| Url to the category background image.
 |summary |Object |false |Page summary.
 |summary.limit |Integer |false |Requested size of the page.
 |summary.page |Integer |false |Page number.
@@ -1105,6 +1230,8 @@ Content-Type: application/json;charset=UTF-8
     },
     "premium": false,
     "circle_icon": "https://y360cms.docksal/sites/default/files/2020-03/kids-activities-opt.jpg"
+    "color": "#20BDBE",
+    "background": "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
   } ],
   "summary" : {
     "total" : 1,
@@ -1183,8 +1310,10 @@ No request body.
 |programDetails |Object |false |Comprehensive details of the program.
 |programDetails.description |String |true |Long description of the program.
 |programDetails.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|premium |Boolean | false| Indicates whether the category marked as premium
-|circle_icon |String | false| Url to the category circle image.
+|brief.premium |Boolean | false| Indicates whether the category marked as premium
+|brief.circle_icon |String | false| Url to the category circle image.
+|brief.color |String | false| Category hex color value.
+|brief.background |String | false| Url to the category background image.
 |===
 
 [[_example_request_4]]
@@ -1231,6 +1360,8 @@ Content-Type: application/json;charset=UTF-8
       "value" : "customValue"
     } ]
   },
+  "color": "#20BDBE",
+  "background": "https://vhx.imgix.net/lm-test/assets/bfed04fd-db97-4093-9670-513f50f6f123-c30849ec.jpg",
   "premium": false,
   "circle_icon": "https://y360cms.docksal/sites/default/files/2020-04/kids-activities-opt.jpg"
 }
@@ -5130,7 +5261,7 @@ This operation returns Promo sections data (label, images and description).
 |sections |Array[Object] |false |Array of promo sections(slides). May be empty.
 |sections[].imageTV |String |false |Image URL.
 |sections[].imageMobile |String |true |URL of mobile optimized image.
-|sections[].title |String |false |The title of promo section.
+|sections[].title |String |false |The title of promo section. Can contain line break symbols like "\r\n"
 |sections[].description |String |false |The description of promo section.
 |===
 
@@ -5161,7 +5292,7 @@ Content-Type: application/json;charset=UTF-8
             "imageMobile": ""
         },
         {
-            "title": "Slide 2",
+            "title": "Slide 2\r\nSecond line",
             "description": "Slide description text",
             "imageTV": "http://y360cms.docksal.site/sites/default/files/2020-01/477A9289%20%281%29.jpg",
             "imageMobile": "http://y360cms.docksal.site/sites/default/files/2023-01/Kelley-min.jpg"
