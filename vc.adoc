@@ -4421,6 +4421,7 @@ This endpoint lists available worlds
 |subtitle |String |true |World's subtitle or short description.
 |background |String |false |World's background image URL.
 |thumbnail |String |true |World's thumbnail image URL.
+|thumbnail_16_9 |String |true |World's 16:9 thumbnail image URL.
 |sections |Object |false |Sections of the World.
 |sections.spotlights |Object |true |The Spotlights section.
 |sections.spotlights.title |String |false |The Spotlights section title.
@@ -4484,6 +4485,7 @@ Content-Type: application/json;charset=UTF-8
     "subtitle": "Test world Subtitle (Greater Wichita YMCA)",
     "background": "http://worlds.y360cms.demo.fivejars.com/sites/default/files/2021-02/YMCA360_Logo_White.jpg",
     "thumbnail": "",
+    "thumbnail_16_9": "http://worlds.y360cms.demo.fivejars.com/sites/default/files/2021-02/YMCA360_Logo_White.jpg",
     "sections": {
         "national_videos": {
             "title": "National videos ",
