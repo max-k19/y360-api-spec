@@ -103,6 +103,16 @@ link:#_collection_details[Collection Details]
 ** link:#_example_request_19[Example request]
 ** link:#_example_response_19[Example response]
 
+
+link:#_highlighted_videos[Highlighted Videos]
+
+* link:#resources-fetch-highlighted-videos-controller-i-t-should-fetch-highlighted-videos[Fetch Highlighted Videos]
+** link:#_request_headers_highlighted_videos[Request headers]
+** link:#_path_parameters_highlighted_videos[Path parameters]
+** link:#_response_fields_highlighted_videos[Response fields]
+** link:#_example_request_highlighted_videos[Example request]
+** link:#_example_response_highlighted_videos[Example response]
+
 link:#_video_briefs[Video Briefs]
 
 * link:#resources-fetch-program-video-briefs-controller-i-t-should-fetch-program-videos[Fetch Category Videos]
@@ -512,55 +522,6 @@ This operation returns association metadata (label, images and description).
 |billboards[].image |String |false |Image URL.
 |billboards[].imageWithButton |String |true |URL of image with button.
 |billboards[].link |String |false |Link URL. May be empty.
-|highlightedVideos|Array[Object] |false |Array of highlighted videos data. May be empty.
-|highlightedVideos[].image |String |false |Highlighted video image URL.
-|highlightedVideos[].video |Object |false |Highlighted video object.
-|highlightedVideos[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
-|highlightedVideos[].video.id |String |false |Unique ID of the Video.
-|highlightedVideos[].video.duration |Integer |false |Video duration in seconds.
-|highlightedVideos[].video.episode |Object |true |Video Episode.
-|highlightedVideos[].video.episode.number |Integer |true |Number of episode in season.
-|highlightedVideos[].video.episode.season |Integer |true |Number of season.
-|highlightedVideos[].video.thumbnail |String |false |Thumbnail of the Video.
-|highlightedVideos[].video.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
-|highlightedVideos[].video.attachments |Array[Object] |true |Video attachments.
-|highlightedVideos[].video.attachments[].title |string |false |Title of the attachment.
-|highlightedVideos[].video.attachments[].url |string |false |URL of the attachment.
-|highlightedVideos[].video.premium |Boolean |false |Indicates whether the video belongs to the premium category.
-|highlightedVideos[].video.instructor |String |true |Instructor name.
-|highlightedVideos[].video.instructorId |String |true |Instructor ID.
-|highlightedVideos[].video.instructors[] |Array[Object] |false |Instructor objects.
-|highlightedVideos[].video.instructors[].name |String |true |Instructor name.
-|highlightedVideos[].video.instructors[].id |String |true |Instructor ID.
-|highlightedVideos[].video.level |String |true |Workout level.
-|highlightedVideos[].video.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
-|highlightedVideos[].video.category |Integer |false |Video Category ID (deprecated).
-|highlightedVideos[].video.program |Integer |false |Video Category ID.
-|highlightedVideos[].video.programName |String |false |Video Category name.
-|highlightedVideos[].video.releaseDate |Integer |false |Video release timestamp.
-|highlightedVideos[].video.workoutModality |String |false |Workout modality.
-|highlightedVideos[].video.hardwareManufacturer |String |true |Hardware manufacturer.
-|highlightedVideos[].video.language |String |false |Video language.
-|highlightedVideos[].topLevelCategory |Object |false |Top level category related to highlighted videos.
-|highlightedVideos[].topLevelCategory.name |String |false |Name of the Sub-category (e.g. 'Judo', 'Taekwondo').
-|highlightedVideos[].topLevelCategory.hidden |Boolean |false |Indicates whether the Category is hidden or not.
-|highlightedVideos[].topLevelCategory.parent_program_id |String or null |false |Unique ID of the parent Category or null.
-|highlightedVideos[].topLevelCategory.id |String |false |Unique ID of the Sub-category.
-|highlightedVideos[].topLevelCategory.videoCount |Integer |false |An estimated number of videos in category (might not be precise).
-|highlightedVideos[].topLevelCategory.thumbnail |String |false |Thumbnail of the Sub-category (scaled and cropped to 1280x700).
-|highlightedVideos[].topLevelCategory.thumbnails |Object |false |Thumbnails of the Category.
-|highlightedVideos[].topLevelCategory.thumbnails.original |String |false |URL to the category image source or empty string.
-|highlightedVideos[].topLevelCategory.thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
-|highlightedVideos[].topLevelCategory.thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
-|highlightedVideos[].topLevelCategory.thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
-|highlightedVideos[].topLevelCategory.thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
-|highlightedVideos[].topLevelCategory.thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
-|highlightedVideos[].topLevelCategory.thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
-|highlightedVideos[].topLevelCategory.thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
-|highlightedVideos[].topLevelCategory.premium |Boolean |false |Indicates whether the category is premium or not.
-|highlightedVideos[].topLevelCategory.circle_icon |String |false |URL to the category circle image source or empty string.
-|highlightedVideos[].topLevelCategory.color |String | false| Category hex color value.
-|highlightedVideos[].topLevelCategory.background |String | false| Url to the category background image.
 |===
 
 [[_example_request_assoc_info]]
@@ -621,68 +582,6 @@ Content-Type: application/json;charset=UTF-8
       "imageWithButton": "",
       "mobileImage": "",
       "url": ""
-    }
-  ],
-  "highlightedVideos": [
-    {
-      "image": "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
-      "video": {
-        "id": "87",
-        "name": "KIDS YOGA WITH CORRI",
-        "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
-        "duration": 1366,
-        "customInfo": [],
-        "attachments": [
-            {
-                "title": "Attachment1.pdf",
-                "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
-            },
-            {
-                "title": "Attachment2.pdf",
-                "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
-            }
-        ],
-        "premium": false,
-        "instructor": "Corri Lewellen",
-        "instructorId": "12",
-        "instructors": [
-          {
-            "name": "Corri Lewellen",
-            "id": "12",
-          }
-        ],
-        "level": "BEGINNER",
-        "category": 22,
-        "program": 22,
-        "programName": "Yoga",
-        "location": "Wichita",
-        "language": "English",
-        "workoutModality": "Bike",
-        "hardwareManufacturer": "Matrix",
-        "topLevelCategory": 219,
-      },
-      "topLevelCategory": {
-          "id": "219",
-          "name": "Fitness First",
-          "videoCount": 0,
-          "thumbnail": "http://y360cms.site/sites/default/files/styles/image_response_big/public/2020-12/_fitness_first_chevron_stroke.png?itok=wU4KX-st",
-          "hidden": false,
-          "parent_program_id": null,
-          "thumbnails": {
-              "original": "http://y360cms.site/sites/default/files/2020-12/_fitness_first_chevron_stroke.png",
-              "1920x1080": "http://y360cms.site/sites/default/files/styles/1920x1080/public/2020-12/_fitness_first_chevron_stroke.png?itok=UuZeptoM",
-              "1280x720": "http://y360cms.site/sites/default/files/styles/1280x720/public/2020-12/_fitness_first_chevron_stroke.png?itok=zvWqm0qR",
-              "640x360": "http://y360cms.site/sites/default/files/styles/640x360/public/2020-12/_fitness_first_chevron_stroke.png?itok=VnRlTY8u",
-              "1920w": "http://y360cms.site/sites/default/files/styles/1920w/public/2020-12/_fitness_first_chevron_stroke.png?itok=zuHqAbEn",
-              "1280w": "http://y360cms.site/sites/default/files/styles/1280w/public/2020-12/_fitness_first_chevron_stroke.png?itok=FV-br774",
-              "640w": "http://y360cms.site/sites/default/files/styles/640w/public/2020-12/_fitness_first_chevron_stroke.png?itok=4uThDy04",
-              "320w": "http://y360cms.site/sites/default/files/styles/320w/public/2020-12/_fitness_first_chevron_stroke.png?itok=3B_BVwsd"
-          },
-          "color": "#FCAF17",
-          "background": "",
-          "premium": false,
-          "circle_icon": ""
-      }
     }
   ],
 }
@@ -1730,6 +1629,174 @@ Content-Type: application/json;charset=UTF-8
       }
     ]
   }
+}
+----
+
+[[_highlighted_videos]]
+== link:#_highlighted_videos[Highlighted Videos]
+
+[[resources-fetch-highlighted-videos-controller-i-t-should-fetch-highlighted-videos]]
+=== link:#resources-fetch-highlighted-videos-controller-i-t-should-fetch-highlighted-videos[Fetch Highlighted Videos]
+`GET /api/virtual-classes/v4.0/content-providers/{provider}/highlighted-videos`
+
+This operation returns brief information about Category Videos.
+
+[[_request_headers_highlighted_videos]]
+==== link:#_request_headers_highlighted_videos[Request headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|`Accept` |application/json
+|`authorization` |Api key for authentication (f.e. 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0')
+|===
+
+[[_path_parameters_highlighted_videos]]
+==== link:#_path_parameters_highlighted_videos[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|programId |String |false |Unique ID of the Category.
+|===
+
+[[_response_fields_highlighted_videos]]
+==== link:#_response_fields_highlighted_videos[Response fields]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|items|Array[Object] |false |Array of highlighted videos data. May be empty.
+|items[].image |String |false |Highlighted video image URL.
+|items[].video |Object |false |Highlighted video object.
+|items[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
+|items[].video.id |String |false |Unique ID of the Video.
+|items[].video.duration |Integer |false |Video duration in seconds.
+|items[].video.episode |Object |true |Video Episode.
+|items[].video.episode.number |Integer |true |Number of episode in season.
+|items[].video.episode.season |Integer |true |Number of season.
+|items[].video.thumbnail |String |false |Thumbnail of the Video.
+|items[].video.customInfo |Map |false |Array of Key-Value to represent additional information of an entity. Partners could contain diverse information of same entities. This type designed to store that information.
+|items[].video.attachments |Array[Object] |true |Video attachments.
+|items[].video.attachments[].title |string |false |Title of the attachment.
+|items[].video.attachments[].url |string |false |URL of the attachment.
+|items[].video.premium |Boolean |false |Indicates whether the video belongs to the premium category.
+|items[].video.instructor |String |true |Instructor name.
+|items[].video.instructorId |String |true |Instructor ID.
+|items[].video.instructors[] |Array[Object] |false |Instructor objects.
+|items[].video.instructors[].name |String |true |Instructor name.
+|items[].video.instructors[].id |String |true |Instructor ID.
+|items[].video.level |String |true |Workout level.
+|items[].video.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
+|items[].video.category |Integer |false |Video Category ID (deprecated).
+|items[].video.program |Integer |false |Video Category ID.
+|items[].video.programName |String |false |Video Category name.
+|items[].video.releaseDate |Integer |false |Video release timestamp.
+|items[].video.workoutModality |String |false |Workout modality.
+|items[].video.hardwareManufacturer |String |true |Hardware manufacturer.
+|items[].video.language |String |false |Video language.
+|items[].topLevelCategory |Object |false |Top level category related to highlighted videos.
+|items[].topLevelCategory.name |String |false |Name of the Sub-category (e.g. 'Judo', 'Taekwondo').
+|items[].topLevelCategory.hidden |Boolean |false |Indicates whether the Category is hidden or not.
+|items[].topLevelCategory.parent_program_id |String or null |false |Unique ID of the parent Category or null.
+|items[].topLevelCategory.id |String |false |Unique ID of the Sub-category.
+|items[].topLevelCategory.videoCount |Integer |false |An estimated number of videos in category (might not be precise).
+|items[].topLevelCategory.thumbnail |String |false |Thumbnail of the Sub-category (scaled and cropped to 1280x700).
+|items[].topLevelCategory.thumbnails |Object |false |Thumbnails of the Category.
+|items[].topLevelCategory.thumbnails.original |String |false |URL to the category image source or empty string.
+|items[].topLevelCategory.thumbnails.1920x1080 |String |false |URL to the category image scaled and cropped to 1080p 16:9 or empty string.
+|items[].topLevelCategory.thumbnails.1280x720 |String |false |URL to the category image scaled and cropped to 720p 16:9 or empty string.
+|items[].topLevelCategory.thumbnails.640x360 |String |false |URL to the category image scaled and cropped to 360p 16:9 or empty string.
+|items[].topLevelCategory.thumbnails.1920w |String |false |URL to the category image scaled to 1920px wide or empty string.
+|items[].topLevelCategory.thumbnails.1280w |String |false |URL to the category image scaled to 1280px wide or empty string.
+|items[].topLevelCategory.thumbnails.640w |String |false |URL to the category image scaled to 640px wide or empty string.
+|items[].topLevelCategory.thumbnails.320w |String |false |URL to the category image scaled to 320px wide or empty string.
+|items[].topLevelCategory.premium |Boolean |false |Indicates whether the category is premium or not.
+|items[].topLevelCategory.circle_icon |String |false |URL to the category circle image source or empty string.
+|items[].topLevelCategory.color |String | false| Category hex color value.
+|items[].topLevelCategory.background |String | false| Url to the category background image.
+|===
+
+[[_example_request_highlighted_videos]]
+==== link:#_example_request_highlighted_videos[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v4.0/content-providers/lmod/highlighted-videos' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_highlighted_videos]]
+==== link:#_example_response_highlighted_videos[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+{
+  "items": [
+    {
+      "image": "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
+      "video": {
+        "id": "87",
+        "name": "KIDS YOGA WITH CORRI",
+        "thumbnail": "http://embed.wistia.com/deliveries/ea499a80e749b13eb3affe6ff3738596.bin",
+        "duration": 1366,
+        "customInfo": [],
+        "attachments": [
+            {
+                "title": "Attachment1.pdf",
+                "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment1.pdf"
+            },
+            {
+                "title": "Attachment2.pdf",
+                "url": "https://cms.ymca360.org/sites/default/files/2021-07/Attachment2.pdf"
+            }
+        ],
+        "premium": false,
+        "instructor": "Corri Lewellen",
+        "instructorId": "12",
+        "instructors": [
+          {
+            "name": "Corri Lewellen",
+            "id": "12",
+          }
+        ],
+        "level": "BEGINNER",
+        "category": 22,
+        "program": 22,
+        "programName": "Yoga",
+        "location": "Wichita",
+        "language": "English",
+        "workoutModality": "Bike",
+        "hardwareManufacturer": "Matrix",
+        "topLevelCategory": 219,
+      },
+      "topLevelCategory": {
+          "id": "219",
+          "name": "Fitness First",
+          "videoCount": 0,
+          "thumbnail": "http://y360cms.site/sites/default/files/styles/image_response_big/public/2020-12/_fitness_first_chevron_stroke.png?itok=wU4KX-st",
+          "hidden": false,
+          "parent_program_id": null,
+          "thumbnails": {
+              "original": "http://y360cms.site/sites/default/files/2020-12/_fitness_first_chevron_stroke.png",
+              "1920x1080": "http://y360cms.site/sites/default/files/styles/1920x1080/public/2020-12/_fitness_first_chevron_stroke.png?itok=UuZeptoM",
+              "1280x720": "http://y360cms.site/sites/default/files/styles/1280x720/public/2020-12/_fitness_first_chevron_stroke.png?itok=zvWqm0qR",
+              "640x360": "http://y360cms.site/sites/default/files/styles/640x360/public/2020-12/_fitness_first_chevron_stroke.png?itok=VnRlTY8u",
+              "1920w": "http://y360cms.site/sites/default/files/styles/1920w/public/2020-12/_fitness_first_chevron_stroke.png?itok=zuHqAbEn",
+              "1280w": "http://y360cms.site/sites/default/files/styles/1280w/public/2020-12/_fitness_first_chevron_stroke.png?itok=FV-br774",
+              "640w": "http://y360cms.site/sites/default/files/styles/640w/public/2020-12/_fitness_first_chevron_stroke.png?itok=4uThDy04",
+              "320w": "http://y360cms.site/sites/default/files/styles/320w/public/2020-12/_fitness_first_chevron_stroke.png?itok=3B_BVwsd"
+          },
+          "color": "#FCAF17",
+          "background": "",
+          "premium": false,
+          "circle_icon": ""
+      }
+    }
+  ],
 }
 ----
 
