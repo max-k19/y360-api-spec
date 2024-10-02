@@ -215,6 +215,13 @@ link:#combined_api[Combined API endpoints]
 
 link:#instructor_api[Instructor API endpoints]
 
+* link:#instructor_index_api[Instructors Index]
+** link:#_request_headers_instructor_index_api[Request headers]
+** link:#_path_parameters_instructor_index_api[Path parameters]
+** link:#_response_fields_instructor_index_api[Response fields]
+** link:#_example_request_instructor_index_api[Example request]
+** link:#_example_response_instructor_index_api[Example response]
+
 * link:#instructor_details_api[Instructor Details]
 ** link:#_request_headers_instructor_details_api[Request headers]
 ** link:#_path_parameters_instructor_details_api[Path parameters]
@@ -2695,6 +2702,7 @@ Can be one of [`createdAsc`, `createdDesc`, `titleAsc`, `titleDesc`, `instructor
 |location[] |Array[String] |true |Location filter. Location names.
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
+|instructorId[] |Array[String] |true |Instructor filter. Instructor ids.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
 |equipmentReq[] |Array[String] |true a|
 Equipment required filter.
@@ -3054,6 +3062,7 @@ This operation returns brief information about Category upcoming Live Streams.
 |association[] |Array[String] |true |Assocation filter. Assocation names.
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
+|instructorId[] |Array[String] |true |Instructor filter. Instructor ids.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
 |language[] |Array[String] |true |Language filter. Language names.
 |from |Integer |true |UNIX-timestamp (seconds since 1970-01-01 00:00:00 UTC) representing the earliest the live stream may begin.
@@ -3230,6 +3239,7 @@ This operation searches Live Streams. It returns brief information about live st
 |association[] |Array[String] |true |Association filter. Association names.
 |level[] |Array[String] |true |Workout level filter. Level names.
 |instructor[] |Array[String] |true |Instructor filter. Instructor names.
+|instructorId[] |Array[String] |true |Instructor filter. Instructor ids.
 |equipment[] |Array[String] |true |Equipment filter. Equipment names.
 |language[] |Array[String] |true |Language filter. Language names.
 |from |Integer |true |UNIX-timestamp (seconds since 1970-01-01 00:00:00 UTC) representing the earliest the live stream may begin.
@@ -4231,6 +4241,79 @@ Content-Type: application/json;charset=UTF-8
 
 [[instructor_api]]
 == link:#instructor_api[Instructor API endpoints]
+
+[[instructor_index_api]]
+=== link:#instructor_index_api[Instructors index]
+
+`GET /api/virtual-classes/v4.0/content-providers/{provider}/instructors`
+
+This endpoint returns the list of instructors
+
+[[_request_headers_instructor_index_api]]
+==== link:#_request_headers_instructor_index_api[Request Headers]
+
+[width="100%",cols="50%,50%",options="header",]
+|===
+|Name |Description
+|Accept |application/json
+|Authorization |Api key for authentication
+|===
+
+[[_path_parameters_instructor_index_api]]
+==== link:#_path_parameters_instructor_index_api[Path parameters]
+
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Parameter |Type |Optional |Description
+|provider |String |false |Unique ID of the Content Provider.
+|===
+
+[[_response_fields_instructor_index_api]]
+==== link:#_response_fields_instructor_index_api[Response fields]
+[width="100%",cols="25%,25%,25%,25%",options="header",]
+|===
+|Path |Type |Optional |Description
+|instructors |Array[Object] |false |The List of the Instructors.
+|instructors[].id |String |false |Unique ID of the Instructor.
+|instructors[].name |String |false |Name of the Instructor.
+|===
+
+[[_example_request_instructor_index_api]]
+==== link:#_example_request_instructor_index_api[Example request]
+
+[source,highlightjs,highlight]
+----
+$ curl 'http://localhost:8080/api/virtual-classes/v4.0/content-providers/lmod/instructors' -i -X GET \
+    -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
+----
+
+[[_example_response_instructor_index_api]]
+==== link:#_example_response_instructor_index_api[Example response]
+
+[source,highlightjs,highlight,nowrap]
+----
+HTTP/1.1 200 OK
+Content-Length: 40
+Content-Type: application/json;charset=UTF-8
+
+{
+  "instructors": [
+      {
+          "id": "500",
+          "name": "Instructor Name"
+      },
+      {
+          "id": "992",
+          "name": "Instructor Name"
+      },
+      {
+          "id": "504",
+          "name": "Instructor Name"
+      }
+  ]
+}
+
+----
 
 [[instructor_details_api]]
 === link:#instructor_details_api[Instructor details]
