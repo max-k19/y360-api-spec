@@ -569,25 +569,25 @@ Content-Type: application/json;charset=UTF-8
     {
       "image": "https://localhost/sites/default/files/2021-03/north_banner_ng.jpg",
       "imageWithButton": "https://localhost/sites/default/files/2021-03/north_banner_ng_with_button.jpg",
-      "mobileImage": "https://localhost/sites/default/files/2021-03/north_banner_ng_mobile.jpg",
+      "centerFocusImage": "https://localhost/sites/default/files/2021-03/north_banner_ng_mobile.jpg",
       "url": "https://ymcawichita.org/locations/dennis-schoenebeck-north-ymca"
     },
     {
       "image": "https://localhost/sites/default/files/2021-03/south_banner_ng.jpg",
       "imageWithButton": "https://localhost/sites/default/files/2021-03/south_banner_ng_with_button.jpg",
-      "mobileImage": "https://localhost/sites/default/files/2021-03/north_banner_ng_mobile.jpg",
+      "centerFocusImage": "https://localhost/sites/default/files/2021-03/north_banner_ng_mobile.jpg",
       "url": "https://ymcawichita.org/locations/richard-devore-south-ymca"
     },
     {
       "image": "https://localhost/sites/default/files/2021-03/y360_billboard001.jpg",
       "imageWithButton": "",
-      "mobileImage": "",
+      "centerFocusImage": "",
       "url": ""
     },
     {
       "image": "https://localhost/sites/default/files/2021-03/y360_billboard002.jpg",
       "imageWithButton": "",
-      "mobileImage": "",
+      "centerFocusImage": "",
       "url": ""
     }
   ],
@@ -3856,42 +3856,6 @@ Content-Type: application/json;charset=UTF-8
         "url": ""
       }
     ],
-    "highlightedVideos": [
-      {
-        "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2020-01/tild6465-3939-4633-b031-623836313966_tild3563-3434-4635-b.jpg",
-        "imageWithButton": "",
-        "mobileImage": "",
-        "video": {
-          "id": "81",
-          "name": "Cyclist's and Runner's Yoga",
-          "thumbnail": "http://embed.wistia.com/deliveries/3d0f5343cd73a4e6877f5a66e6e897b4.bin",
-          "duration": 1405,
-          "customInfo": [],
-          "premium": false,
-          "instructor": "Linda Myers",
-          "instructorId": "248",
-          "instructors": [
-            {
-              "name": "Linda Myers",
-              "id": "248"
-            }
-          ],
-          "level": "Beginner",
-          "category": 240,
-          "program": 240,
-          "programName": "Intermediate Yoga",
-          "description": "A yoga flow directed towards activating muscles and body parts that are important to running and cycling",
-          "equipment": "Blocks, Straps, Yoga Mat",
-          "attachments": [],
-          "language": "English",
-          "releaseDate": 1580237226,
-          "workoutModality": "",
-          "workoutModalities": [],
-          "hardwareManufacturer": "",
-          "location": "Greater Wichita YMCA"
-        }
-      }
-    ]
   },
   "featuredVideos": {
     "items": [
@@ -4084,28 +4048,6 @@ association info (including highlighted videos), new releases, playlists, channe
 | association.billboards |Array[Object] |false |Array of background (billboard) objects. May be empty.
 | association.billboards[].image |String |false |Image URL.
 | association.billboards[].link |String |false |Link URL. May be empty.
-| association.highlightedVideos |Object |false |Highlighted videos listing.May be empty.
-| association.highlightedVideos.items |Array[Object] |false |A list of highlighted videos.
-| association.highlightedVideos.items[].image |String |false |Image URL.
-| association.highlightedVideos.items[].imageWithButton |String |true |URL of image with button.
-| association.highlightedVideos.items[].mobileImage |String |true |URL of mobile optimized image.
-| association.highlightedVideos.items[].video |Object |false |Highlighted video object.
-| association.highlightedVideos.items[].video.id |String |false |Unique ID of the Video.
-| association.highlightedVideos.items[].video.name |String |false |Name of the Video (e.g. 'RPM #79 Express', 'BODYPUMP #100').
-| association.highlightedVideos.items[].video.duration |Integer |false |Video duration in seconds.
-| association.highlightedVideos.items[].video.thumbnail |String |false |Thumbnail of the Video.
-| association.highlightedVideos.items[].video.customInfo |Map |false |Array of Key-Value pairs to represent additional information of an entity.
-| association.highlightedVideos.items[].video.attachments |Array[Object] |true |Video attachments.
-| association.highlightedVideos.items[].video.attachments[].title |string |false |Title of the attachment.
-| association.highlightedVideos.items[].video.attachments[].url |string |false |URL of the attachment.
-| association.highlightedVideos.items[].video.premium |Boolean |false |Indicates whether the video belongs to the premium category.
-| association.highlightedVideos.items[].video.instructor |String |true |Instructor name.
-| association.highlightedVideos.items[].video.level |String |true |Workout level.
-| association.highlightedVideos.items[].video.location |String |true |Location metadata of the video (e.g. 'Wichita', 'Houston').
-| association.highlightedVideos.items[].video.program |Integer |false |Video Category ID.
-| association.highlightedVideos.items[].video.programName |String |false |Video Category name.
-| association.highlightedVideos.items[].video.releaseDate |Integer |false |Video release timestamp.
-| association.highlightedVideos.items[].video.language |String |false |Video language.
 | channels | Object | false | Top-level categories listing.
 | channels.items |Array[Object] |false |Actual category items.
 | channels.items[].name |String |false |Name of the Category (e.g. 'BODYSTEP', 'THE TRIP').
@@ -4180,7 +4122,7 @@ association info (including highlighted videos), new releases, playlists, channe
 
 [source,highlightjs,highlight]
 ----
-$ curl 'http://localhost:8080/settings/v4.0/content-providers/wichita/combined/frontpage' -i -X GET \
+$ curl 'http://localhost:8080/settings/v4.0/content-providers/wichita/combined/watchscreen' -i -X GET \
 -H 'Accept: application/json' -H 'authorization: apiKey 0a47c3bf-4740-465d-a22e-0b25ef86ddd0'
 ----
 
@@ -4239,42 +4181,6 @@ Content-Type: application/json;charset=UTF-8
                 "url": "https://ymcawichita.org/events/june-famfest"
             }
         ],
-        "highlightedVideos": [
-            {
-                "image": "http://appv2.y360cms.demo.fivejars.com/sites/default/files/2020-01/tild6465-3939-4633-b031-623836313966_tild3563-3434-4635-b.jpg",
-                "imageWithButton": "",
-                "mobileImage": "",
-                "video": {
-                    "id": "81",
-                    "name": "Cyclist's and Runner's Yoga",
-                    "thumbnail": "http://embed.wistia.com/deliveries/3d0f5343cd73a4e6877f5a66e6e897b4.bin",
-                    "duration": 1405,
-                    "customInfo": [],
-                    "premium": false,
-                    "instructor": "Linda Myers",
-                    "instructorId": "248",
-                    "instructors": [
-                        {
-                            "name": "Linda Myers",
-                            "id": "248"
-                        }
-                    ],
-                    "level": "Beginner",
-                    "category": 240,
-                    "program": 240,
-                    "programName": "Intermediate Yoga",
-                    "description": "A yoga flow directed towards activating muscles and body parts that are important to running and cycling",
-                    "equipment": "Blocks, Straps, Yoga Mat",
-                    "attachments": [],
-                    "language": "English",
-                    "releaseDate": 1580237226,
-                    "workoutModality": "",
-                    "workoutModalities": [],
-                    "hardwareManufacturer": "",
-                    "location": "Greater Wichita YMCA"
-                }
-            }
-        ]
     },
     "channels": {
       "items" : [ {
